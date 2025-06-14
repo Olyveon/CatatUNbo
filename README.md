@@ -18,7 +18,7 @@ Una aplicación desarrollada por el equipo de desarrollo **CatatUNbo** para una 
   jurozoa@unal.edu.co
 
 -> **Felipe Rojas Marin**  
-  ferojas@unal.edu.co
+  ferojasm@unal.edu.co
 
 -> **Miguel Angel Citarella**  
   mcitarella@unal.edu.co
