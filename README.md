@@ -18,6 +18,11 @@ Con Spynet buscamos:
 
 -Facilitar la comunicación con los clientes, permitiendo que envíen solicitudes de auditoría directamente desde la plataforma.
 
+-Unificar toda la evidencia técnica y cualitativa en un único informe PDF exportable, optimizando la presentación final de resultados a los clientes.
+
+-Integrar funcionalidades complementarias de análisis contextual, como una sección donde se realiza web scraping del comportamiento actual de criptomonedas (BTC, ETH, etc.) desde Binance. Esta función permite observar correlaciones entre incidentes en activos digitales y posibles vulnerabilidades en sistemas conectados a servicios financieros o Web3.
+
+
 
 ## 👥 Integrantes del equipo - *CatatUNbo*
 
