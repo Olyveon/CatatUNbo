@@ -1,6 +1,29 @@
-# CatatUNbo
-Grupo de Ingesoft I, Integrantes:
-Santiago Alejandro Rojas Feo
-Juan Diego Rozo Álvarez
-Felipe Rojas Marin
-Miguel Angel Citarella
+# SpyNet🕵️
+
+Una aplicación desarrollada por el equipo de desarrollo **CatatUNbo** para una empresa de auditoria informática, que permitira varias funcionalidades.
+
+## 🔎 Descripción del proyecto
+
+
+## 🎯 Objetivo
+
+
+
+## 👥 Integrantes del equipo - *CatatUNbo*
+
+-> **Santiago Alejandro Rojas Feo**  
+  srojasfe@unal.edu.co
+
+-> **Juan Diego Rozo Álvarez**  
+  jurozoa@unal.edu.co
+
+-> **Felipe Rojas Marin**  
+  ferojas@unal.edu.co
+
+-> **Miguel Angel Citarella**  
+  mcitarella@unal.edu.co
+
+
+
+
+
