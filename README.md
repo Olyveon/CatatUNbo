@@ -6,7 +6,7 @@ Una aplicación desarrollada por el equipo de desarrollo **CatatUNbo** para una 
 Spynet es una aplicación de escritorio diseñada para asistir a empresas de auditoría informática en la realización, gestión y documentación de auditorías de seguridad técnica. Su objetivo principal es automatizar y centralizar procesos clave de la auditoría, tales como el escaneo de puertos y servicios, el análisis cualitativo de vulnerabilidades detectadas, la generación de informes técnicos, y el seguimiento estructurado de observaciones.
 
 
-## 🎯 Objetivo
+## 🎯 Objetivos
 
 Con Spynet buscamos:
 
