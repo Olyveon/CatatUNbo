@@ -1,0 +1,21 @@
+.hover-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white; /* Always visible */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-cursor: hand;
+    -fx-padding: 5;
+}
+
+.hover-button:hover {
+    -fx-background-color: linear-gradient(
+            from 0% 0% to 100% 0%,  /* center to the sides */
+            #380e10 0%,
+            #7d0b08 30%,
+            #7d0b08 70%,
+            #380e10 100%
+    );
+    -fx-border-color: transparent; /* Explicitly keep hidden */
+}
+
