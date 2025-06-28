@@ -19,3 +19,23 @@
     -fx-border-color: transparent; /* Explicitly keep hidden */
 }
 
+.filter-button {
+    -fx-background-color:  #17579f;
+    -fx-background-radius: 10;
+    -fx-text-fill: white; /* Always visible */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+}
+
+.general-filter-button {
+    -fx-background-color:  #182430;
+    -fx-background-radius: 10;
+    -fx-font-family: Segoe UI;
+    -fx-text-fill: white; /* Always visible */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+}
