@@ -33,6 +33,7 @@
     -fx-background-color:  #182430;
     -fx-background-radius: 10;
     -fx-font-family: Segoe UI;
+    -fx-font-size: 30;
     -fx-text-fill: white; /* Always visible */
     -fx-scale-x: 1;
     -fx-scale-y: 1;
