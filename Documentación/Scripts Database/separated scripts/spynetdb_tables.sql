@@ -6,7 +6,7 @@ CREATE TABLE user(
 	user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL,
     user_password_hash VARCHAR(255) NOT NULL, 
-    user_rol ENUM("admin", "auditor", "inspector", "cliente") NOT NULL,
+    user_rol ENUM("admin", "auditor", "inspector", "cliente") NULL,
     user_state ENUM("ACTIVO", "BLOQUEADO") NOT NULL,
     user_date_register DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_last_session DATETIME DEFAULT CURRENT_TIMESTAMP
