@@ -6,7 +6,7 @@ CREATE TABLE user(
 	user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL,
     user_password_hash VARCHAR(255) NOT NULL, 
-    user_rol ENUM("admin", "auditor", "inspector", "cliente") NOT NULL,
+    user_rol ENUM("admin", "auditor", "inspector", "cliente") NULL,
     user_state ENUM("ACTIVO", "BLOQUEADO") NOT NULL,
     user_date_register DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_last_session DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -38,9 +38,8 @@ CREATE TABLE auditory(
 );
 
 CREATE TABLE auditory_access(
+	aud_access_auditory_id INT PRIMARY KEY,
 	aud_access_user_id INT,
-    aud_access_auditory_id INT,
-    PRIMARY KEY(aud_access_user_id,aud_access_auditory_id),
     FOREIGN KEY (aud_access_user_id) REFERENCES user(user_id),
     FOREIGN KEY (aud_access_auditory_id) REFERENCES auditory(auditory_id)
 );

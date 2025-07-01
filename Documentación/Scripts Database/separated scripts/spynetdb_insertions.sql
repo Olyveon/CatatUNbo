@@ -49,12 +49,13 @@ INSERT INTO auditory (auditory_name, auditory_client_id, auditory_state, auditor
 ('Análisis Firewall SecureTech', 5, 'EN PROCESO', '2025-06-20 11:00:00', '2025-07-03 23:59:59');
 
 -- 👥 Accesos a auditorías
-INSERT INTO auditory_access (aud_access_user_id, aud_access_auditory_id) VALUES
-(3, 1), (6, 1),
-(4, 2), (6, 2),
-(5, 3), (6, 3),
-(4, 4), (6, 4),
-(3, 5), (6, 5);
+-- Asignación de auditor a cada auditoría (uno por auditoría)
+INSERT INTO auditory_access (aud_access_auditory_id, aud_access_user_id) VALUES
+(1, 3),  -- Auditoría 1 → usuario_id 3 (auditor_ana)
+(2, 4),  -- Auditoría 2 → usuario_id 4 (auditor_jose)
+(3, 5),  -- Auditoría 3 → usuario_id 5 (auditor_lina)
+(4, 4),  -- Auditoría 4 → usuario_id 4 (auditor_jose)
+(5, 3);  -- Auditoría 5 → usuario_id 3 (auditor_ana)
 
 -- 🧠 Hallazgos
 INSERT INTO finding (finding_security_risk, finding_user_id, finding_auditory_id, finding_title, finding_description) VALUES
@@ -63,6 +64,10 @@ INSERT INTO finding (finding_security_risk, finding_user_id, finding_auditory_id
 ('CRITICO', 5, 3, 'Base de datos accesible públicamente', 'Se detectó un puerto de base de datos abierto sin restricción.'),
 ('BAJO', 4, 4, 'Certificado SSL próximo a expirar', 'El certificado expira en menos de 15 días.'),
 ('MEDIO', 3, 5, 'Versión de Apache obsoleta', 'Apache 2.2 detectado en producción.');
+insert into finding (finding_auditory_id, finding_user_id, finding_security_risk, finding_title, finding_description, finding_datetime)
+values 
+(1, 2, 'ALTO', 'Hallazgo 1', 'Primer hallazgo para la auditoría 1', now()),
+(1, 3, 'MEDIO', 'Hallazgo 2', 'Segundo hallazgo para la auditoría 1', now());
 
 -- 📝 Observaciones
 INSERT INTO observation (observation_user_id, observation_auditory_id, observation_title, observation_description) VALUES
@@ -71,7 +76,10 @@ INSERT INTO observation (observation_user_id, observation_auditory_id, observati
 (4, 2, 'Planificación inicial', 'Auditoría se programó para próxima semana.'),
 (6, 3, 'Observación final', 'Cierre de auditoría sin hallazgos nuevos.'),
 (3, 5, 'Hallazgo crítico detectado', 'El firewall responde con ICMP desde Internet.');
-
+insert into observation (observation_auditory_id, observation_user_id, observation_title, observation_description, observation_datetime)
+values 
+(1, 2, 'Observación 1', 'Primera observación para la auditoría 1', now()),
+(1, 3, 'Observación 2', 'Segunda observación para la auditoría 1', now());
 -- 📬 Solicitudes de auditoría
 INSERT INTO request (request_client_name, request_client_number, request_client_email, request_state) VALUES
 ('Datasec Colombia', '3205567888', 'solicitud@datasec.com', 'PENDIENTE'),
