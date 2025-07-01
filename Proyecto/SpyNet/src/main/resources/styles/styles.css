@@ -40,3 +40,12 @@
     -fx-cursor: hand;
     -fx-padding: 10;
 }
+
+.panel-main {
+    -fx-background-color: #060d17;
+    -fx-background-radius: 15;
+}
+
+.background {
+    -fx-background-color: #212934;
+}
