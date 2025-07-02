@@ -49,3 +49,10 @@
 .background {
     -fx-background-color: #212934;
 }
+
+.text-field, .password-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #1a262f;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+}

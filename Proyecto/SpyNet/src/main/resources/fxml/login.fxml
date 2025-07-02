@@ -25,12 +25,12 @@
                   <Font name="Segoe UI" size="34.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" prefHeight="41.0" prefWidth="269.0" promptText="Usuario:" style="-fx-background-color: transparent; -fx-border-color: #1a262f; -fx-border-radius: 15;">
+            <TextField fx:id="usernameField" prefHeight="41.0" prefWidth="269.0" promptText="Usuario:" styleClass="text-field" stylesheets="@../styles/styles.css">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" promptText="Contraseña:" style="-fx-background-color: transparent; -fx-border-color: #1a262f; -fx-border-radius: 15;">
+            <PasswordField fx:id="passwordField" promptText="Contraseña:" styleClass="password-field" stylesheets="@../styles/styles.css">
                <font>
                   <Font size="18.0" />
                </font>
