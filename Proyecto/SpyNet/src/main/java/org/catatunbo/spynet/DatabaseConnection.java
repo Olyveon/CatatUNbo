@@ -1,4 +1,4 @@
-package com.example;
+package org.catatunbo.spynet;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,7 +31,7 @@ public class DatabaseConnection {
         }
     }
     
-    // Método para obtener la instancia única
+    // Metodo para obtener la instancia única
     public static DatabaseConnection getInstance() {
         if (instance == null) {
             instance = new DatabaseConnection();
@@ -39,7 +39,7 @@ public class DatabaseConnection {
         return instance;
     }
     
-    // Método para obtener la conexión
+    // Metodo para obtener la conexión
     public Connection getConnection() {
         try {
             // Verificar si la conexión está activa
@@ -54,7 +54,7 @@ public class DatabaseConnection {
         return connection;
     }
     
-    // Método para cerrar la conexión
+    // Metodo para cerrar la conexión
     public void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {

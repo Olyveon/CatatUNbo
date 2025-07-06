@@ -1,4 +1,4 @@
-package com.example;
+package org.catatunbo.spynet.controllers;
 
 public class Login {
 

@@ -1,6 +1,7 @@
 module org.catatunbo.spynet {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens org.catatunbo.spynet to javafx.fxml;

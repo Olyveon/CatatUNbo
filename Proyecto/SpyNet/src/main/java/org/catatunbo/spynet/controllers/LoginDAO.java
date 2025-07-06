@@ -1,4 +1,6 @@
-package com.example;
+package org.catatunbo.spynet.controllers;
+
+import org.catatunbo.spynet.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
