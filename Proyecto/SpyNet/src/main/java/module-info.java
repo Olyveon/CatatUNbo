@@ -6,6 +6,5 @@ module org.catatunbo.spynet {
     exports org.catatunbo.spynet;
     opens org.catatunbo.spynet.controllers to javafx.fxml;
     exports  org.catatunbo.spynet.controllers;
-    exports org.catatunbo.spynet.controllers.Admin;
-    opens org.catatunbo.spynet.controllers.Admin to javafx.fxml;
+    opens org.catatunbo.spynet.database to java.sql;
 }

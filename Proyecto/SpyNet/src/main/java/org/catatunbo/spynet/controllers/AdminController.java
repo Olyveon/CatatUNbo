@@ -1,4 +1,4 @@
-package org.catatunbo.spynet.controllers.Admin;
+package org.catatunbo.spynet.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
