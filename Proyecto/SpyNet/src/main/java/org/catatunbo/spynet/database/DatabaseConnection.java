@@ -21,7 +21,7 @@ public class DatabaseConnection {
     
     private static void loadDatabaseProperties() {
         Properties props = new Properties();
-        try (InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database.properties")) {
+        try (InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties")) {
             if (is != null) {
                 props.load(is);
                 URL = props.getProperty("database.url", "jdbc:mysql://localhost:3306/spynetdb");

@@ -1,0 +1,37 @@
+/* Inspector-specific styles */
+
+.inspector-table {
+    -fx-background-color: #000000;
+    -fx-border-radius: 8;
+    -fx-background-radius: 20;
+    -fx-table-cell-border-color: #444;z
+    -fx-text-fill: white;
+}
+
+
+
+.inspector-input {
+    -fx-background-color: #3a4869;
+    -fx-text-fill: rgb(245, 245, 245);
+    -fx-background-radius: 20;
+    -fx-padding: 6 10 6 10;
+    -fx-font-size: 14px;
+}
+
+.inspector-button {
+    -fx-background-color: #181a1b;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 24 8 24;
+    -fx-effect: dropshadow(gaussian, #7d0b08, 4, 0.2, 0, 2);
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+}
+
+.inspector-button:hover {
+    -fx-background-color: rgba(200, 0, 0, 0.35);
+}
