@@ -21,31 +21,25 @@ public class DatabaseConnection {
     
     private static void loadDatabaseProperties() {
         Properties props = new Properties();
-
-        System.out.println("🔍 Buscando archivo:");
-        System.out.println(DatabaseConnection.class.getClassLoader().getResource("database_resources/database.properties"));
-
+        // Para correr al aplicación con RUN, primero compilar (mvn clen complie)
 
         try (InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties")) {
             if (is != null) {
                 props.load(is);
-                // NO USAR, USEN EL .PROPERTIES POR FAVOR
-                //URL = props.getProperty("database.url", "jdbc:mysql://localhost:3306/spynetdb");
-                //USERNAME = props.getProperty("database.username", "root");
-                //PASSWORD = props.getProperty("database.password", "");
+                URL = props.getProperty("database.url");
+                USERNAME = props.getProperty("database.username");
+                PASSWORD = props.getProperty("database.password");
+                
+                if (URL == null || USERNAME == null) {
+                    throw new RuntimeException("Propiedades requeridas faltantes en database.properties: " +
+                        "database.url=" + URL + ", database.username=" + USERNAME);
+                }
             } else {
-                // 
-                URL = "jdbc:mysql://localhost:3306/spynetdb";
-                USERNAME = "root";
-                PASSWORD = "";
-                System.out.println("Archivo database.properties no encontrado, usando valores por defecto");
+                throw new RuntimeException("Archivo database.properties no encontrado en classpath. " +
+                    "Verifique que el archivo esté en src/main/resources/database_resources/database.properties");
             }
         } catch (IOException e) {
-            // Valores por defecto en caso de error
-            URL = "jdbc:mysql://localhost:3306/spynetdb";
-            USERNAME = "root";
-            PASSWORD = "";
-            System.err.println("Error cargando database.properties: " + e.getMessage());
+            throw new RuntimeException("No se pudo cargar database.properties: " + e.getMessage(), e);
         }
     }
     
@@ -79,17 +73,6 @@ public class DatabaseConnection {
         if (connection != null && !connection.isClosed()) {
             connection.close();
             System.out.println("Conexión a la base de datos cerrada");
-        }
-    }
-    
-    // Mé   todo para probar la conexión
-    public static boolean testConnection() {
-        try {
-            DatabaseConnection dbConnection = DatabaseConnection.getInstance();
-            return !dbConnection.getConnection().isClosed();
-        } catch (SQLException e) {
-            System.err.println("Error en test de conexión: " + e.getMessage());
-            return false;
         }
     }
 }
