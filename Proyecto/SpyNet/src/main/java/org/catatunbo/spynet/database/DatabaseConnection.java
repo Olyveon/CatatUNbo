@@ -34,10 +34,10 @@ public class DatabaseConnection {
                 PASSWORD = props.getProperty("database.password", "");
             } else {
                 // 
-                URL = "jdbc:mysql://localhost:3306/spynetdb";
-                USERNAME = "root";
-                PASSWORD = "";
-                System.out.println("Archivo database.properties no encontrado, usando valores por defecto");
+                //URL = "jdbc:mysql://localhost:3306/spynetdb";
+                //USERNAME = "root";
+                //PASSWORD = "";
+                //System.out.println("Archivo database.properties no encontrado, usando valores por defecto");
             }
         } catch (IOException e) {
             // Valores por defecto en caso de error
