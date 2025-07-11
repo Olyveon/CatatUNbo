@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminAuditController">
    <children>
       <AnchorPane layoutX="310.0" layoutY="15.0" prefHeight="772.0" prefWidth="952.0" styleClass="panel-main" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
          <children>
@@ -106,50 +105,38 @@
                <children>
                   <Button fx:id="btnAddHallazgo" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir hallazgo" />
                   <TextArea fx:id="txtAreaAddHallazgo" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="356.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="356.0" />
-                  <ChoiceBox fx:id="choiceBoxNivelRiesgo" layoutX="676.0" layoutY="9.0" prefWidth="150.0" styleClass="terminal-choicebox" AnchorPane.rightAnchor="37.0" />
                   <Label layoutX="524.0" layoutY="7.0" prefHeight="28.0" prefWidth="141.0" styleClass="add-comment-button" text="Nivel de riesgo" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="198.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <ComboBox fx:id="comboBoxNivelRiesgo" layoutX="710.0" layoutY="6.0" prefHeight="30.0" prefWidth="156.0" styleClass="terminal-combobox" AnchorPane.rightAnchor="22.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="38.0" layoutY="605.0" prefHeight="153.0" prefWidth="876.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="605.0">
                <children>
-                  <ScrollPane fx:id="scrollPaneTerminal" layoutX="-9.0" layoutY="11.0" prefHeight="135.0" prefWidth="863.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="11.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="800.0">
-                           <children>
-                              <Label prefHeight="25.0" prefWidth="770.0" text="spynet@auditor:~$ " textAlignment="CENTER" textFill="#bfbfbf" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font name="Consolas" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                     <styleClass>
-                        <String fx:value="scroll-bar" />
-                        <String fx:value="scroll-terminal" />
-                     </styleClass>
-                  </ScrollPane>
+                  <TextArea fx:id="txtAreaTerminal" editable="false" layoutX="13.0" layoutY="-7.0" prefHeight="153.0" prefWidth="875.0" styleClass="scroll-terminal" text="spynet@auditor:~$ " wrapText="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="9.0">
+                     <font>
+                        <Font name="Consolas" size="19.0" />
+                     </font>
+                  </TextArea>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="55.0" layoutY="568.0" prefHeight="35.0" prefWidth="486.0">
+            <AnchorPane layoutX="55.0" layoutY="568.0" prefHeight="35.0" prefWidth="500.0">
                <children>
-                  <Button fx:id="btnExeNmap" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" style="-fx-background-color: #17579f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #17579f;" text="Ejecutar NMAP" textFill="WHITE" />
-                  <ChoiceBox fx:id="choiceBozArgNmap" layoutX="225.0" layoutY="4.0" prefHeight="25.0" prefWidth="60.0" styleClass="terminal-choicebox" />
+                  <Button fx:id="btnExeNmap" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleExecuteNMAP" style="-fx-background-color: #17579f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #17579f;" text="Ejecutar NMAP" textFill="WHITE" />
                   <Label layoutX="132.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="Argument:" textFill="#f0f0f0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="305.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="IP:" textFill="#f0f0f0">
+                  <Label layoutX="314.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="IP:" textFill="#f0f0f0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="choiceBoxIP" layoutX="333.0" layoutY="4.0" prefHeight="25.0" prefWidth="131.0" styleClass="terminal-choicebox" />
+                  <ComboBox fx:id="comboBoxArgNMAP" layoutX="221.0" layoutY="2.0" prefHeight="30.0" prefWidth="82.0" styleClass="terminal-combobox" />
+                  <ComboBox fx:id="comboBoxIP" layoutX="339.0" layoutY="2.0" prefHeight="30.0" prefWidth="156.0" styleClass="terminal-combobox" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="650.0" layoutY="568.0" prefHeight="35.0" prefWidth="253.0" AnchorPane.rightAnchor="24.0">

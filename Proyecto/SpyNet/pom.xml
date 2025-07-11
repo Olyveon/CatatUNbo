@@ -43,11 +43,20 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
+
+        <dependency>
+
+            <groupId>com.openai</groupId>
+
+            <artifactId>openai-java</artifactId>
+
+            <version>0.31.0</version>
+
+        </dependency>
+
     </dependencies>
 
     <build>
-
-    
 
 
 

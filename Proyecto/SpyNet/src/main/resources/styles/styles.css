@@ -141,15 +141,6 @@
 }
 
 
-.terminal-choicebox .menu-item {
-    -fx-background-color: #121212;
-    -fx-text-fill: white;
-}
-
-.terminal-choicebox .menu-item:hover {
-    -fx-background-color: #01decd;
-    -fx-text-fill: black;
-}
 
 
 .terminal-textarea {
@@ -188,4 +179,51 @@
 .scrollpane-secondary .thumb {
     -fx-background-color: #27435f;
     -fx-background-radius: 8;
+}
+
+
+
+/* Combobox design*/
+/* Estilo base */
+.terminal-combobox {
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #113153;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    
+}
+
+/* Estilo del desplegable */
+.terminal-combobox .list-cell {
+    -fx-background-color: #0f0f0f;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.terminal-combobox .list-view {
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #1c4a7c;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+}
+
+/* Hover de las opciones */
+.terminal-combobox .list-cell:hover {
+    -fx-background-color: #01decc;
+    -fx-text-fill: black;
+}
+
+/* Elemento seleccionado cuando está cerrado */
+.terminal-combobox .combo-box-button .arrow {
+    -fx-background-color: #1c4a7c;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.terminal-combobox:focused {
+    -fx-border-color: #1c4a7c;
 }
