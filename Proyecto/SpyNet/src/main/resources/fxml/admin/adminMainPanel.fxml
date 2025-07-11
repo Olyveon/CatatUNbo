@@ -30,7 +30,7 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
+            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleConsultarAuditorias" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font></Button>
@@ -43,7 +43,7 @@
                   <Font name="Segoe UI" size="25.0" />
                </font></Button>
             <Region prefHeight="230.0" prefWidth="289.0" />
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir" onAction="#handleExit">
+            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleExit" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>
@@ -78,17 +78,17 @@
                         <Font name="Segoe UI" size="30.0" />
                      </font>
                   </Label>
-                  <Label text="Encargado" textFill="#c9b9b9" GridPane.columnIndex="1">
+                  <Label text="Encargado" textFill="#c9b9b9" GridPane.columnIndex="2">
                      <font>
                         <Font name="Segoe UI" size="30.0" />
                      </font>
                   </Label>
-                  <Label text="Datos" textFill="#c9b9b9" GridPane.columnIndex="2">
+                  <Label text="Datos" textFill="#c9b9b9" GridPane.columnIndex="3">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label text="Estado" textFill="#c9b9b9" GridPane.columnIndex="3">
+                  <Label text="Estado" textFill="#c9b9b9" GridPane.columnIndex="4">
                      <font>
                         <Font name="Segoe UI" size="30.0" />
                      </font>

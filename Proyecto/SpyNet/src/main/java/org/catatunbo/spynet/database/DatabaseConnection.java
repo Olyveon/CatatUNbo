@@ -21,6 +21,11 @@ public class DatabaseConnection {
     
     private static void loadDatabaseProperties() {
         Properties props = new Properties();
+
+        System.out.println("🔍 Buscando archivo:");
+        System.out.println(DatabaseConnection.class.getClassLoader().getResource("database_resources/database.properties"));
+
+
         try (InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties")) {
             if (is != null) {
                 props.load(is);

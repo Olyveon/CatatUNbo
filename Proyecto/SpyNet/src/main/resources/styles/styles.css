@@ -46,6 +46,11 @@
     -fx-background-radius: 15;
 }
 
+.panel-main-secundary {
+    -fx-background-color: #010207;
+    -fx-background-radius: 15;
+}
+
 .background {
     -fx-background-color: #212934;
 }
@@ -55,4 +60,132 @@
     -fx-border-color: #1a262f;
     -fx-border-radius: 15;
     -fx-text-fill: white;
+}
+
+
+.label-highlight {
+    -fx-background-color: linear-gradient(
+        from 0% 0% to 100% 0%,
+        #5c0f0f,
+        #a12020,
+        #5c0f0f
+    );
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-padding: 10 20 10 20;
+}
+
+
+.add-comment-button{
+    -fx-background-color: #b44c4c;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    
+    -fx-alignment: center;
+   
+
+}
+
+.scroll-terminal {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 10;
+
+    /* Borde externo redondeado */
+    -fx-border-color: #2e2e2e;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+
+    /* Fondo interno del contenido */
+    -fx-control-inner-background: black;
+    -fx-background-radius: 10;
+}
+
+/* Estilo del contenido (por ejemplo, Label o TextFlow dentro del ScrollPane) */
+.scroll-terminal .viewport {
+    -fx-background-color: black;
+    -fx-background-radius: 10;
+}
+
+.scroll-terminal .content {
+    -fx-background-color: black;
+    -fx-padding: 10;
+}
+
+/* Opcional: personaliza las barras de scroll */
+.scroll-terminal .scroll-bar {
+    -fx-background-color: #1e1e1e;
+}
+
+.scroll-terminal .thumb {
+    -fx-background-color: #969696;
+    -fx-background-radius: 10;
+}
+
+
+.terminal-choicebox {
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #113153;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-family: Segoe UI;
+    
+    -fx-text-fill: white;
+    
+}
+
+
+.terminal-choicebox .menu-item {
+    -fx-background-color: #121212;
+    -fx-text-fill: white;
+}
+
+.terminal-choicebox .menu-item:hover {
+    -fx-background-color: #01decd;
+    -fx-text-fill: black;
+}
+
+
+.terminal-textarea {
+    -fx-background-color: black;
+    -fx-control-inner-background: black;
+    -fx-text-fill: #d0d0d0;
+    -fx-font-family: Consolas;
+   
+    -fx-border-color: #676e6e;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-highlight-fill: #01decd;
+    -fx-highlight-text-fill: black;
+    -fx-caret-color: #01decd;
+    
+}
+
+.scrollpane-secondary {
+    -fx-background-color: #010207;
+    -fx-border-color: #0f2338;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+}
+
+.scrollpane-secondary .viewport {
+    -fx-background-color: transparent;
+}
+
+.scrollpane-secondary .scroll-bar:vertical,
+.scrollpane-secondary .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scrollpane-secondary .thumb {
+    -fx-background-color: #27435f;
+    -fx-background-radius: 8;
 }
