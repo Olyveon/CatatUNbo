@@ -22,6 +22,7 @@ public class DatabaseConnection {
     private static void loadDatabaseProperties() {
         Properties props = new Properties();
         // Para correr al aplicación con RUN, primero compilar (mvn clen complie)
+        System.out.println("HOLAAAAAAAAAAAAA "+DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties"));
 
         try (InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties")) {
             if (is != null) {

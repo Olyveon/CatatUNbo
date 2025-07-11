@@ -158,25 +158,35 @@
     
 }
 
-.scrollpane-secondary {
+.text-area.secondary-terminal {
     -fx-background-color: #010207;
     -fx-border-color: #0f2338;
     -fx-border-width: 2;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-padding: 5;
+    -fx-text-fill: white;
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14px;
 }
 
-.scrollpane-secondary .viewport {
+/* Quitar el fondo blanco interno */
+.text-area.secondary-terminal .content {
     -fx-background-color: transparent;
 }
 
-.scrollpane-secondary .scroll-bar:vertical,
-.scrollpane-secondary .scroll-bar:horizontal {
+/* Quitar fondo blanco del viewport */
+.text-area.secondary-terminal .viewport {
     -fx-background-color: transparent;
 }
 
-.scrollpane-secondary .thumb {
+/* Ajustar scrollbars */
+.text-area.secondary-terminal .scroll-bar:vertical,
+.text-area.secondary-terminal .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.text-area.secondary-terminal .thumb {
     -fx-background-color: #27435f;
     -fx-background-radius: 8;
 }

@@ -20,6 +20,7 @@ public class AdminAuditController {
     @FXML private Button btnExeNmap;
     @FXML private Button btnAnalizarIA;
     @FXML private Button btnGuardarObservacion;
+    @FXML private Button btnExportarPDF;
 
     @FXML private Label lblNombre;
     @FXML private Label lblEstado;
@@ -29,21 +30,26 @@ public class AdminAuditController {
     // @FXML private Label lblSpynetPrompt;
 
     @FXML private TextArea txtAreaAddObservation;
+    @FXML private TextArea txtAreaObservaciones;
+
     @FXML private TextArea txtAreaAddHallazgo;
+    @FXML private TextArea txtAreaHallazgos;
+
     @FXML private TextArea txtAreaTerminal;
+   
 
     // @FXML private ComboBox<String> hola;
     @FXML private ComboBox<String> comboBoxNivelRiesgo;
     @FXML private ComboBox<String> comboBoxIP;
     @FXML private ComboBox<String> comboBoxArgNMAP;
+    @FXML private ComboBox<String> comboBoxEstadoAuditoria;
 
-    // @FXML private ScrollPane scrollPaneTerminal;
-    @FXML private ScrollPane scrollPaneHistorial;
-    @FXML private ScrollPane scrollPaneHallazgos;
+    
 
     @FXML
     public void initialize() {
         // Inicialización de componentes si es necesario
+        comboBoxEstadoAuditoria.getItems().addAll("No Iniciado","En Proceso", "Archivado", "Finalizado");
         
         comboBoxNivelRiesgo.getItems().addAll("Bajo", "Medio", "Alto");
         // Seleccionar una opción por defecto
@@ -53,7 +59,7 @@ public class AdminAuditController {
         comboBoxArgNMAP.setValue("-sV");
 
         // IP DE EJEMPLO, ESTA SE DEBE CARGAR DESDE LA BASE DE DATOS
-        comboBoxIP.getItems().addAll("scanme.nmap.org","TryHackMe");
+        comboBoxIP.getItems().addAll("scanme.nmap.org","TryHackMe.com");
         comboBoxIP.setValue("scanme.nmap.org");
 
     }
