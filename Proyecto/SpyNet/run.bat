@@ -1,7 +1,7 @@
 @echo off
 cd /d "%~dp0"
 echo Compilando proyecto...
-call mvnclean.bat
+mvn clean compile
 if %errorlevel% neq 0 (
     echo Error en la compilacion. Verifica los errores anteriores.
     pause
