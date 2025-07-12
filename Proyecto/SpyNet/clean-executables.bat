@@ -5,14 +5,12 @@ echo ===============================
 
 set "EXEC_DIR=src\main\resources\executables"
 
-
-if exist "%EXEC_DIR%" (
-    echo Eliminando todo el contenido de: %EXEC_DIR%
-    for /d %%i in ("%EXEC_DIR%\*") do rd /s /q "%%i"
-    del /q "%EXEC_DIR%\*" >nul
-    echo Contenido eliminado.
-) else (
-    echo La carpeta "%EXEC_DIR%" no existe.
+:: Eliminar todos los archivos excepto .gitkeep
+for %%f in ("%EXEC_DIR%\*") do (
+    if /I not "%%~nxf"==".gitkeep" (
+        del /f /q "%%f"
+        echo Eliminado: %%~nxf
+    )
 )
 
 

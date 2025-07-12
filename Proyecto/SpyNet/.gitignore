@@ -5,6 +5,7 @@ target/
 
 #Not include .exe, because it sobrecharges git and it dont allow push heavy archives
 /src/main/resources/executables/*
+!/src/main/resources/executables/.gitkeep
 
 
 ### IntelliJ IDEA ###
