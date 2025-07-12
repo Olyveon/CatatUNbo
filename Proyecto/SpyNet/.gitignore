@@ -3,6 +3,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+#Not include .exe, because it sobrecharges git and it dont allow push heavy archives
+/src/main/resources/executables/*.exe
+
+
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
