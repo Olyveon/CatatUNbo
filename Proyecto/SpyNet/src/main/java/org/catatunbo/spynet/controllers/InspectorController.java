@@ -28,7 +28,7 @@ public class InspectorController {
 
     @FXML
     public void handleAsignarAuditoria(ActionEvent event) {
-        // Lógica para asignar auditoría, esta lógica aun le ggalta entonces no tocar del todo :3
+        // Lógica para asignar auditoría, esta lógica aun le falta entonces no tocar del todo :3
         System.out.println("Asignar auditoría: " + auditoriaIdField.getText() + " a auditor: " + auditorIdField.getText());
     }
 
