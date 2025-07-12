@@ -20,6 +20,13 @@ if not exist "src\main\resources\executables\nmap-7.97-setup.exe" (
     echo [OK] Nmap ya está descargado.
 )
 
+:: Descargar Apache Maven si no existe
+if not exist "src\main\resources\executables\apache-maven-3.9.10-bin.zip" (
+    echo Descargando Apache Maven 3.9.10...
+    curl.exe -L -o "src\main\resources\executables\apache-maven-3.9.10-bin.zip" "https://dlcdn.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.zip"
+) else (
+    echo [OK] Apache Maven ya está descargado.
+)
 echo.
 echo ===============================
 echo INSTALANDO PROGRAMAS

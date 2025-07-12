@@ -1,95 +1,111 @@
-
 ===========================================================
 README - INSTALACIÓN DE DEPENDENCIAS Y EJECUCIÓN DEL SISTEMA
 ===========================================================
 
-Este proyecto requiere Java 24, Nmap y Apache Maven para ejecutarse correctamente.
-Por eficiencia, mantenibilidad y tamaño del repositorio, los archivos instaladores
-de Java y Nmap NO se suben directamente a Git, y se descargan dinámicamente cuando se necesiten.
+Este proyecto requiere las siguientes dependencias externas:
 
-====================================================
-1. INSTALACIÓN DE DEPENDENCIAS (JAVA 24 Y NMAP)
-====================================================
-
-Se incluye un script automatizado para descargar e instalar:
-
-- Java Development Kit 24
+- Java Development Kit (JDK) 24
 - Nmap 7.97
+- Apache Maven 3.9.10
 
-Para ejecutarlo, usa el siguiente archivo:
+Estas herramientas son necesarias para compilar y ejecutar la aplicación correctamente.
+
+Para evitar subir archivos pesados al repositorio (como instaladores .exe o .zip),
+el proyecto los descarga automáticamente al ejecutar un script.
+
+====================================================
+1. INSTALACIÓN AUTOMÁTICA DE DEPENDENCIAS
+====================================================
+
+Ejecuta el siguiente archivo en Windows:
 
     install-external-dependencies.bat
 
 Este script:
-- Verifica si los instaladores ya están presentes en:
+
+- Verifica si ya existen los instaladores o archivos comprimidos en:
   
       src\main\resources\executables\
 
-- Si no lo están, los descarga automáticamente usando `curl`.
-- Luego ejecuta los instaladores para que completes la instalación manualmente (gráficamente).
+- Si no están, los descarga usando `curl`:
+  
+  - JDK 24 desde Oracle.
+  - Nmap 7.97 desde nmap.org.
+  - Apache Maven 3.9.10 (formato .zip) desde apache.org.
 
-Este enfoque evita tener archivos de gran tamaño (como `.exe`) en el repositorio Git,
-los cuales complican los commits y aumentan innecesariamente el peso del proyecto.
-
-IMPORTANTE:
-- Ejecuta este archivo **como administrador**.
-- Acepta los permisos para instalar los programas cuando se abran las ventanas.
+- Luego, ejecuta los instaladores `.exe` para JDK y Nmap.
+- Tendras que aceptar el permiso de administrador para cada instalador.
+NOTA: si ya tenías instaladas estas dependencias y por error aceptaste volverlas a instalar
+y abortaste el intento, es posible que se te halla borrado la dependencia, por lo que
+será necesario reinstalarla. El Script de install-external-dependencies.bat puede ayudarte nuevamente con ello.
 
 ====================================================
-2. INSTALACIÓN DE MAVEN 3.9.10
+2. INSTALACIÓN MANUAL DE MAVEN DESPUÉS DE LA DESCARGA
 ====================================================
 
-1. Asegúrate de tener el directorio `apache-maven-3.9.10` listo (puede estar en el proyecto o descargarse manualmente).
-2. Copia esa carpeta a:
+Como Maven se descarga en un archivo `.zip`, es necesario:
 
-       C:\Program Files\Apache\Maven
+1. Descomprimir el archivo:
 
-   De modo que la ruta del ejecutable sea:
+       src\main\resources\executables\apache-maven-3.9.10-bin.zip
+
+2. Copiar la carpeta descomprimida a:
+
+       C:\Program Files\Apache\Maven\apache-maven-3.9.10
+
+3. Agregar al PATH (de usuario y del sistema) la ruta del ejecutable:
 
        C:\Program Files\Apache\Maven\apache-maven-3.9.10\bin
 
-3. Luego, **agrega esa ruta al PATH** tanto del sistema como del usuario:
-
-       C:\Program Files\Apache\Maven\apache-maven-3.9.10\bin
-
-   Puedes hacerlo manualmente desde:
-   - Panel de control → Sistema → Configuración avanzada del sistema → Variables de entorno
-   - O usar un script `.bat` preparado para automatizarlo.
-
-4. Para verificar que Maven esté correctamente instalado, abre una terminal nueva y ejecuta:
+4. Para verificar que Maven esté instalado correctamente, abre una consola nueva y ejecuta:
 
        mvn -version
 
-   Deberías ver la versión de Maven y la de Java. Si no funciona, reinicia la terminal (o el sistema).
+   Si no aparece, reinicia el sistema.
 
 ====================================================
-3. LIMPIEZA DE INSTALADORES GRANDES (Opcional)
+3. LIMPIEZA DE ARCHIVOS DESCARGADOS (ANTES DE COMMIT)
 ====================================================
 
-Si ya no necesitas los instaladores `.exe`, o necesitas limpiar tu proyecto para hacer commit en Git, puedes ejecutar:
+Para evitar subir archivos innecesarios al repositorio Git,
+se proporciona un script para eliminar todos los instaladores descargados:
 
     clean-executables.bat
 
-Este script elimina los archivos:
+Este script elimina todo el contenido de:
 
-    src\main\resources\executables\jdk-24_windows-x64_bin.exe
-    src\main\resources\executables\nmap-7.97-setup.exe
+    src\main\resources\executables\
 
-Esto es útil antes de subir cambios al repositorio y mantenerlo ligero.
+⚠️ Estos archivos no deben subirse, ya que ocupan mucho espacio y GitHub limita archivos individuales a 100 MB.
 
-Además, estos archivos están ignorados en `.gitignore` para evitar que se suban accidentalmente.
-
-====================================================
-4. EJECUCIÓN DE LA APLICACIÓN
-====================================================
-
-Una vez instaladas todas las dependencias (Java, Nmap y Maven),
-puedes ejecutar la aplicación con:
-
-    run.bat
-
-Este script compila y ejecuta la aplicación principal.
+El archivo `.gitignore` ya está configurado para **ignorar todos los archivos** dentro de esa carpeta.
 
 ====================================================
-¡Y eso es todo! Tu entorno ahora estará listo para funcionar.
+4. EJECUCIÓN DEL SISTEMA
+====================================================
+
+Una vez instaladas las dependencias (JDK, Nmap y Maven):
+
+1. Abre una consola.
+2. Navega a la carpeta del proyecto.
+3. Ejecuta el script:
+
+       run.bat
+
+Este script compilará y ejecutará la aplicación automáticamente.
+
+====================================================
+5. ¿POR QUÉ SE HACE ASÍ?
+====================================================
+
+Los archivos `.exe` y `.zip` no se incluyen en el repositorio para:
+
+- Cumplir con el límite de tamaño de archivos de GitHub (100 MB).
+- Mantener el repositorio ligero y rápido para clonar y trabajar.
+- Evitar conflictos innecesarios al versionar binarios.
+
+Al usar `curl`, se automatiza la descarga de dependencias externas sin afectar el control de versiones.
+
+====================================================
+¡Tu entorno ahora estará listo para funcionar!
 ====================================================

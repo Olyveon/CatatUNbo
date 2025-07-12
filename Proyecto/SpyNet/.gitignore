@@ -4,7 +4,7 @@ target/
 !**/src/test/**/target/
 
 #Not include .exe, because it sobrecharges git and it dont allow push heavy archives
-/src/main/resources/executables/*.exe
+/src/main/resources/executables/*
 
 
 ### IntelliJ IDEA ###

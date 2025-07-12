@@ -5,16 +5,16 @@ echo ===============================
 
 set "EXEC_DIR=src\main\resources\executables"
 
-:: Eliminar instaladores si existen
-if exist "%EXEC_DIR%\jdk-24_windows-x64_bin.exe" (
-    del /f "%EXEC_DIR%\jdk-24_windows-x64_bin.exe"
-    echo Eliminado: jdk-24_windows-x64_bin.exe
+
+if exist "%EXEC_DIR%" (
+    echo Eliminando todo el contenido de: %EXEC_DIR%
+    for /d %%i in ("%EXEC_DIR%\*") do rd /s /q "%%i"
+    del /q "%EXEC_DIR%\*" >nul
+    echo Contenido eliminado.
+) else (
+    echo La carpeta "%EXEC_DIR%" no existe.
 )
 
-if exist "%EXEC_DIR%\nmap-7.97-setup.exe" (
-    del /f "%EXEC_DIR%\nmap-7.97-setup.exe"
-    echo Eliminado: nmap-7.97-setup.exe
-)
 
 echo.
 echo Limpieza completada.
