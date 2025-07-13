@@ -26,7 +26,11 @@ public class CompletionsStreamingAsyncExample {
                 }
         }
         // ESTA LINEA ESTÁ SOLO PARA PROBAR LA API KEY!!!! ESTA HARDCODEADA
-        String API_KEY="API_KEY";// Configures using one of:
+
+
+
+        String API_KEY="";// Configures using one of:
+ 
         // - The `OPENAI_API_KEY` environment variable
         // - The `OPENAI_BASE_URL` and `AZURE_OPENAI_KEY` environment variables
 
