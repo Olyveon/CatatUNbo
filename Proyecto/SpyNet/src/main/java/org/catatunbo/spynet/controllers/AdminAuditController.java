@@ -44,6 +44,11 @@ public class AdminAuditController {
     @FXML private ComboBox<String> comboBoxArgNMAP;
     @FXML private ComboBox<String> comboBoxEstadoAuditoria;
 
+    public String nmapOutput="";
+    private Task<String> nmapTask;
+    private nmapCommand nmapComando;  
+
+
     
 
     @FXML
@@ -75,11 +80,13 @@ public class AdminAuditController {
         String arg = comboBoxArgNMAP.getValue().trim();
         String ip = comboBoxIP.getValue().trim();
 
-        String comando = "spynet@auditor:~$ nmap " + arg + " " + ip + "\n\n";
+        String comando = "spynet@auditor:~$ nmap " + arg + " " + ip + "\n";
         txtAreaTerminal.setText(comando + "Running...\n");
 
+
+        
         // Crear tarea para ejecutar nmap en segundo plano
-        Task<String> nmapTask = new Task<>() {
+        nmapTask = new Task<>() {
             @Override
             protected String call() {
                 return new nmapCommand().executeNmap(arg, ip);
@@ -89,19 +96,53 @@ public class AdminAuditController {
             protected void succeeded() {
                 String result = getValue();
                 txtAreaTerminal.setText(comando + result);
+                nmapOutput = txtAreaTerminal.getText();
             }
 
             @Override
             protected void failed() {
                 txtAreaTerminal.setText(comando + "Error al ejecutar Nmap.");
+                nmapOutput = txtAreaTerminal.getText();
             }
         };
 
         // Ejecutar la tarea en un nuevo hilo
         new Thread(nmapTask).start();
-
-
     }
+
+
+    @FXML
+    private void handleExecuteIA() {
+        txtAreaTerminal.appendText("\n\nspynet@ia:~$ ");
+
+        Task<Void> iaTask = new Task<>() {
+            @Override
+            protected Void call() {
+                CompletionsStreamingAsyncExample completions = new CompletionsStreamingAsyncExample(nmapOutput);
+
+                completions.start(fragment -> {
+                    // Actualiza el TextArea en el hilo de la UI
+                    Platform.runLater(() -> txtAreaTerminal.appendText(fragment));
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(iaTask).start();
+    }
+
+    @FXML
+    private void handleClearTerminal() {
+        if (nmapTask != null && nmapTask.isRunning()) {
+            txtAreaTerminal.appendText("\n[⚠ No se puede limpiar la terminal mientras Nmap esté ejecutándose.]");
+            return;
+        }
+
+        txtAreaTerminal.setText("spynet@auditor:~$ ");
+        nmapOutput = "";
+    }
+
 
     @FXML
     private void handleVolver() {

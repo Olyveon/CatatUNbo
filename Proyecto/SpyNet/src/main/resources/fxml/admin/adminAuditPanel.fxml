@@ -25,9 +25,9 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="38.0" layoutY="66.0" prefHeight="210.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="38.0">
+            <AnchorPane layoutX="38.0" layoutY="66.0" prefHeight="185.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="38.0">
                <children>
-                  <VBox layoutX="14.0" layoutY="10.0" prefHeight="137.0" prefWidth="426.0">
+                  <VBox layoutX="14.0" layoutY="10.0" prefHeight="121.0" prefWidth="426.0">
                      <children>
                         <Label id="labelAuditorEncargado" fx:id="lblAuditorEncargado" prefHeight="38.0" prefWidth="426.0" text="Auditor encargado: " textFill="WHITE">
                            <font>
@@ -51,17 +51,17 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Label layoutX="14.0" layoutY="169.0" prefHeight="25.0" prefWidth="190.0" text="Estado de la auditoria:" textFill="#f0f0f0" AnchorPane.leftAnchor="14.0">
+                  <Label layoutX="14.0" layoutY="145.0" prefHeight="25.0" prefWidth="190.0" text="Estado de la auditoria:" textFill="#f0f0f0" AnchorPane.leftAnchor="14.0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="comboBoxEstadoAuditoria" layoutX="204.0" layoutY="168.0" prefHeight="30.0" prefWidth="141.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="204.0" />
+                  <ComboBox fx:id="comboBoxEstadoAuditoria" layoutX="204.0" layoutY="144.0" prefHeight="30.0" prefWidth="141.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="204.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="210.0" prefWidth="302.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="26.0">
+            <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="185.0" prefWidth="327.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="26.0">
                <children>
-                  <TextArea fx:id="txtAreaObservaciones" editable="false" layoutX="8.0" layoutY="9.0" prefHeight="191.0" prefWidth="308.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="9.0">
+                  <TextArea fx:id="txtAreaObservaciones" editable="false" layoutX="8.0" layoutY="4.0" prefHeight="174.0" prefWidth="308.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="9.0">
                      <font>
                         <Font name="Consolas" size="14.0" />
                      </font>
@@ -77,13 +77,13 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="601.0" layoutY="293.0" prefHeight="44.0" prefWidth="302.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="601.0" AnchorPane.rightAnchor="24.0">
+            <AnchorPane layoutX="601.0" layoutY="265.0" prefHeight="44.0" prefWidth="302.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="601.0" AnchorPane.rightAnchor="24.0">
                <children>
                   <Button fx:id="btnAddObservacion" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir observación" AnchorPane.leftAnchor="14.0" />
                   <TextArea fx:id="txtAreaAddObservation" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="163.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="13.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="39.0" layoutY="293.0" prefHeight="44.0" prefWidth="509.0" styleClass="panel-main-secundary">
+            <AnchorPane layoutX="39.0" layoutY="265.0" prefHeight="44.0" prefWidth="509.0" styleClass="panel-main-secundary">
                <children>
                   <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="245.0" text="Hallazgos" textFill="#f0f0f0">
                      <font>
@@ -92,16 +92,16 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="40.0" layoutY="354.0" prefHeight="129.0" prefWidth="894.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="18.0">
+            <AnchorPane layoutX="40.0" layoutY="316.0" prefHeight="129.0" prefWidth="894.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="18.0">
                <children>
-                  <TextArea fx:id="txtAreaHallazgos" editable="false" layoutX="9.0" layoutY="6.0" prefHeight="93.0" prefWidth="875.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="9.0">
+                  <TextArea fx:id="txtAreaHallazgos" editable="false" layoutX="8.0" layoutY="8.0" prefHeight="93.0" prefWidth="875.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font name="Consolas" size="14.0" />
                      </font>
                   </TextArea>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="43.0" layoutY="492.0" prefHeight="44.0" prefWidth="863.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="21.0">
+            <AnchorPane layoutX="43.0" layoutY="449.0" prefHeight="44.0" prefWidth="863.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="21.0">
                <children>
                   <Button fx:id="btnAddHallazgo" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir hallazgo" AnchorPane.leftAnchor="25.0" />
                   <TextArea fx:id="txtAreaAddHallazgo" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="356.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="356.0" />
@@ -113,35 +113,36 @@
                   <ComboBox fx:id="comboBoxNivelRiesgo" layoutX="710.0" layoutY="6.0" prefHeight="30.0" prefWidth="156.0" styleClass="terminal-combobox" AnchorPane.rightAnchor="22.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="38.0" layoutY="605.0" prefHeight="153.0" prefWidth="876.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="605.0">
+            <AnchorPane layoutX="38.0" layoutY="573.0" prefHeight="185.0" prefWidth="901.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="573.0">
                <children>
-                  <TextArea fx:id="txtAreaTerminal" editable="false" layoutX="13.0" layoutY="-7.0" prefHeight="153.0" prefWidth="875.0" styleClass="scroll-terminal" text="spynet@auditor:~$ " wrapText="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="9.0">
+                  <TextArea fx:id="txtAreaTerminal" editable="false" layoutX="13.0" layoutY="10.0" prefHeight="178.0" prefWidth="875.0" styleClass="scroll-terminal" text="spynet@auditor:~$ " wrapText="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0">
                      <font>
-                        <Font name="Consolas" size="19.0" />
+                        <Font name="Consolas" size="17.0" />
                      </font>
                   </TextArea>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="55.0" layoutY="568.0" prefHeight="35.0" prefWidth="500.0">
+            <AnchorPane layoutX="55.0" layoutY="526.0" prefHeight="35.0" prefWidth="535.0">
                <children>
-                  <Button fx:id="btnExeNmap" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleExecuteNMAP" style="-fx-background-color: #17579f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #17579f;" text="Ejecutar NMAP" textFill="WHITE" />
-                  <Label layoutX="132.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="Argument:" textFill="#f0f0f0">
+                  <Button fx:id="btnExeNmap" layoutX="63.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleExecuteNMAP" style="-fx-background-color: #17579f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #17579f;" text="Ejecutar NMAP" textFill="WHITE" />
+                  <Label layoutX="168.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="Argument:" textFill="#f0f0f0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="314.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="IP:" textFill="#f0f0f0">
+                  <Label layoutX="349.0" layoutY="2.0" prefHeight="25.0" prefWidth="84.0" text="IP:" textFill="#f0f0f0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="comboBoxArgNMAP" layoutX="221.0" layoutY="2.0" prefHeight="30.0" prefWidth="82.0" styleClass="terminal-combobox" />
-                  <ComboBox fx:id="comboBoxIP" layoutX="339.0" layoutY="2.0" prefHeight="30.0" prefWidth="156.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="339.0" />
+                  <ComboBox fx:id="comboBoxArgNMAP" layoutX="255.0" layoutY="2.0" prefHeight="30.0" prefWidth="82.0" styleClass="terminal-combobox" />
+                  <ComboBox fx:id="comboBoxIP" layoutX="374.0" layoutY="2.0" prefHeight="30.0" prefWidth="156.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="374.0" />
+                  <Button fx:id="btnClearTerminal" layoutX="6.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleClearTerminal" prefHeight="27.0" prefWidth="49.0" style="-fx-background-color: #b44c4c; -fx-background-radius: 10; -fx-border-radius: 10;" text="Clear" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="650.0" layoutY="568.0" prefHeight="35.0" prefWidth="350.0" AnchorPane.rightAnchor="24.0">
+            <AnchorPane layoutX="591.0" layoutY="524.0" prefHeight="35.0" prefWidth="350.0" AnchorPane.rightAnchor="11.0">
                <children>
-                  <Button fx:id="btnAnalizarIA" layoutX="14.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Analizar (IA)" />
+                  <Button fx:id="btnAnalizarIA" layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleExecuteIA" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Analizar (IA)" />
                   <Button fx:id="btnGuardarObservacion" layoutX="109.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Guardar observacion" />
                   <Button fx:id="btnExportarPDF" layoutX="250.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #00ff9f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Exportar PDF" />
                </children>
