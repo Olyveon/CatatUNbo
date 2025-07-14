@@ -7,8 +7,10 @@ import java.util.List;
 
 public class nmapCommand {
 
-    public  String executeNmap(String arg, String ip){
-        System.out.println("Hello, World!");
+    private Process proceso;
+
+    public String executeNmap(String arg, String ip){
+        
         String output = null;
 
         String[] argsSplit = arg.split(" ");
@@ -41,4 +43,12 @@ public class nmapCommand {
 
         return output;
     }
+
+    public void cancel() {
+        if (proceso != null && proceso.isAlive()) {
+            proceso.destroy();  // Detiene el proceso del sistema
+            System.out.println("Proceso Nmap cancelado.");
+        }
+    }
+    
 }
