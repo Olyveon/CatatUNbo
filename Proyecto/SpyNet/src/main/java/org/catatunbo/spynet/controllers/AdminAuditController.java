@@ -8,9 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
+
 
 public class AdminAuditController {
 
@@ -48,8 +47,6 @@ public class AdminAuditController {
     private Task<String> nmapTask;
     private nmapCommand nmapComando;  
 
-
-    
 
     @FXML
     public void initialize() {
@@ -113,18 +110,26 @@ public class AdminAuditController {
 
     @FXML
     private void handleExecuteIA() {
+        // String apikey= OpenAIConfig.getApiKey();
         txtAreaTerminal.appendText("\n\nspynet@ia:~$ ");
 
         Task<Void> iaTask = new Task<>() {
             @Override
             protected Void call() {
-                CompletionsStreamingAsyncExample completions = new CompletionsStreamingAsyncExample(nmapOutput);
 
-                completions.start(fragment -> {
-                    // Actualiza el TextArea en el hilo de la UI
-                    Platform.runLater(() -> txtAreaTerminal.appendText(fragment));
-                });
+                try {
 
+                
+                    CompletionsStreamingAsyncExample completions = new CompletionsStreamingAsyncExample(nmapOutput);
+
+                    completions.start(fragment -> {
+                        // Actualiza el TextArea en el hilo de la UI
+                        Platform.runLater(() -> txtAreaTerminal.appendText(fragment));
+                    });
+
+                } catch (Exception e){
+                    Platform.runLater(()->{txtAreaTerminal.appendText("Error: parece que la API_KEY no está configurada. Para hacerlo, hecha un vistazo en:\nresources/openai_resources/README.txt");});
+                }
                 return null;
             }
         };

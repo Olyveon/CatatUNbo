@@ -9,8 +9,8 @@ public class nmapCommand {
 
     private Process proceso;
 
-    public  String executeNmap(String arg, String ip){
-        System.out.println("Hello, World!");
+    public String executeNmap(String arg, String ip){
+        
         String output = null;
 
         String[] argsSplit = arg.split(" ");

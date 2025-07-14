@@ -8,7 +8,7 @@ module org.catatunbo.spynet {
     requires transitive java.sql;
 
     // OpenAI Java SDK and HTTP client
-    requires openai.java;               // funciona sin necesidad de esta
+    requires openai.java;               // funciona sin necesidad de esta linea, pero igual no quitarla
     requires openai.java.client.okhttp;
     requires openai.java.core;
 
