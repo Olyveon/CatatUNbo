@@ -5,7 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
 public class App extends Application {
     @Override
@@ -18,6 +23,49 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        createDataBase();
         launch();
+    }
+
+    private static void createDataBase() {
+        final String mysqlPath = "mysql"; 
+        final String user = "root";
+        final String password = "\"" + "Password123#" + "\"";
+        final String scriptPath = "src\\main\\resources\\database_resources\\spynetdb_script_creation.sql";
+
+        String fullScriptPath = "\"source " + new File(scriptPath).getAbsolutePath() + "\"";
+
+        List<String> command = Arrays.asList(
+                mysqlPath,
+                "-u", user,
+                "-p" + password,
+                "-h", "localhost",
+                "-P", "3306",
+                "-e", fullScriptPath
+        );
+
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.redirectErrorStream(true);
+
+        try {
+            Process process = processBuilder.start();
+
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                System.out.println("Script executed successfully.");
+            } else {
+                System.err.println("MySQL script failed. Exit code: " + exitCode);
+            }
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

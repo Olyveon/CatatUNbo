@@ -46,12 +46,12 @@ public class LoginController {
             User user = userDAO.authenticate(username, password);
             
             if (user != null) {                
-            Session.getInstance().setCurrentUser(user);    
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root, 1280, 800));
-            stage.show();
+                Session.getInstance().setCurrentUser(user);    
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root, 1280, 800));
+                stage.show();
                 
             } else {
                 showAlert("Login Fallido", "Usuario o contraseña incorrectos, o cuenta bloqueada.", Alert.AlertType.ERROR);
