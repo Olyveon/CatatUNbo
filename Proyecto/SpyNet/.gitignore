@@ -3,6 +3,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+#ignore api_key
+/src/main/resources/openai_resources/openai.secret.properties
+
+
 #Not include .exe, because it sobrecharges git and it dont allow push heavy archives
 /src/main/resources/executables/*
 !/src/main/resources/executables/.gitkeep

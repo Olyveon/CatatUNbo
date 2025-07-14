@@ -2,15 +2,16 @@ package org.catatunbo.spynet.auditUtils;
 
 import com.openai.client.OpenAIClientAsync;
 import com.openai.client.okhttp.OpenAIOkHttpClientAsync;
-import com.openai.models.ChatModel;
+// import com.openai.models.ChatModel;
 import com.openai.models.ChatCompletionCreateParams;
 
 import java.util.function.Consumer;
 
+// import org.catatunbo.spynet.auditUtils.OpenAIConfig;
+
 public class CompletionsStreamingAsyncExample {
         
         private String nmapOutput="";
-
         private String devPrompt;
         private String userPrompt;
 
@@ -29,7 +30,7 @@ public class CompletionsStreamingAsyncExample {
 
 
 
-        String API_KEY="";// Configures using one of:
+        String API_KEY= OpenAIConfig.getApiKey();// Configures using one of:
  
         // - The `OPENAI_API_KEY` environment variable
         // - The `OPENAI_BASE_URL` and `AZURE_OPENAI_KEY` environment variables
@@ -41,8 +42,8 @@ public class CompletionsStreamingAsyncExample {
                 .build();
 
                 ChatCompletionCreateParams createParams = ChatCompletionCreateParams.builder()
-                        .model(ChatModel.GPT_3_5_TURBO)
-                        .maxCompletionTokens(256)
+                        .model(OpenAIConfig.getModelString()) // --> pendiente por si toca cambiarlo a chatmodel de nuevo
+                        .maxCompletionTokens(OpenAIConfig.getMaxTokens())
                         .addDeveloperMessage(devPrompt)
                         .addUserMessage(userPrompt+nmapOutput)
                         .build();
