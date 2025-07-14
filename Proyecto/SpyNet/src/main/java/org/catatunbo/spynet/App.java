@@ -27,7 +27,14 @@ public class App extends Application {
         launch();
     }
 
+    /**
+     * Runs the script for the data base creation, 
+     * with myslq command, from the native terminal.
+     * <p>
+     * Requires MySQL root user and it's password.
+     */
     private static void createDataBase() {
+    
         final String mysqlPath = "mysql"; 
         final String user = "root";
         final String password = "\"" + "Password123#" + "\"";
