@@ -53,15 +53,14 @@
       </VBox>
       <VBox layoutX="349.0" layoutY="212.0" prefHeight="574.0" prefWidth="912.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;">
          <children>
-            <TableView fx:id="tableAuditories" prefHeight="576.0" prefWidth="912.0" style="-fx-background-color: transparent;">
+            <TableView fx:id="tableAuditories" prefHeight="576.0" prefWidth="912.0">
               <columns>
-                  <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
-                <TableColumn fx:id="colCliente" prefWidth="75.0" text="Cliente" />
-                  <TableColumn fx:id="colEncargado" prefWidth="75.0" text="Auditor" />
-                  <TableColumn fx:id="colFechaInicio" prefWidth="75.0" text="Fecha inicio" />
-                  <TableColumn fx:id="colFechaFin" prefWidth="75.0" text="Fecha limite" />
-                  <TableColumn fx:id="colEstado" prefWidth="75.0" text="Estado" />
+                <TableColumn fx:id="colNombre" editable="false" prefWidth="100.0" text="Nombre" />
+                <TableColumn fx:id="colCliente" editable="false" prefWidth="75.0" text="Cliente" />
+                  <TableColumn fx:id="colEncargado" editable="false" prefWidth="75.0" text="Auditor" />
+                  <TableColumn fx:id="colFechaInicio" editable="false" prefWidth="60.0" text="Fecha inicio" />
+                  <TableColumn fx:id="colFechaFin" editable="false" prefWidth="60.0" text="Fecha limite" />
+                  <TableColumn fx:id="colEstado" editable="false" prefWidth="75.0" text="Estado" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

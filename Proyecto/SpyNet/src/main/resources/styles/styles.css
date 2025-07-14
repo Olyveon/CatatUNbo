@@ -8,6 +8,50 @@
     -fx-padding: 5;
 }
 
+
+.table-view {
+    -fx-table-cell-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-font-family: Segoe UI;
+
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-cell-size: 100px;
+}
+
+.table-cell {
+    -fx-border-color: transparent transparent #554f4f transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-wrap-text: true;
+    -fx-alignment: CENTER;
+    -fx-text-overrun: clip;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header-background {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.table-view .column-header .label {
+    -fx-background-color:  #060d17;
+    -fx-border-color: transparent;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
 .hover-button:hover {
     -fx-background-color: linear-gradient(
             from 0% 0% to 100% 0%,  /* center to the sides */
