@@ -22,8 +22,6 @@ public class AdminController {
     @FXML
     private TableView<Auditory> tableAuditories;
     @FXML
-    private TableColumn<Auditory, Integer> colId;
-    @FXML
     private TableColumn<Auditory, String> colNombre;
     @FXML
     private TableColumn<Auditory, String> colCliente;
@@ -38,7 +36,6 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colEncargado.setCellValueFactory(new PropertyValueFactory<>("encargado"));
