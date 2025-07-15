@@ -63,6 +63,14 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void switchToUserCreation(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/createUser.fxml"));
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    
     private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -70,4 +78,6 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    
 }
