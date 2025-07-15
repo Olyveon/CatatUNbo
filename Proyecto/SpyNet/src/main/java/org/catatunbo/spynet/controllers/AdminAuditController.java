@@ -1,6 +1,7 @@
 package org.catatunbo.spynet.controllers;
 
 import org.catatunbo.spynet.auditUtils.*;
+import org.catatunbo.spynet.Auditory;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -45,8 +46,9 @@ public class AdminAuditController {
 
     public String nmapOutput="";
     private Task<String> nmapTask;
-    private nmapCommand nmapComando;  
-
+    private nmapCommand nmapComando;
+    
+    private Auditory currentAuditory;
 
     @FXML
     public void initialize() {
@@ -150,9 +152,50 @@ public class AdminAuditController {
 
 
     @FXML
-    private void handleVolver() {
-        // Lógica para volver al panel anterior
+    private void handleVolver() { // Botón para volver al panel anterior
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
+            javafx.scene.Parent root = loader.load();       
+            javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+                        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // Agrega aquí más métodos para manejar eventos de los botones, etc.
+
+    // Carga el método de abajo (Es una buena práctica :3)   
+    public void setAuditoryData(Auditory auditory) {
+
+        this.currentAuditory = auditory;
+        loadAuditoryInfo();
+    }
+    
+    // Método que se encarga de cargar la información de la auditoría seleccionada
+    private void loadAuditoryInfo() {
+        
+        if (currentAuditory != null) {
+            currentAuditory.getNombre();
+            lblNombre.setText("Nombre: " + currentAuditory.getNombre());
+            lblDatos.setText("Datos: " + currentAuditory.getCliente());
+            lblAuditorEncargado.setText("Auditor encargado: "+ currentAuditory.getEncargado());
+            lblAuditoria.setText("Auditoría ID: " + currentAuditory.getId());
+            // Configurar el ComboBox de estado con el estado actual (sin lblEstado)
+            if (comboBoxEstadoAuditoria != null && currentAuditory.getEstado() != null) {
+                // Agregar el estado actual al ComboBox si no existe
+                if (!comboBoxEstadoAuditoria.getItems().contains(currentAuditory.getEstado())) {
+                    comboBoxEstadoAuditoria.getItems().add(currentAuditory.getEstado());
+                }
+                comboBoxEstadoAuditoria.setValue(currentAuditory.getEstado());
+            } else {
+                System.out.println("WARNING: comboBoxEstadoAuditoria es null o estado es null");
+            }
+            
+        } else {
+            System.out.println("WARNING: currentAuditory es null en loadAuditoryInfo");
+        }
+    }
 }
