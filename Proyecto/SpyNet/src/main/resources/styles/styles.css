@@ -282,7 +282,6 @@
     -fx-border-color: #1c4a7c;
 }
 
-/* Botón moderno con bordes redondeados */
 .modern-button {
     -fx-background-color: #2c3e50;
     -fx-background-radius: 10;
@@ -311,7 +310,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
 }
 
-/* Variante para botón de retroceso */
 .back-button {
     -fx-background-color: #17579f;
     -fx-background-radius: 8;
