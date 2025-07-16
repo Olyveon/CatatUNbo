@@ -8,53 +8,59 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.LoginController">
+
+<StackPane styleClass="background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="480.0" layoutY="136.0" prefHeight="481.0" prefWidth="317.0" spacing="10.0" style="-fx-border-color: #1a262f; -fx-border-radius: 15;" styleClass="panel-main" stylesheets="@../styles/styles.css">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../styles/styles.css">
          <children>
-            <ImageView fitHeight="223.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/Spynet.jpg" />
-               </image>
-            </ImageView>
-            <Label text="Inicio de Sesión" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI" size="34.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernameField" prefHeight="41.0" prefWidth="269.0" promptText="Usuario:" styleClass="text-field" stylesheets="@../styles/styles.css">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="passwordField" promptText="Contraseña:" styleClass="password-field" stylesheets="@../styles/styles.css">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </PasswordField>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="43.0" prefWidth="258.0" styleClass="filter-button" stylesheets="@../styles/styles.css" text="Iniciar Sesión">
-               <font>
-                  <Font name="Segoe UI" size="18.0" />
-               </font>
-            </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToUserCreation" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: transparent;" stylesheets="@../styles/styles.css" text="Crear Usuario" textFill="#17579f">
-               <font>
-                  <Font name="Segoe UI Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="130.0" top="5.0" />
-               </VBox.margin>
-            </Button>
+            <VBox alignment="TOP_CENTER" layoutX="491.0" layoutY="136.0" prefHeight="481.0" prefWidth="317.0" spacing="10.0" style="-fx-border-color: #1a262f; -fx-border-radius: 15;" styleClass="panel-main" stylesheets="@../styles/styles.css">
+               <children>
+                  <ImageView fitHeight="223.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Spynet.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="Inicio de Sesión" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="34.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" prefHeight="41.0" prefWidth="269.0" promptText="Usuario:" styleClass="text-field" stylesheets="@../styles/styles.css">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" promptText="Contraseña:" styleClass="password-field" stylesheets="@../styles/styles.css">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="43.0" prefWidth="258.0" styleClass="filter-button" stylesheets="@../styles/styles.css" text="Iniciar Sesión">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToUserCreation" prefHeight="35.0" prefWidth="139.0" style="-fx-background-color: transparent;" stylesheets="@../styles/styles.css" text="Crear Usuario" textFill="#17579f">
+                     <font>
+                        <Font name="Segoe UI Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="130.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets bottom="10.0" left="15.0" right="15.0" top="20.0" />
-         </padding>
-      </VBox>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

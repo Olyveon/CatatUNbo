@@ -1,11 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.CreateUserController">
+<StackPane styleClass="background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.CreateUserController">
    <children>
-      <Label layoutX="130.0" layoutY="79.0" prefHeight="209.0" prefWidth="366.0" text="User Creation" />
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="766.0" prefWidth="1128.0" styleClass="background" stylesheets="@../styles/styles.css">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="406.0" layoutY="98.0" prefHeight="588.0" prefWidth="317.0" spacing="20.0" styleClass="panel-main" stylesheets="@../styles/styles.css">
+               <children>
+                  <ImageView fitHeight="189.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Spynet.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="Crear Usario" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="34.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="40.0" prefWidth="287.0" promptText="Nombre de Usuario: ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField prefHeight="40.0" prefWidth="287.0" promptText="Contraseña:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField prefHeight="40.0" promptText="Confirmar Contraseña:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleUserCreation" prefHeight="16.0" prefWidth="138.0" styleClass="filter-button" stylesheets="@../styles/styles.css" text="Crear Usuario" textAlignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Iniciar Sesión" textFill="#17579f">
+                     <font>
+                        <Font name="Segoe UI Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="130.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="15.0" right="15.0" top="20.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>
