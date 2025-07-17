@@ -116,12 +116,5 @@ public class AdminController {
         stage.show();
     }
 
-    @FXML
-    private void handleConsultarAuditorias(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminAuditPanel.fxml"));
-        Scene scene = new Scene(loader.load(), 1280, 800);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
+   
 }
