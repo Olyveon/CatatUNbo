@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.catatunbo.spynet.PasswordObject;
@@ -44,6 +45,7 @@ public class CreateUserController {
         this.userDAO = new UserDAO();
         this.passwordHasher = new PasswordHasher();
     }
+
     /**
      * Verifies the new user data, assigns him the basic roles
      * and adds it to the "user" table in the database
@@ -55,24 +57,18 @@ public class CreateUserController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            showAlert("Datos Insuficientes", 
-            " Porfavor llene correctamente todos los campos", 
-            Alert.AlertType.ERROR);
-            return;
+        if (isValidInput(username, password, confirmPassword)) {
+            User newUser = createNewClient(username, confirmPassword);
+            
+            try {
+                userDAO.addToDataBase(newUser);
+            } catch (SQLException e) {
+                showAlert("Usuario No Válido", 
+                "Cambie el nombre de usuario por uno inutilizado",
+                Alert.AlertType.ERROR);
+                e.printStackTrace();
+            }
         }
-
-        // TODO: check whether user is new or not
-
-        if (!password.equals(confirmPassword)) {
-            showAlert("Verifique Contraseña", 
-            "No se ingresó consistentemente la contraseña", 
-            Alert.AlertType.ERROR);
-            return;
-        }
-
-        User newUser = createNewClient(username, confirmPassword);
-        System.out.println("\n\n\t INT VALUE: " +userDAO.addToDataBase(newUser));
     }
 
     @FXML
@@ -96,7 +92,7 @@ public class CreateUserController {
             return null;
         }
         
-        return new User(0, 
+        return new User(-1, 
                         username, 
                         hashedPassword, 
                         passwordObject.getSalt(),
@@ -107,7 +103,24 @@ public class CreateUserController {
                         );
     }   
 
-    
+    private boolean isValidInput(String username, String password, String confirmPassword) {
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            showAlert("Datos Insuficientes", 
+            " Porfavor llene correctamente todos los campos", 
+            Alert.AlertType.ERROR);
+            return false;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            showAlert("Verifique Contraseña", 
+            "No se ingresó consistentemente la contraseña", 
+            Alert.AlertType.ERROR);
+            return false;
+        }
+
+        return true;
+    }
+
     private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

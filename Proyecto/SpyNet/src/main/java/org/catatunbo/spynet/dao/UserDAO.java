@@ -55,9 +55,9 @@ public class UserDAO {
     /**
      * Adds the recieved ser to the database
      * @param user New user
-     * @return
+     * @return Number of rows affected
      */
-    public int addToDataBase(User user) {
+    public int addToDataBase(User user) throws SQLException{
         String query = """
                 INSERT INTO user (
                     username, 
@@ -70,26 +70,19 @@ public class UserDAO {
                     )
                 VALUES (?, ?, ?, ?, ?, ?, ?)
                 """;
-        try {
-            Connection connection = DatabaseConnection.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(query); 
-            
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPasswordHash());
-            statement.setString(3, user.getPasswordSalt());
-            statement.setString(4, user.getUserRole());
-            statement.setString(5, user.getUserState());
-            statement.setString(6, user.getDateRegister());
-            statement.setString(7, user.getLastSession());
-            
-            System.out.println("\n\n\t  INSERT: " + statement.executeUpdate());
-            
-            connection.close();
-            return 0;
-        } catch (Exception e) {
-            System.out.println("\n\n\t from UserDAO ERROR: " + e.toString() + " " + e.getCause());
-            return 1;
-        }
+        
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement(query); 
+        
+        statement.setString(1, user.getUsername());
+        statement.setString(2, user.getPasswordHash());
+        statement.setString(3, user.getPasswordSalt());
+        statement.setString(4, user.getUserRole());
+        statement.setString(5, user.getUserState());
+        statement.setString(6, user.getDateRegister());
+        statement.setString(7, user.getLastSession());
+        
+        return statement.executeUpdate();
     }
 
     private void updateLastSession(int userId) {
