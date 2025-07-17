@@ -5,7 +5,7 @@ use spynetdb;
 -- TABLAS
 CREATE TABLE user(
 	user_id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(45) NOT NULL,
+    username VARCHAR(45) NOT NULL UNIQUE,
     user_password_hash VARCHAR(255) NOT NULL,
     password_salt VARCHAR(255) NOT NULL,
     user_rol ENUM("admin", "auditor", "inspector", "cliente") NULL,
