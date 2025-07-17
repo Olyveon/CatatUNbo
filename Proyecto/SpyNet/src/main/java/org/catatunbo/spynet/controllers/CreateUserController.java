@@ -41,6 +41,12 @@ public class CreateUserController {
             Alert.AlertType.ERROR);
             return;
         }
+
+        if (!password.equals(confirmPassword)) {
+            showAlert("Verifique Contraseña", 
+            "No se ingresó consistentemente la contraseña", 
+            Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
