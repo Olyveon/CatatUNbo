@@ -63,6 +63,47 @@ public class AdminController {
 
         AuditoryDAO dao = new AuditoryDAO();
         tableAuditories.setItems(FXCollections.observableArrayList(dao.getAllAuditories()));
+        
+        tableAuditories.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { 
+                Auditory selectedAuditory = tableAuditories.getSelectionModel().getSelectedItem();
+                if (selectedAuditory != null) {
+                    openAuditPanel(selectedAuditory);
+                }
+            }
+        });
+    }
+
+    
+    // Abre el panel de auditoría con los datos de la auditoría seleccionada
+    private void openAuditPanel(Auditory selectedAuditory) {
+        try {
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminAuditPanel.fxml"));
+            Parent root = loader.load();
+            
+            
+            // Obtener el controlador y pasarle los datos
+            AdminAuditController auditController = loader.getController();
+            
+            if (auditController != null) {
+                auditController.setAuditoryData(selectedAuditory);
+            }
+            
+            // Cambiar a la nueva escena
+            Stage stage = (Stage) tableAuditories.getScene().getWindow();
+            Scene scene = new Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+            
+            
+        } catch (IOException e) {
+            System.err.println("ERROR: Error al abrir panel de auditoría: " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("ERROR: Error inesperado: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -75,12 +116,5 @@ public class AdminController {
         stage.show();
     }
 
-    @FXML
-    private void handleConsultarAuditorias(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminAuditPanel.fxml"));
-        Scene scene = new Scene(loader.load(), 1280, 800);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
+   
 }

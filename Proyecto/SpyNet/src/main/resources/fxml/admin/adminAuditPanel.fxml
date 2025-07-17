@@ -18,9 +18,9 @@
          <children>
             <AnchorPane layoutX="27.0" layoutY="14.0" prefHeight="44.0" prefWidth="234.0">
                <children>
-                  <Button fx:id="btnVolver" layoutX="21.0" layoutY="7.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #060d17;" text="&lt; Volver" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="7.0">
+                  <Button fx:id="btnVolver" layoutX="15.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleVolver" prefHeight="32.0" prefWidth="90.0" styleClass="back-button" text="← Volver" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="7.0">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System" size="13.0" />
                      </font>
                   </Button>
                </children>
@@ -79,7 +79,7 @@
             </AnchorPane>
             <AnchorPane layoutX="601.0" layoutY="265.0" prefHeight="44.0" prefWidth="302.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="601.0" AnchorPane.rightAnchor="24.0">
                <children>
-                  <Button fx:id="btnAddObservacion" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir observación" AnchorPane.leftAnchor="14.0" />
+                  <Button fx:id="btnAddObservacion" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddObservacion" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir observación" AnchorPane.leftAnchor="14.0" />
                   <TextArea fx:id="txtAreaAddObservation" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="163.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="13.0" />
                </children>
             </AnchorPane>
@@ -103,7 +103,7 @@
             </AnchorPane>
             <AnchorPane layoutX="43.0" layoutY="449.0" prefHeight="44.0" prefWidth="863.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="21.0">
                <children>
-                  <Button fx:id="btnAddHallazgo" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir hallazgo" AnchorPane.leftAnchor="25.0" />
+                  <Button fx:id="btnAddHallazgo" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddHallazgo" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir hallazgo" AnchorPane.leftAnchor="25.0" />
                   <TextArea fx:id="txtAreaAddHallazgo" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="356.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="356.0" />
                   <Label layoutX="524.0" layoutY="7.0" prefHeight="28.0" prefWidth="141.0" styleClass="add-comment-button" text="Nivel de riesgo" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="198.0">
                      <font>

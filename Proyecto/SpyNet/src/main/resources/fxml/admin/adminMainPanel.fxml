@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="772.0" prefWidth="311.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="772.0" prefWidth="288.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
          <children>
             <ImageView fitHeight="257.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -28,7 +28,7 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleConsultarAuditorias" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
+            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font></Button>
@@ -51,9 +51,9 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </VBox>
-      <VBox layoutX="349.0" layoutY="212.0" prefHeight="574.0" prefWidth="912.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;">
+      <VBox layoutX="333.0" layoutY="212.0" prefHeight="574.0" prefWidth="928.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="212.0">
          <children>
-            <TableView fx:id="tableAuditories" prefHeight="576.0" prefWidth="912.0">
+            <TableView fx:id="tableAuditories" prefHeight="554.0" prefWidth="912.0">
               <columns>
                 <TableColumn fx:id="colNombre" editable="false" prefWidth="100.0" text="Nombre" />
                 <TableColumn fx:id="colCliente" editable="false" prefWidth="75.0" text="Cliente" />
@@ -71,7 +71,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER" layoutX="354.0" layoutY="95.0" prefHeight="100.0" prefWidth="912.0" spacing="10.0">
+      <HBox alignment="CENTER" layoutX="354.0" layoutY="95.0" prefHeight="100.0" prefWidth="912.0" spacing="10.0" AnchorPane.leftAnchor="354.0" AnchorPane.rightAnchor="14.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="154.0" styleClass="general-filter-button" stylesheets="@../../styles/styles.css" text="Nombre" textFill="WHITE">
                <font>

@@ -1,6 +1,9 @@
 package org.catatunbo.spynet.controllers;
 
 import org.catatunbo.spynet.auditUtils.*;
+import org.catatunbo.spynet.dao.AuditoryDAO;
+import org.catatunbo.spynet.Auditory;
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -45,8 +48,9 @@ public class AdminAuditController {
 
     public String nmapOutput="";
     private Task<String> nmapTask;
-    private nmapCommand nmapComando;  
-
+    private nmapCommand nmapComando;
+    
+    private Auditory currentAuditory;
 
     @FXML
     public void initialize() {
@@ -79,8 +83,6 @@ public class AdminAuditController {
 
         String comando = "spynet@auditor:~$ nmap " + arg + " " + ip + "\n";
         txtAreaTerminal.setText(comando + "Running...\n");
-
-
         
         // Crear tarea para ejecutar nmap en segundo plano
         nmapTask = new Task<>() {
@@ -116,10 +118,7 @@ public class AdminAuditController {
         Task<Void> iaTask = new Task<>() {
             @Override
             protected Void call() {
-
                 try {
-
-                
                     CompletionsStreamingAsyncExample completions = new CompletionsStreamingAsyncExample(nmapOutput);
 
                     completions.start(fragment -> {
@@ -150,9 +149,133 @@ public class AdminAuditController {
 
 
     @FXML
-    private void handleVolver() {
-        // Lógica para volver al panel anterior
+    private void handleVolver() { // Botón para volver al panel anterior
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
+            javafx.scene.Parent root = loader.load();       
+            javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+                        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // Agrega aquí más métodos para manejar eventos de los botones, etc.
-}
+    private int getCurrentUserId() {
+        return org.catatunbo.spynet.Session.getInstance().getCurrentUser().getUserId();
+    }
+
+    // Carga el método de abajo (Es una buena práctica :3)   
+    public void setAuditoryData(Auditory auditory) {
+
+        this.currentAuditory = auditory;
+        loadAuditoryInfo();
+    }
+    
+    // Método que se encarga de cargar la información de la auditoría seleccionada
+    private void loadAuditoryInfo() {
+        
+        if (currentAuditory != null) {
+            currentAuditory.getId(); // id para identificar las observaciones y hallazgos correspondientes
+            currentAuditory.getNombre();
+
+            lblNombre.setText("Nombre: " + currentAuditory.getNombre());
+            lblDatos.setText("Datos: " + currentAuditory.getCliente());
+            lblAuditorEncargado.setText("Auditor encargado: "+ currentAuditory.getEncargado());
+            lblAuditoria.setText("Auditoría ID: " + currentAuditory.getId());
+            // Configurar el ComboBox de estado con el estado actual (sin lblEstado)
+            if (comboBoxEstadoAuditoria != null && currentAuditory.getEstado() != null) {
+                // Agregar el estado actual al ComboBox si no existe
+                if (!comboBoxEstadoAuditoria.getItems().contains(currentAuditory.getEstado())) {
+                    comboBoxEstadoAuditoria.getItems().add(currentAuditory.getEstado());
+                }
+                comboBoxEstadoAuditoria.setValue(currentAuditory.getEstado());
+            } else {
+                System.out.println("WARNING: comboBoxEstadoAuditoria es null o estado es null");
+            }
+
+            // se cargan las observaciones dado el usuario
+            AuditoryDAO auditoryData = new AuditoryDAO();
+            List<String> observations = auditoryData.getObservationsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < observations.size(); i++) {
+                txtAreaObservaciones.appendText(observations.get(i));
+                if (i < observations.size() - 1) {
+                    txtAreaObservaciones.appendText("\n\n");
+                }
+            }
+
+            // se cargan los hallazgos dado el usuario
+            List<String> findings = auditoryData.getFindingsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < findings.size(); i++) {
+                txtAreaHallazgos.appendText(findings.get(i));
+                if (i < findings.size() - 1) {
+                    txtAreaHallazgos.appendText("\n\n");
+                }
+            }
+        } else {
+            System.out.println("WARNING: currentAuditory es null en loadAuditoryInfo");
+        }
+    }
+
+    @FXML
+    private void handleAddObservacion() {
+        String input = txtAreaAddObservation.getText().trim();
+        if (!input.contains(":")) {
+            // Mostrar error de formato
+            return;
+        }
+        String[] parts = input.split(":", 2);
+        String title = parts[0].trim();
+        String description = parts[1].trim();
+        int userId = getCurrentUserId(); 
+
+        AuditoryDAO dao = new AuditoryDAO();
+        boolean success = dao.insertObservation(currentAuditory.getAuditoryId(), userId, title, description);
+        if (success) {
+            txtAreaAddObservation.clear();
+            // Recargar observaciones
+            txtAreaObservaciones.clear();
+            List<String> observations = dao.getObservationsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < observations.size(); i++) {
+                txtAreaObservaciones.appendText(observations.get(i));
+                if (i < observations.size() - 1) {
+                    txtAreaObservaciones.appendText("\n\n");
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void handleAddHallazgo() {
+        String input = txtAreaAddHallazgo.getText().trim();
+        if (!input.contains(":")) {
+            // Mostrar error de formato
+            return;
+        }
+        String[] parts = input.split(":", 2);
+        String title = parts[0].trim();
+        String description = parts[1].trim();
+        String risk = comboBoxNivelRiesgo.getValue(); 
+        int userId = getCurrentUserId(); 
+
+        AuditoryDAO dao = new AuditoryDAO();
+        boolean success = dao.insertFinding(currentAuditory.getAuditoryId(), userId, title, description, risk);
+        if (success) {
+            txtAreaAddHallazgo.clear();
+            // Recargar hallazgos
+            txtAreaHallazgos.clear();
+            List<String> findings = dao.getFindingsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < findings.size(); i++) {
+                txtAreaHallazgos.appendText(findings.get(i));
+                if (i < findings.size() - 1) {
+                    txtAreaHallazgos.appendText("\n\n");
+                }
+            }
+        }
+    }
+
+
+
+}   
