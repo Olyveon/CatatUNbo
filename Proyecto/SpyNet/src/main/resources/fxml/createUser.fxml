@@ -29,17 +29,17 @@
                         <Font name="Segoe UI" size="34.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="40.0" prefWidth="287.0" promptText="Nombre de Usuario: ">
+                  <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="287.0" promptText="Nombre de Usuario: ">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <PasswordField prefHeight="40.0" prefWidth="287.0" promptText="Contraseña:">
+                  <PasswordField fx:id="passwordField" prefHeight="40.0" prefWidth="287.0" promptText="Contraseña:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </PasswordField>
-                  <PasswordField prefHeight="40.0" promptText="Confirmar Contraseña:">
+                  <PasswordField fx:id="confirmPasswordField" prefHeight="40.0" promptText="Confirmar Contraseña:">
                      <font>
                         <Font size="18.0" />
                      </font>

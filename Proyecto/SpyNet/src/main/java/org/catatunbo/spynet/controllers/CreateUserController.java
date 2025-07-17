@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,14 +24,23 @@ public class CreateUserController {
     private PasswordField passwordField;
 
     @FXML
-    private TextField usarnameField;
-    
+    private TextField usernameField;
+
     @FXML
     private Button userCreationButton;
 
     @FXML
     private void handleUserCreation(ActionEvent event) {
-        System.out.println("Funciona =D");
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+
+        if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            showAlert("Datos Insuficientes", 
+            " Porfavor llene correctamente todos los campos", 
+            Alert.AlertType.ERROR);
+            return;
+        }
     }
 
     @FXML
@@ -40,6 +50,14 @@ public class CreateUserController {
         stage.setScene(new Scene(root, 1280, 800));
         stage.show();
         
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
