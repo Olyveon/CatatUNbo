@@ -40,10 +40,16 @@ public class Auditory {
         this.clientName = cliente;
         this.assignedUser = encargado;
         this.auditoryState = estado;
+
+        // this.auditoryObservations 
     }
 
     // Getters y setters 
-    public int getId() { return id; }
+    public int getId() { 
+        return id; 
+    }
+
+
     public void setId(int id) { 
         this.id = id; 
         this.auditoryId = id;
@@ -182,7 +188,7 @@ public class Auditory {
     public String getAssignedUser() { 
         return assignedUser; 
     }
-    
+
     public void setAssignedUser(String assignedUser) { 
         this.assignedUser = assignedUser; 
         this.encargado = assignedUser;

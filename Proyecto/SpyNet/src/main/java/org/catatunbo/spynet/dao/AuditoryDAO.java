@@ -31,4 +31,31 @@ public class AuditoryDAO {
         }
         return list;
     }
+
+    public List<String> getObservationsByAuditoryId(int auditoryid){
+
+        List<String> observations = new ArrayList<>();
+        
+
+        String sql = "CALL get_observations_by_auditory_id(?)";
+
+        try (Connection conn = DatabaseConnection.getInstance().getConnection()){
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, auditoryid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                String observation = "["+rs.getString("username")+"]" 
+                            + " --> "+rs.getString("observation_title").toUpperCase() 
+                            +":\n" +rs.getString("observation_description")
+                            +"\n"+rs.getString("observation_datetime")
+                            +"\n\n";
+                observations.add(observation); 
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return observations;
+
+    }
 }

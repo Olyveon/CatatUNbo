@@ -1,7 +1,9 @@
 package org.catatunbo.spynet.controllers;
 
 import org.catatunbo.spynet.auditUtils.*;
+import org.catatunbo.spynet.dao.AuditoryDAO;
 import org.catatunbo.spynet.Auditory;
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -178,7 +180,9 @@ public class AdminAuditController {
     private void loadAuditoryInfo() {
         
         if (currentAuditory != null) {
+            currentAuditory.getId(); // id para identificar las observaciones y hallazgos correspondientes
             currentAuditory.getNombre();
+
             lblNombre.setText("Nombre: " + currentAuditory.getNombre());
             lblDatos.setText("Datos: " + currentAuditory.getCliente());
             lblAuditorEncargado.setText("Auditor encargado: "+ currentAuditory.getEncargado());
@@ -193,9 +197,20 @@ public class AdminAuditController {
             } else {
                 System.out.println("WARNING: comboBoxEstadoAuditoria es null o estado es null");
             }
+            AuditoryDAO auditoryData = new AuditoryDAO();
+
+            List<String> observations = auditoryData.getObservationsByAuditoryId(currentAuditory.getAuditoryId()); 
+
+            for (String observation : observations) {
+                txtAreaObservaciones.appendText(observation);
+                
+
+            }
+            
             
         } else {
+            
             System.out.println("WARNING: currentAuditory es null en loadAuditoryInfo");
         }
     }
-}
+}   
