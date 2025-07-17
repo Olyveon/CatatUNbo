@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 
 import org.catatunbo.spynet.dao.UserDAO;
 import org.catatunbo.spynet.User;
+import org.catatunbo.spynet.PasswordObject;
 import org.catatunbo.spynet.Session;
 
 import java.io.IOException;
@@ -27,10 +28,19 @@ public class LoginController {
 
     private UserDAO userDAO;
 
+    private PasswordHasher passwordHasher;
+
     public LoginController() {
         this.userDAO = new UserDAO();
+        this.passwordHasher = new PasswordHasher();
     }
 
+    /**
+     * Verifies if input data is complete, if so, get corresponding data
+     * from the given user and authenticates it identity.
+     * @param event Event thrown with "Iniciar Sesión" button is activated
+     * @throws IOException Exception if it's not possible to switch to the "userCreation" or "main" scene
+     */
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
         String username = usernameField.getText();
@@ -43,9 +53,11 @@ public class LoginController {
 
         try {
             
-            User user = userDAO.authenticate(username, password);
-            
-            if (user != null) {                
+            User user = userDAO.authenticate(username);
+            PasswordObject enteredPassword = new PasswordObject(password, user.getPasswordSalt());
+            String enteredPasswordHashed = this.passwordHasher.hashPassword(enteredPassword);
+
+            if (user != null && enteredPasswordHashed.equals(user.getPasswordHash())) {                
                 Session.getInstance().setCurrentUser(user);    
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
                 Parent root = loader.load();
@@ -65,10 +77,9 @@ public class LoginController {
 
     @FXML
     private void switchToUserCreation(ActionEvent event) throws IOException{
-        System.out.println("\n\n\nFunction\n\n\n");
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/createUser.fxml"));
-        Stage stage = (Stage)( (Node)event.getSource() ).getScene().getWindow();
-        stage.setScene(new Scene(root));
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root, 1280, 800));
         stage.show();
     }
 
@@ -79,4 +90,6 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    
 }

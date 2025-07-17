@@ -4,6 +4,7 @@ public class User {
     private int userId;
     private String username;
     private String passwordHash;
+    private String passwordSalt;
     private String userRole;
     private String userState;
     private String dateRegister;
@@ -13,10 +14,11 @@ public class User {
     public User() {}
     
     // Constructor 
-    public User(int userId, String username, String passwordHash, String userRole, String userState, String dateRegister, String lastSession) {
+    public User(int userId, String username, String passwordHash, String passwordSalt, String userRole, String userState, String dateRegister, String lastSession) {
         this.userId = userId;
         this.username = username;
         this.passwordHash = passwordHash;
+        this.passwordSalt = passwordSalt;
         this.userRole = userRole;
         this.userState = userState;
         this.dateRegister = dateRegister;
@@ -47,6 +49,13 @@ public class User {
         this.passwordHash = passwordHash;
     }
     
+    public String getPasswordSalt() {
+        return this.passwordSalt;
+    }
+
+    public void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
+    }
     public String getUserRole() {
         return userRole;
     }

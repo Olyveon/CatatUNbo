@@ -11,14 +11,17 @@ import java.sql.SQLException;
 
 public class UserDAO {
     
-    public User authenticate(String username, String password) {
-        // Authenticate user with given username and password
-        String sql = "SELECT * FROM user WHERE username = ? AND user_password_hash = ? AND user_state = 'ACTIVO'";
+    /**
+     * Authenticate user with given username
+     * @param username
+     * @return User data if found
+     */
+    public User authenticate(String username) {
+        String sql = "SELECT * FROM user WHERE username = ? AND user_state = 'ACTIVO'";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement(sql); 
             statement.setString(1, username);
-            statement.setString(2, password); 
             
             ResultSet resultSet = statement.executeQuery(); // Select users
             
@@ -27,6 +30,7 @@ public class UserDAO {
                 user.setUserId(resultSet.getInt("user_id"));
                 user.setUsername(resultSet.getString("username"));
                 user.setPasswordHash(resultSet.getString("user_password_hash"));
+                user.setPasswordSalt(resultSet.getString("password_salt"));
                 user.setUserRole(resultSet.getString("user_rol"));
                 user.setUserState(resultSet.getString("user_state"));
                 user.setDateRegister(resultSet.getString("user_date_register"));
@@ -48,6 +52,38 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     * Adds the recieved ser to the database
+     * @param user New user
+     * @return Number of rows affected
+     */
+    public int addToDataBase(User user) throws SQLException{
+        String query = """
+                INSERT INTO user (
+                    username, 
+                    user_password_hash, 
+                    password_salt, 
+                    user_rol, 
+                    user_state, 
+                    user_date_register,
+                    user_last_session
+                    )
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """;
+        
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement(query); 
+        
+        statement.setString(1, user.getUsername());
+        statement.setString(2, user.getPasswordHash());
+        statement.setString(3, user.getPasswordSalt());
+        statement.setString(4, user.getUserRole());
+        statement.setString(5, user.getUserState());
+        statement.setString(6, user.getDateRegister());
+        statement.setString(7, user.getLastSession());
+        
+        return statement.executeUpdate();
+    }
 
     private void updateLastSession(int userId) {
         String sql = "UPDATE user SET user_last_session = CURRENT_TIMESTAMP WHERE user_id = ?";
