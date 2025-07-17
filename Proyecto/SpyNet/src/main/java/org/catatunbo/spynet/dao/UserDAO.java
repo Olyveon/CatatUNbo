@@ -11,14 +11,13 @@ import java.sql.SQLException;
 
 public class UserDAO {
     
-    public User authenticate(String username, String password) {
+    public User authenticate(String username) {
         // Authenticate user with given username and password
-        String sql = "SELECT * FROM user WHERE username = ? AND user_password_hash = ? AND user_state = 'ACTIVO'";
+        String sql = "SELECT * FROM user WHERE username = ? AND user_state = 'ACTIVO'";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
             PreparedStatement statement = connection.prepareStatement(sql); 
             statement.setString(1, username);
-            statement.setString(2, password); 
             
             ResultSet resultSet = statement.executeQuery(); // Select users
             
@@ -27,6 +26,7 @@ public class UserDAO {
                 user.setUserId(resultSet.getInt("user_id"));
                 user.setUsername(resultSet.getString("username"));
                 user.setPasswordHash(resultSet.getString("user_password_hash"));
+                user.setPasswordSalt(resultSet.getString("password_salt"));
                 user.setUserRole(resultSet.getString("user_rol"));
                 user.setUserState(resultSet.getString("user_state"));
                 user.setDateRegister(resultSet.getString("user_date_register"));

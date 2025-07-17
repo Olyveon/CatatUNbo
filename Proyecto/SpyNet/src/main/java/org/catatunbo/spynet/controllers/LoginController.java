@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 
 import org.catatunbo.spynet.dao.UserDAO;
 import org.catatunbo.spynet.User;
+import org.catatunbo.spynet.PasswordObject;
 import org.catatunbo.spynet.Session;
 
 import java.io.IOException;
@@ -27,8 +28,11 @@ public class LoginController {
 
     private UserDAO userDAO;
 
+    private PasswordHasher passwordHasher;
+
     public LoginController() {
         this.userDAO = new UserDAO();
+        this.passwordHasher = new PasswordHasher();
     }
 
     @FXML
@@ -43,9 +47,11 @@ public class LoginController {
 
         try {
             
-            User user = userDAO.authenticate(username, password);
-            
-            if (user != null) {                
+            User user = userDAO.authenticate(username);
+            PasswordObject enteredPassword = new PasswordObject(password, user.getPasswordSalt());
+            String enteredPasswordHashed = this.passwordHasher.hashPassword(enteredPassword);
+
+            if (user != null && enteredPasswordHashed.equals(user.getPasswordHash())) {                
                 Session.getInstance().setCurrentUser(user);    
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
                 Parent root = loader.load();

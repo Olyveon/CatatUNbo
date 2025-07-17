@@ -58,6 +58,10 @@ public class CreateUserController {
         
     }
 
+    private void createNewClient(String username, String password) {
+        // PasswordObject
+    }
+    
     private void showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

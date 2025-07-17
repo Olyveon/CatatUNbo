@@ -38,7 +38,7 @@ public class App extends Application {
         final String mysqlPath = "mysql"; 
         final String user = "root";
         final String password = "\"" + "Password123#" + "\"";
-        final String scriptPath = "src\\main\\resources\\database_resources\\spynetdb_script_creation.sql";
+        final String scriptPath = "src\\main\\resources\\database_resources\\spynetdb_script_creation_V2.sql";
 
         String fullScriptPath = "\"source " + new File(scriptPath).getAbsolutePath() + "\"";
 
