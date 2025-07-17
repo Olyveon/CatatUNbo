@@ -11,7 +11,8 @@ CREATE TABLE user(
     user_rol ENUM("admin", "auditor", "inspector", "cliente") NULL,
     user_state ENUM("ACTIVO", "BLOQUEADO") NOT NULL,
     user_date_register DATETIME DEFAULT CURRENT_TIMESTAMP,
-    user_last_session DATETIME DEFAULT CURRENT_TIMESTAMP
+    user_last_session DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(username)
 );
 
 CREATE TABLE client(

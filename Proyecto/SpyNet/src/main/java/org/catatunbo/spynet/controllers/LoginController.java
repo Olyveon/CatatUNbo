@@ -35,6 +35,12 @@ public class LoginController {
         this.passwordHasher = new PasswordHasher();
     }
 
+    /**
+     * Verifies if input data is complete, if so, get corresponding data
+     * from the given user and authenticates it identity.
+     * @param event Event thrown with "Iniciar Sesión" button is activated
+     * @throws IOException Exception if it's not possible to switch to the "userCreation" or "main" scene
+     */
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
         String username = usernameField.getText();

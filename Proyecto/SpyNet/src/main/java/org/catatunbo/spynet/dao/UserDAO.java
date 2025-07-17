@@ -11,8 +11,12 @@ import java.sql.SQLException;
 
 public class UserDAO {
     
+    /**
+     * Authenticate user with given username
+     * @param username
+     * @return User data if found
+     */
     public User authenticate(String username) {
-        // Authenticate user with given username and password
         String sql = "SELECT * FROM user WHERE username = ? AND user_state = 'ACTIVO'";
         try {
             Connection connection = DatabaseConnection.getInstance().getConnection();
@@ -48,6 +52,45 @@ public class UserDAO {
         return null;
     }
 
+    /**
+     * Adds the recieved ser to the database
+     * @param user New user
+     * @return
+     */
+    public int addToDataBase(User user) {
+        String query = """
+                INSERT INTO user (
+                    username, 
+                    user_password_hash, 
+                    password_salt, 
+                    user_rol, 
+                    user_state, 
+                    user_date_register,
+                    user_last_session
+                    )
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """;
+        try {
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement(query); 
+            
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPasswordHash());
+            statement.setString(3, user.getPasswordSalt());
+            statement.setString(4, user.getUserRole());
+            statement.setString(5, user.getUserState());
+            statement.setString(6, user.getDateRegister());
+            statement.setString(7, user.getLastSession());
+            
+            System.out.println("\n\n\t  INSERT: " + statement.executeUpdate());
+            
+            connection.close();
+            return 0;
+        } catch (Exception e) {
+            System.out.println("\n\n\t from UserDAO ERROR: " + e.toString() + " " + e.getCause());
+            return 1;
+        }
+    }
 
     private void updateLastSession(int userId) {
         String sql = "UPDATE user SET user_last_session = CURRENT_TIMESTAMP WHERE user_id = ?";
