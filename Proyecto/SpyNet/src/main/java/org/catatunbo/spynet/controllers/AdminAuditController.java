@@ -83,8 +83,6 @@ public class AdminAuditController {
 
         String comando = "spynet@auditor:~$ nmap " + arg + " " + ip + "\n";
         txtAreaTerminal.setText(comando + "Running...\n");
-
-
         
         // Crear tarea para ejecutar nmap en segundo plano
         nmapTask = new Task<>() {
@@ -120,10 +118,7 @@ public class AdminAuditController {
         Task<Void> iaTask = new Task<>() {
             @Override
             protected Void call() {
-
                 try {
-
-                
                     CompletionsStreamingAsyncExample completions = new CompletionsStreamingAsyncExample(nmapOutput);
 
                     completions.start(fragment -> {
@@ -168,6 +163,9 @@ public class AdminAuditController {
         }
     }
 
+    private int getCurrentUserId() {
+        return org.catatunbo.spynet.Session.getInstance().getCurrentUser().getUserId();
+    }
 
     // Carga el método de abajo (Es una buena práctica :3)   
     public void setAuditoryData(Auditory auditory) {
@@ -216,12 +214,68 @@ public class AdminAuditController {
                     txtAreaHallazgos.appendText("\n\n");
                 }
             }
-
-            
-            
         } else {
-            
             System.out.println("WARNING: currentAuditory es null en loadAuditoryInfo");
         }
     }
+
+    @FXML
+    private void handleAddObservacion() {
+        String input = txtAreaAddObservation.getText().trim();
+        if (!input.contains(":")) {
+            // Mostrar error de formato
+            return;
+        }
+        String[] parts = input.split(":", 2);
+        String title = parts[0].trim();
+        String description = parts[1].trim();
+        int userId = getCurrentUserId(); 
+
+        AuditoryDAO dao = new AuditoryDAO();
+        boolean success = dao.insertObservation(currentAuditory.getAuditoryId(), userId, title, description);
+        if (success) {
+            txtAreaAddObservation.clear();
+            // Recargar observaciones
+            txtAreaObservaciones.clear();
+            List<String> observations = dao.getObservationsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < observations.size(); i++) {
+                txtAreaObservaciones.appendText(observations.get(i));
+                if (i < observations.size() - 1) {
+                    txtAreaObservaciones.appendText("\n\n");
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void handleAddHallazgo() {
+        String input = txtAreaAddHallazgo.getText().trim();
+        if (!input.contains(":")) {
+            // Mostrar error de formato
+            return;
+        }
+        String[] parts = input.split(":", 2);
+        String title = parts[0].trim();
+        String description = parts[1].trim();
+        String risk = comboBoxNivelRiesgo.getValue(); 
+        int userId = getCurrentUserId(); 
+
+        AuditoryDAO dao = new AuditoryDAO();
+        boolean success = dao.insertFinding(currentAuditory.getAuditoryId(), userId, title, description, risk);
+        if (success) {
+            txtAreaAddHallazgo.clear();
+            // Recargar hallazgos
+            txtAreaHallazgos.clear();
+            List<String> findings = dao.getFindingsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < findings.size(); i++) {
+                txtAreaHallazgos.appendText(findings.get(i));
+                if (i < findings.size() - 1) {
+                    txtAreaHallazgos.appendText("\n\n");
+                }
+            }
+        }
+    }
+
+
+
 }   

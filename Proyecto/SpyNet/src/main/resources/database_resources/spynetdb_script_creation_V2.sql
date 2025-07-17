@@ -52,8 +52,8 @@ CREATE TABLE finding(
     finding_security_risk ENUM("BAJO","MEDIO","ALTO","CRITICO") NOT NULL,
     finding_user_id INT NOT NULL,
     finding_auditory_id INT NOT NULL,
-    finding_title VARCHAR(45) NOT NULL,
-    finding_description VARCHAR(255) NOT NULL,
+    finding_title TEXT NOT NULL,
+    finding_description TEXT NOT NULL,
     finding_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (finding_user_id) REFERENCES user(user_id),
     FOREIGN KEY (finding_auditory_id) REFERENCES auditory(auditory_id)
@@ -63,8 +63,8 @@ CREATE TABLE observation(
 	observation_id INT PRIMARY KEY AUTO_INCREMENT,
     observation_user_id INT NOT NULL,
     observation_auditory_id INT NOT NULL,
-    observation_title VARCHAR(45) NOT NULL,
-    observation_description VARCHAR(255) NOT NULL,
+    observation_title TEXT NOT NULL,
+    observation_description TEXT NOT NULL,
     observation_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (observation_user_id) REFERENCES user(user_id),
     FOREIGN KEY (observation_auditory_id) REFERENCES auditory(auditory_id)

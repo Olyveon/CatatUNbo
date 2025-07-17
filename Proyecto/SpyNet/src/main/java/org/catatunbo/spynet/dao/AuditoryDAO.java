@@ -78,4 +78,37 @@ public class AuditoryDAO {
         }
         return observations;
     }
+
+
+    public boolean insertObservation(int auditoryId, int userId, String title, String description) {
+        String sql = "INSERT INTO observation (observation_auditory_id, observation_user_id, observation_title, observation_description, observation_datetime) VALUES (?, ?, ?, ?, NOW())";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, auditoryId);
+            stmt.setInt(2, userId);
+            stmt.setString(3, title);
+            stmt.setString(4, description);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean insertFinding(int auditoryId, int userId, String title, String description, String risk) {
+        String sql = "INSERT INTO finding (finding_auditory_id, finding_user_id, finding_title, finding_description, finding_security_risk, finding_datetime) VALUES (?, ?, ?, ?, ?, NOW())";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, auditoryId);
+            stmt.setInt(2, userId);
+            stmt.setString(3, title);
+            stmt.setString(4, description);
+            stmt.setString(5, risk);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
