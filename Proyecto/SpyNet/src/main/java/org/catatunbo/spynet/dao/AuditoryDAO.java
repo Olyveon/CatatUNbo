@@ -35,8 +35,6 @@ public class AuditoryDAO {
     public List<String> getObservationsByAuditoryId(int auditoryid){
 
         List<String> observations = new ArrayList<>();
-        
-
         String sql = "CALL get_observations_by_auditory_id(?)";
 
         try (Connection conn = DatabaseConnection.getInstance().getConnection()){
@@ -47,15 +45,37 @@ public class AuditoryDAO {
                 String observation = "["+rs.getString("username")+"]" 
                             + " --> "+rs.getString("observation_title").toUpperCase() 
                             +":\n" +rs.getString("observation_description")
-                            +"\n"+rs.getString("observation_datetime")
-                            +"\n\n";
+                            +"\n"+rs.getString("observation_datetime");
                 observations.add(observation); 
             }
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
         return observations;
+    }
 
+
+    public List<String> getFindingsByAuditoryId(int auditoryid){
+
+        List<String> observations = new ArrayList<>();
+        String sql = "CALL get_findings_by_auditory_id(?)";
+
+        try (Connection conn = DatabaseConnection.getInstance().getConnection()){
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, auditoryid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                String observation = "["+rs.getString("username")+"]" 
+                            + " --> "+rs.getString("finding_title").toUpperCase() 
+                            +"\n" +rs.getString("finding_description")
+                            +"\n¡RIESGO!: "+rs.getString("finding_security_risk")
+                            +"\n"+rs.getString("finding_datetime");
+                            
+                observations.add(observation); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return observations;
     }
 }

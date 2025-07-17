@@ -197,15 +197,26 @@ public class AdminAuditController {
             } else {
                 System.out.println("WARNING: comboBoxEstadoAuditoria es null o estado es null");
             }
+
+            // se cargan las observaciones dado el usuario
             AuditoryDAO auditoryData = new AuditoryDAO();
-
-            List<String> observations = auditoryData.getObservationsByAuditoryId(currentAuditory.getAuditoryId()); 
-
-            for (String observation : observations) {
-                txtAreaObservaciones.appendText(observation);
-                
-
+            List<String> observations = auditoryData.getObservationsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < observations.size(); i++) {
+                txtAreaObservaciones.appendText(observations.get(i));
+                if (i < observations.size() - 1) {
+                    txtAreaObservaciones.appendText("\n\n");
+                }
             }
+
+            // se cargan los hallazgos dado el usuario
+            List<String> findings = auditoryData.getFindingsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < findings.size(); i++) {
+                txtAreaHallazgos.appendText(findings.get(i));
+                if (i < findings.size() - 1) {
+                    txtAreaHallazgos.appendText("\n\n");
+                }
+            }
+
             
             
         } else {
