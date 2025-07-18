@@ -29,6 +29,7 @@ public class AdminAuditController {
     @FXML private Label lblDatos;
     @FXML private Label lblAuditorEncargado;
     @FXML private Label lblAuditoria;
+    @FXML private Label lblColorEstado;
     // @FXML private Label lblSpynetPrompt;
 
     @FXML private TextArea txtAreaAddObservation;
@@ -55,7 +56,7 @@ public class AdminAuditController {
     @FXML
     public void initialize() {
         // Inicialización de componentes si es necesario
-        comboBoxEstadoAuditoria.getItems().addAll("No Iniciado","En Proceso", "Archivado", "Finalizado");
+        comboBoxEstadoAuditoria.getItems().addAll("PENDIENTE","EN PROCESO", "ARCHIVADO", "FINALIZADO");
         
         comboBoxNivelRiesgo.getItems().addAll("Bajo", "Medio", "Alto");
         // Seleccionar una opción por defecto
@@ -68,6 +69,33 @@ public class AdminAuditController {
         comboBoxIP.getItems().addAll("scanme.nmap.org","TryHackMe.com");
         comboBoxIP.setValue("scanme.nmap.org");
 
+        comboBoxEstadoAuditoria.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (currentAuditory != null && newVal != null && !newVal.equals(oldVal)) {
+                // Actualiza en la base de datos
+                AuditoryDAO dao = new AuditoryDAO();
+                boolean success = dao.updateAuditoryState(currentAuditory.getAuditoryId(), newVal);
+                if (success) {
+                    currentAuditory.setEstado(newVal); // Actualiza el modelo local
+                }
+                // Cambia el color del label según el estado
+                switch (newVal) {
+                    case "PENDIENTE":
+                        lblColorEstado.setStyle("-fx-background-color: gray;");
+                        break;
+                    case "EN PROCESO":
+                        lblColorEstado.setStyle("-fx-background-color: orange;");
+                        break;
+                    case "ARCHIVADO":
+                        lblColorEstado.setStyle("-fx-background-color: blue;");
+                        break;
+                    case "FINALIZADO":
+                        lblColorEstado.setStyle("-fx-background-color: green;");
+                        break;
+                    default:
+                        lblColorEstado.setStyle("-fx-background-color: transparent;");
+                }
+            }
+        });
     }
 
     @FXML
@@ -278,4 +306,4 @@ public class AdminAuditController {
 
 
 
-}   
+}

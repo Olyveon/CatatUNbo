@@ -409,5 +409,3 @@
     -fx-background-color: #013d7a;
     -fx-effect: dropshadow(three-pass-box, rgba(1,87,164,0.2), 3, 0, 0, 1);
 }
-    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.2), 3, 0, 0, 1);
-}

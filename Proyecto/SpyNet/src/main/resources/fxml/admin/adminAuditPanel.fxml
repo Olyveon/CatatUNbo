@@ -57,6 +57,11 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="comboBoxEstadoAuditoria" layoutX="204.0" layoutY="144.0" prefHeight="30.0" prefWidth="141.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="204.0" />
+                  <Label fx:id="lblColorEstado" layoutX="356.0" layoutY="150.0" prefHeight="18.0" prefWidth="20.0" styleClass="add-comment-button" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="185.0" prefWidth="327.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="14.0">

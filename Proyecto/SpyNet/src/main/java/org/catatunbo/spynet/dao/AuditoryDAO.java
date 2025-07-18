@@ -117,4 +117,17 @@ public class AuditoryDAO {
         }
     }
 
+    public boolean updateAuditoryState(int auditoryId, String newState) {
+        String sql = "UPDATE auditory SET auditory_state = ? WHERE auditory_id = ?";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newState);
+            stmt.setInt(2, auditoryId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
