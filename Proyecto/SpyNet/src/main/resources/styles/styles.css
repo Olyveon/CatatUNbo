@@ -331,3 +331,83 @@
     -fx-background-color: #145a87;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 1);
 }
+
+/* Estilos para el panel de crear auditoría */
+.create-audit-panel {
+    -fx-background-color: #060d17;
+    -fx-background-radius: 20;
+}
+
+.create-audit-field {
+    -fx-background-color: #000000;
+    -fx-background-radius: 12;
+    -fx-border-color: #1a2a37;
+    -fx-border-radius: 12;
+    -fx-border-width: 2;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #7a8fa3;
+    -fx-font-size: 16px;
+    -fx-padding: 12;
+}
+
+.create-audit-field:focused {
+    -fx-border-color: #0157a4;
+    -fx-border-width: 2;
+}
+
+.create-audit-textarea {
+    -fx-background-color: #000000;
+    -fx-background-radius: 15;
+    -fx-border-color: #1a2a37;
+    -fx-border-radius: 15;
+    -fx-border-width: 2;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #7a8fa3;
+    -fx-font-size: 16px;
+    -fx-padding: 15;
+}
+
+.create-audit-textarea:focused {
+    -fx-border-color: #0157a4;
+    -fx-border-width: 2;
+}
+
+.create-audit-textarea .content {
+    -fx-background-color: transparent;
+}
+
+.create-audit-textarea .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.create-audit-textarea .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.create-audit-textarea .scroll-pane .corner {
+    -fx-background-color: #000000;
+}
+
+.send-button {
+    -fx-background-color: #0157a4;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #014a91;
+    -fx-border-width: 2;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(1,87,164,0.3), 5, 0, 0, 2);
+}
+
+.send-button:hover {
+    -fx-background-color: #014a91;
+    -fx-border-color: #013d7a;
+    -fx-effect: dropshadow(three-pass-box, rgba(1,87,164,0.5), 8, 0, 0, 3);
+}
+
+.send-button:pressed {
+    -fx-background-color: #013d7a;
+    -fx-effect: dropshadow(three-pass-box, rgba(1,87,164,0.2), 3, 0, 0, 1);
+}
+    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.2), 3, 0, 0, 1);
+}
