@@ -44,6 +44,7 @@ public class App extends Application {
 
         List<String> command = Arrays.asList(
                 mysqlPath,
+                "--default-character-set=utf8mb4",
                 "-u", user,
                 "-p" + password,
                 "-h", "localhost",

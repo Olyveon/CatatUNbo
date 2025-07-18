@@ -1,5 +1,5 @@
 drop schema if exists spynetdb;
-create schema spynetdb;
+CREATE SCHEMA spynetdb DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 use spynetdb;
 
 -- TABLAS
@@ -8,8 +8,8 @@ CREATE TABLE user(
     username VARCHAR(45) NOT NULL UNIQUE,
     user_password_hash VARCHAR(255) NOT NULL,
     password_salt VARCHAR(255) NOT NULL,
-    user_rol ENUM("admin", "auditor", "inspector", "cliente") NULL,
-    user_state ENUM("ACTIVO", "BLOQUEADO") NOT NULL,
+    user_rol ENUM('admin', 'auditor', 'inspector', 'cliente') NULL,
+    user_state ENUM('ACTIVO', 'BLOQUEADO') NOT NULL,
     user_date_register DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_last_session DATETIME DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(username)
@@ -33,7 +33,7 @@ CREATE TABLE auditory(
 	auditory_id INT PRIMARY KEY AUTO_INCREMENT,
     auditory_name VARCHAR(45) NOT NULL,
     auditory_client_id INT NOT NULL,
-    auditory_state ENUM("PENDIENTE", "EN PROCESO", "ARCHIVADO", "FINALIZADO") NOT NULL,
+    auditory_state ENUM('PENDIENTE', 'EN PROCESO', 'ARCHIVADO', 'FINALIZADO') NOT NULL,
     auditory_date_init DATETIME,
     auditory_date_limit DATETIME,
     auditory_date_end DATETIME,
@@ -50,7 +50,7 @@ CREATE TABLE auditory_access(
 
 CREATE TABLE finding(
 	find_id INT PRIMARY KEY AUTO_INCREMENT,
-    finding_security_risk ENUM("BAJO","MEDIO","ALTO","CRITICO") NOT NULL,
+    finding_security_risk ENUM('BAJO','MEDIO','ALTO','CRITICO') NOT NULL,
     finding_user_id INT NOT NULL,
     finding_auditory_id INT NOT NULL,
     finding_title TEXT NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE request(
     request_client_name VARCHAR(45) NOT NULL,
     request_client_number VARCHAR(45) NOT NULL,
     request_client_email VARCHAR(45) NOT NULL,
-    request_state ENUM("PENDIENTE", "ACEPTADA", "RECHAZADA") NOT NULL,
+    request_state ENUM('PENDIENTE', 'ACEPTADA', 'RECHAZADA') NOT NULL,
     request_datetime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
