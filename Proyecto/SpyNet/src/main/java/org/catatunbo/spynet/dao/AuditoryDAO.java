@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AuditoryDAO {
+    /**
+     * Retrieves all auditory records from the database.
+     *
+     * @return A list of `Auditory` objects representing the records in the database.
+     *         Returns an empty list if no records are found or an error occurs.
+     */
     public List<Auditory> getAllAuditories() {
         List<Auditory> list = new ArrayList<>();
         String sql = "SELECT * FROM vista_auditorias_inspector_admin";

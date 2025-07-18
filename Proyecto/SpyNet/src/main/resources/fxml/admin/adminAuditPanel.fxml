@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminAuditController">
    <children>
-      <AnchorPane layoutX="310.0" layoutY="15.0" prefHeight="772.0" prefWidth="952.0" styleClass="panel-main" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
+      <AnchorPane layoutX="310.0" layoutY="15.0" prefHeight="772.0" prefWidth="960.0" styleClass="panel-main" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
          <children>
             <AnchorPane layoutX="27.0" layoutY="14.0" prefHeight="44.0" prefWidth="234.0">
                <children>
@@ -25,7 +25,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="38.0" layoutY="66.0" prefHeight="185.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="38.0">
+            <AnchorPane layoutX="38.0" layoutY="66.0" prefHeight="185.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0">
                <children>
                   <VBox layoutX="14.0" layoutY="10.0" prefHeight="121.0" prefWidth="426.0">
                      <children>
@@ -59,9 +59,9 @@
                   <ComboBox fx:id="comboBoxEstadoAuditoria" layoutX="204.0" layoutY="144.0" prefHeight="30.0" prefWidth="141.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="204.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="185.0" prefWidth="327.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="26.0">
+            <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="185.0" prefWidth="327.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="14.0">
                <children>
-                  <TextArea fx:id="txtAreaObservaciones" editable="false" layoutX="8.0" layoutY="4.0" prefHeight="174.0" prefWidth="308.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="9.0">
+                  <TextArea fx:id="txtAreaObservaciones" editable="false" layoutX="8.0" layoutY="4.0" prefHeight="174.0" prefWidth="308.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
                      <font>
                         <Font name="Consolas" size="14.0" />
                      </font>
@@ -77,10 +77,10 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="601.0" layoutY="265.0" prefHeight="44.0" prefWidth="302.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="601.0" AnchorPane.rightAnchor="24.0">
+            <AnchorPane layoutX="601.0" layoutY="265.0" prefHeight="44.0" prefWidth="302.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="601.0" AnchorPane.rightAnchor="14.0">
                <children>
                   <Button fx:id="btnAddObservacion" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddObservacion" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir observación" AnchorPane.leftAnchor="14.0" />
-                  <TextArea fx:id="txtAreaAddObservation" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="163.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="13.0" />
+                  <TextArea fx:id="txtAreaAddObservation" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="163.0" styleClass="terminal-textarea" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="4.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="39.0" layoutY="265.0" prefHeight="44.0" prefWidth="509.0" styleClass="panel-main-secundary">
@@ -92,7 +92,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="40.0" layoutY="316.0" prefHeight="129.0" prefWidth="894.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="18.0">
+            <AnchorPane layoutX="40.0" layoutY="316.0" prefHeight="129.0" prefWidth="900.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0">
                <children>
                   <TextArea fx:id="txtAreaHallazgos" editable="false" layoutX="8.0" layoutY="8.0" prefHeight="93.0" prefWidth="875.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="8.0">
                      <font>
@@ -101,7 +101,7 @@
                   </TextArea>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="43.0" layoutY="449.0" prefHeight="44.0" prefWidth="863.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="21.0">
+            <AnchorPane layoutX="40.0" layoutY="449.0" prefHeight="44.0" prefWidth="900.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0">
                <children>
                   <Button fx:id="btnAddHallazgo" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddHallazgo" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir hallazgo" AnchorPane.leftAnchor="25.0" />
                   <TextArea fx:id="txtAreaAddHallazgo" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="356.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="356.0" />
@@ -113,7 +113,7 @@
                   <ComboBox fx:id="comboBoxNivelRiesgo" layoutX="710.0" layoutY="6.0" prefHeight="30.0" prefWidth="156.0" styleClass="terminal-combobox" AnchorPane.rightAnchor="22.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="38.0" layoutY="573.0" prefHeight="185.0" prefWidth="901.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="573.0">
+            <AnchorPane layoutX="38.0" layoutY="573.0" prefHeight="185.0" prefWidth="901.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="573.0">
                <children>
                   <TextArea fx:id="txtAreaTerminal" editable="false" layoutX="13.0" layoutY="10.0" prefHeight="178.0" prefWidth="875.0" styleClass="scroll-terminal" text="spynet@auditor:~$ " wrapText="true" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0">
                      <font>

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminCreateAuditController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminCreateAuditController">
    <children>
       <!-- Barra lateral izquierda - igual que adminMainPanel -->
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="772.0" prefWidth="288.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
@@ -56,7 +56,7 @@
       </VBox>
 
       <!-- Título principal -->
-      <Label prefHeight="49.0" prefWidth="366.0" text="Realizar Auditoría" textFill="WHITE" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="40.0">
+      <Label layoutX="333.0" layoutY="39.0" prefHeight="49.0" prefWidth="366.0" text="Realizar Auditoría" textFill="WHITE" AnchorPane.leftAnchor="333.0" AnchorPane.topAnchor="39.0">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>
@@ -90,7 +90,7 @@
             </HBox>
 
             <!-- Segunda fila: Descripción grande -->
-            <VBox spacing="15.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0" AnchorPane.bottomAnchor="90.0">
+            <VBox spacing="15.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
                <children>
                   <TextArea fx:id="txtDescripcion" promptText="Descripción, que es lo que necesita" style="-fx-background-color: #132739;" styleClass="create-audit-textarea" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>

@@ -16,44 +16,52 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="772.0" prefWidth="288.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
+      <AnchorPane layoutX="20.0" layoutY="14.0" prefHeight="772.0" prefWidth="287.0" styleClass="panel-main" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
          <children>
-            <ImageView fitHeight="257.0" fitWidth="265.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="253.0" fitWidth="272.0" layoutX="17.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/Spynet.jpg" />
                </image>
             </ImageView>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="User" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="21.0" layoutY="704.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir" AnchorPane.bottomAnchor="16.0">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font></Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Usuarios">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font></Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Notificaciones">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font></Button>
-            <Region prefHeight="230.0" prefWidth="289.0" />
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleExit" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font>
-            </Button>
+            <VBox alignment="TOP_CENTER" layoutY="289.0" prefHeight="253.0" prefWidth="271.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
+               <children>
+                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="User:" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
+                     <font>
+                        <Font name="Segoe UI" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Usuarios">
+                     <font>
+                        <Font name="Segoe UI" size="22.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Notificaciones">
+                     <font>
+                        <Font name="Segoe UI" size="22.0" />
+                     </font>
+                  </Button>
+                  <Region prefHeight="206.0" prefWidth="271.0" />
+                  <AnchorPane prefHeight="94.0" prefWidth="271.0" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <VBox layoutX="333.0" layoutY="212.0" prefHeight="574.0" prefWidth="928.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="212.0">
+      </AnchorPane>
+      <VBox layoutX="322.0" layoutY="212.0" prefHeight="574.0" prefWidth="939.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="212.0">
          <children>
-            <TableView fx:id="tableAuditories" prefHeight="554.0" prefWidth="912.0">
+            <TableView fx:id="tableAuditories" prefHeight="576.0" prefWidth="912.0">
               <columns>
                 <TableColumn fx:id="colNombre" editable="false" prefWidth="100.0" text="Nombre" />
                 <TableColumn fx:id="colCliente" editable="false" prefWidth="75.0" text="Cliente" />
@@ -71,7 +79,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <HBox alignment="CENTER" layoutX="354.0" layoutY="95.0" prefHeight="100.0" prefWidth="912.0" spacing="10.0" AnchorPane.leftAnchor="354.0" AnchorPane.rightAnchor="14.0">
+      <HBox alignment="CENTER" layoutX="327.0" layoutY="95.0" prefHeight="100.0" prefWidth="930.0" spacing="10.0" AnchorPane.leftAnchor="327.0" AnchorPane.rightAnchor="23.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="154.0" styleClass="general-filter-button" stylesheets="@../../styles/styles.css" text="Nombre" textFill="WHITE">
                <font>
@@ -91,7 +99,7 @@
                   <Font name="Segoe UI" size="30.0" />
                </font>
             </Button>
-            <Region prefHeight="100.0" prefWidth="294.0" />
+            <Region prefHeight="100.0" prefWidth="294.0" HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="120.0" styleClass="filter-button" stylesheets="@../../styles/styles.css" text="Filtrar" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="30.0" />
@@ -99,7 +107,7 @@
             </Button>
          </children>
       </HBox>
-      <Label layoutX="366.0" layoutY="40.0" prefHeight="49.0" prefWidth="366.0" text="Consultar auditorías" textFill="WHITE">
+      <Label layoutX="327.0" layoutY="33.0" prefHeight="49.0" prefWidth="366.0" text="Consultar auditorías" textFill="WHITE">
          <font>
             <Font name="System Bold" size="38.0" />
          </font>

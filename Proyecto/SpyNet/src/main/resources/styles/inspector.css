@@ -19,19 +19,19 @@
 }
 
 .inspector-button {
-    -fx-background-color: #181a1b;
+    -fx-background-color: #485963;
     -fx-text-fill: white;
     -fx-font-size: 12px;
     -fx-background-radius: 8;
     -fx-border-radius: 8;
     -fx-cursor: hand;
     -fx-padding: 8 24 8 24;
-    -fx-effect: dropshadow(gaussian, #7d0b08, 4, 0.2, 0, 2);
+    -fx-effect: dropshadow(gaussian, #384249, 4, 0.2, 0, 2);
     -fx-font-family: 'Segoe UI', sans-serif;
     -fx-font-weight: bold;
     -fx-border-color: transparent;
 }
 
 .inspector-button:hover {
-    -fx-background-color: rgba(200, 0, 0, 0.35);
+    -fx-background-color: rgb(114, 148, 165);
 }

@@ -28,8 +28,8 @@ public class App extends Application {
     }
 
     /**
-     * Runs the script for the data base creation, 
-     * with myslq command, from the native terminal.
+     * Runs the script for the database creation,
+     * with MySQL command, from the native terminal.
      * <p>
      * Requires MySQL root user and it's password.
      */
