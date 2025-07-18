@@ -49,7 +49,7 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Iniciar Sesión" textFill="#17579f">
+                  <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onAction="#switchToLogin" prefHeight="37.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Iniciar Sesión" textFill="#17579f">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>

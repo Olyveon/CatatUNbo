@@ -33,9 +33,9 @@ public class CreateUserController {
 
     @FXML
     private TextField usernameField;
-
+    
     @FXML
-    private Button userCreationButton;
+    private Button loginButton;
 
     private UserDAO userDAO;
 
@@ -66,8 +66,16 @@ public class CreateUserController {
                 showAlert("Usuario No Válido", 
                 "Cambie el nombre de usuario por uno inutilizado",
                 Alert.AlertType.ERROR);
+                // NOTE: TMP
                 e.printStackTrace();
+                return;
             }
+
+            showAlert("Usuario Creado Exitosamente", 
+            "Ahora puede ingresar con su nuevo usuario", 
+            Alert.AlertType.INFORMATION);
+
+            loginButton.fire();
         }
     }
 
