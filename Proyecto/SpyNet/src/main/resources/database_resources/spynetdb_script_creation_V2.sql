@@ -117,6 +117,36 @@ INSERT INTO ip_by_client (ip_client_id, ip_direction) VALUES
 (3, '172.16.1.1'),
 (4, '200.15.0.5'), (4, '200.15.0.6'), (4, '200.15.0.7'),
 (5, '185.33.45.1');
+-- Cliente 1
+INSERT INTO ip_by_client (ip_client_id, ip_direction) VALUES 
+(1, 'scanme.nmap.org'),     -- página oficial de Nmap para pruebas
+(1, 'tryhackme.com'),       -- plataforma de hacking con puertos y servicios activos
+(1, 'portquiz.net');        -- sirve para probar puertos salientes
+
+-- Cliente 2
+INSERT INTO ip_by_client (ip_client_id, ip_direction) VALUES 
+(2, 'testphp.vulnweb.com'), -- sitio vulnerable para pentesting
+(2, 'webscantest.com'),     -- sitio para testing de escáneres web
+(2, 'httpbin.org');         -- útil para HTTP, no tiene muchos puertos, pero responde
+
+-- Cliente 3
+INSERT INTO ip_by_client (ip_client_id, ip_direction) VALUES 
+(3, '192.168.0.1'),         -- IP típica de router
+(3, '192.168.1.1'),         -- otra IP de red local
+(3, 'routerlogin.net');     -- dominio para routers Netgear
+
+-- Cliente 4
+INSERT INTO ip_by_client (ip_client_id, ip_direction) VALUES 
+(4, 'metasploitable.local'),-- máquina virtual vulnerable (si configuraste hosts)
+(4, '172.16.0.2'),           -- red privada común
+(4, '192.168.100.1');        -- routers ISP
+
+-- Cliente 5
+INSERT INTO ip_by_client (ip_client_id, ip_direction) VALUES 
+(5, 'google.com'),          -- escaneo limitado, pero responde
+(5, 'shodan.io'),           -- plataforma de escaneo masivo
+(5, 'example.com');         -- dominio reservado de prueba
+
 
 -- 📋 Auditorías
 INSERT INTO auditory (auditory_name, auditory_client_id, auditory_state, auditory_date_init, auditory_date_limit) VALUES
@@ -173,7 +203,7 @@ INSERT INTO open_ai_api (apikey, model) VALUES
 
 -- VISTAS
 create view vista_auditorias_inspector_admin as 
-select auditory_id, auditory_name, client_name, username, auditory_date_init, auditory_date_limit, auditory_state from auditory 
+select auditory_id, auditory_name, client_name, client_id,  username, auditory_date_init, auditory_date_limit, auditory_state from auditory 
 join auditory_access on auditory_id=aud_access_auditory_id
 join user on user_id=aud_access_user_id
 join client on client_id=auditory_client_id;
@@ -274,6 +304,13 @@ begin
 end $$
 delimiter ;
 
+
+delimiter $$
+create procedure get_ip_by_client_id(in client_id int)
+begin
+	select * from ip_by_client where ip_client_id=client_id;
+end $$
+delimiter ;
 
 DROP ROLE IF EXISTS 'admin';
 DROP ROLE IF EXISTS 'inspector';
