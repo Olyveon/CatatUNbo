@@ -130,4 +130,17 @@ public class AuditoryDAO {
         }
     }
 
+    public boolean updateAuditoryAssignedUser(int auditoryId, int newAssignedUserID) {
+        String sql = "UPDATE auditory_access SET aud_access_user_id = ? WHERE aud_access_auditory_id = ?";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, newAssignedUserID);
+            stmt.setInt(2, auditoryId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

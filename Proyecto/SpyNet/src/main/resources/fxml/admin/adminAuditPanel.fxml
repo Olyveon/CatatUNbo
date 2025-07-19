@@ -34,7 +34,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblAuditoria" prefHeight="35.0" prefWidth="426.0" text="Auditoria: " textFill="WHITE">
+                        <Label fx:id="lblAuditoria" prefHeight="35.0" prefWidth="426.0" text="Auditoria ID: " textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -99,14 +99,14 @@
             </AnchorPane>
             <AnchorPane layoutX="40.0" layoutY="316.0" prefHeight="129.0" prefWidth="900.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0">
                <children>
-                  <TextArea fx:id="txtAreaHallazgos" editable="false" layoutX="8.0" layoutY="8.0" prefHeight="93.0" prefWidth="875.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="8.0">
+                  <TextArea fx:id="txtAreaHallazgos" editable="false" layoutX="8.0" layoutY="8.0" prefHeight="93.0" prefWidth="875.0" styleClass="secondary-terminal" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <font>
                         <Font name="Consolas" size="14.0" />
                      </font>
                   </TextArea>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="40.0" layoutY="449.0" prefHeight="44.0" prefWidth="900.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0">
+            <AnchorPane layoutX="40.0" layoutY="457.0" prefHeight="44.0" prefWidth="900.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0">
                <children>
                   <Button fx:id="btnAddHallazgo" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleAddHallazgo" style="-fx-background-color: #01decd; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Añadir hallazgo" AnchorPane.leftAnchor="25.0" />
                   <TextArea fx:id="txtAreaAddHallazgo" layoutX="151.0" layoutY="2.0" prefHeight="38.0" prefWidth="356.0" styleClass="terminal-textarea" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="356.0" />
@@ -155,7 +155,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="20.0" layoutY="14.0" prefHeight="772.0" prefWidth="287.0" styleClass="panel-main" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
          <children>
-            <ImageView fitHeight="253.0" fitWidth="272.0" layoutX="22.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="253.0" fitWidth="272.0" layoutX="17.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/Spynet.jpg" />
                </image>

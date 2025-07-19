@@ -235,7 +235,37 @@
     -fx-background-radius: 8;
 }
 
+.main-combobox {
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #283443;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
 
+}
+
+/* Estilo del desplegable */
+.main-combobox .list-cell {
+    -fx-background-color: #0f0f0f;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.main-combobox .list-view {
+    -fx-background-color: #0f0f0f;
+    -fx-border-color: #283443;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* Hover de las opciones */
+.main-combobox .list-cell:hover {
+    -fx-background-color: #4d6a80;
+    -fx-text-fill: black;
+}
 
 /* Combobox design*/
 /* Estilo base */

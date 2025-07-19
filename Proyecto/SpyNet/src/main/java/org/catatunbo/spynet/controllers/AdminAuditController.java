@@ -202,12 +202,12 @@ public class AdminAuditController {
         loadAuditoryInfo();
     }
     
-    // Método que se encarga de cargar la información de la auditoría seleccionada
+    // Métod que se encarga de cargar la información de la auditoría seleccionada
     private void loadAuditoryInfo() {
         
         if (currentAuditory != null) {
             currentAuditory.getId(); // id para identificar las observaciones y hallazgos correspondientes
-            currentAuditory.getNombre();
+
 
             lblNombre.setText("Nombre: " + currentAuditory.getNombre());
             lblDatos.setText("Datos: " + currentAuditory.getCliente());

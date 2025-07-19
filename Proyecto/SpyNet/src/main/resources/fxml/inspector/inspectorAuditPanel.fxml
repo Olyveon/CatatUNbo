@@ -12,32 +12,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.metaleelrolquelegusteee">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.InspectorAuditController">
    <children>
       <AnchorPane layoutX="310.0" layoutY="15.0" prefHeight="772.0" prefWidth="952.0" styleClass="panel-main" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
          <children>
             <AnchorPane layoutX="27.0" layoutY="14.0" prefHeight="44.0" prefWidth="234.0">
                <children>
-                  <Button fx:id="btnVolver" layoutX="21.0" layoutY="7.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #060d17;" text="&lt; Volver" textFill="WHITE">
+                  <Button fx:id="btnVolver" layoutX="16.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleVolver" prefHeight="32.0" prefWidth="90.0" styleClass="back-button" text="← Volver" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="7.0">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="38.0" layoutY="66.0" prefHeight="200.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="38.0">
+            <AnchorPane layoutX="38.0" layoutY="66.0" prefHeight="200.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0">
                <children>
-                  <VBox layoutX="14.0" layoutY="10.0" prefHeight="197.0" prefWidth="426.0">
+                  <Label id="labelAuditorEncargado" fx:id="lblAuditorEncargado" layoutX="14.0" layoutY="8.0" prefHeight="38.0" prefWidth="426.0" text="Auditor encargado: " textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboBoxAuditor" layoutX="152.0" layoutY="14.0" prefHeight="27.0" prefWidth="206.0" promptText="Escoge un encargado" styleClass="main-combobox" />
+                  <VBox layoutX="14.0" layoutY="45.0" prefHeight="141.0" prefWidth="488.0">
                      <children>
-                        <Label id="labelAuditorEncargado" fx:id="lblAuditorEncargado" prefHeight="38.0" prefWidth="426.0" text="Auditor encargado: " textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <graphic>
-                              <ComboBox prefWidth="150.0" />
-                           </graphic>
-                        </Label>
-                        <Label fx:id="lblAuditoria" prefHeight="35.0" prefWidth="426.0" text="Auditoria: " textFill="WHITE">
+                        <Label fx:id="lblAuditoria" prefHeight="35.0" prefWidth="426.0" text="Auditoria ID:  " textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -61,9 +59,9 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="268.0" prefWidth="327.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="26.0">
+            <AnchorPane layoutX="599.0" layoutY="64.0" prefHeight="268.0" prefWidth="327.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="599.0" AnchorPane.rightAnchor="14.0">
                <children>
-                  <TextArea fx:id="txtAreaObservaciones" layoutX="13.0" layoutY="10.0" prefHeight="243.0" prefWidth="297.0" styleClass="secondary-terminal" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="10.0" />
+                  <TextArea fx:id="txtAreaObservaciones" layoutX="13.0" layoutY="10.0" prefHeight="243.0" prefWidth="297.0" styleClass="secondary-terminal" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="607.0" layoutY="30.0" prefHeight="0.0" prefWidth="287.0">
@@ -75,7 +73,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="39.0" layoutY="293.0" prefHeight="44.0" prefWidth="509.0" styleClass="panel-main-secundary">
+            <AnchorPane layoutX="39.0" layoutY="293.0" prefHeight="44.0" prefWidth="519.0" styleClass="panel-main-secundary" AnchorPane.leftAnchor="40.0">
                <children>
                   <Label layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="245.0" text="Hallazgos" textFill="#f0f0f0">
                      <font>
@@ -84,14 +82,14 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="38.0" layoutY="350.0" prefHeight="367.0" prefWidth="896.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="350.0">
+            <AnchorPane layoutX="38.0" layoutY="350.0" prefHeight="367.0" prefWidth="896.0" styleClass="panel-main-secundary" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="350.0">
                <children>
-                  <TextArea fx:id="txtAreaHallazgos" layoutX="7.0" layoutY="8.0" prefHeight="351.0" prefWidth="877.0" styleClass="secondary-terminal" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="8.0" />
+                  <TextArea fx:id="txtAreaHallazgos" layoutX="7.0" layoutY="8.0" prefHeight="351.0" prefWidth="877.0" styleClass="secondary-terminal" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="830.0" layoutY="728.0" prefHeight="44.0" prefWidth="104.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="18.0">
                <children>
-                  <Button fx:id="btnExportarPDF1" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #00ff9f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Exportar PDF" />
+                  <Button fx:id="btnExportarPDF" layoutX="7.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleExportarPDF" style="-fx-background-color: #00ff9f; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #00a194;" text="Exportar PDF" />
                </children>
             </AnchorPane>
          </children></AnchorPane>

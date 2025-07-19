@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.InspectorController">
    <children>
       <AnchorPane layoutX="20.0" layoutY="14.0" prefHeight="772.0" prefWidth="287.0" styleClass="panel-main" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
          <children>
@@ -59,7 +59,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <VBox layoutX="322.0" layoutY="212.0" prefHeight="574.0" prefWidth="939.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="212.0">
+      <VBox layoutX="322.0" layoutY="212.0" prefHeight="574.0" prefWidth="939.0" style="-fx-background-color: #060d17; -fx-background-radius: 15;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="212.0">
          <children>
             <TableView fx:id="tableAuditories" prefHeight="576.0" prefWidth="912.0">
               <columns>

@@ -186,6 +186,21 @@ create view all_observations as
 select observation_auditory_id, username, observation_title, observation_description, observation_datetime 
 from observation join user where user_id=observation_user_id;
 
+-- VISTA DE AUDITORES ACTIVOS CON CONTADOR DE AUDITORÍAS
+CREATE VIEW active_auditors_with_auditory_count AS
+SELECT
+    u.user_id,
+    u.username,
+    COUNT(aa.aud_access_auditory_id) AS total_auditories
+FROM
+    user u
+        LEFT JOIN
+    auditory_access aa ON u.user_id = aa.aud_access_user_id
+WHERE
+    u.user_rol = 'auditor'
+GROUP BY
+    u.user_id, u.username;
+
 
 create view all_findings as
 select 
@@ -269,7 +284,6 @@ DROP ROLE IF EXISTS'cliente';
 CREATE ROLE 'admin';
 CREATE ROLE 'inspector';
 CREATE ROLE 'auditor';
-
 CREATE ROLE 'cliente';
 
 
