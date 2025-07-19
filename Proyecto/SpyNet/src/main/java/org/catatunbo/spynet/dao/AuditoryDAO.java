@@ -21,11 +21,17 @@ public class AuditoryDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+                String username = rs.getString("username");
+                // Si no hay auditor asignado, mostrar "Sin asignar"
+                if (username == null) {
+                    username = "Sin asignar";
+                }
+                
                 Auditory auditory = new Auditory(
                     rs.getInt("auditory_id"),
                     rs.getString("auditory_name"),
                     rs.getString("client_name"),
-                    rs.getString("username"),
+                    username,
                     (rs.getDate("auditory_date_init") != null ? rs.getDate("auditory_date_init").toLocalDate() : null),
                     (rs.getDate("auditory_date_limit") != null ? rs.getDate("auditory_date_limit").toLocalDate() : null),
                     rs.getString("auditory_state")
@@ -161,6 +167,99 @@ public class AuditoryDAO {
             e.printStackTrace();
         }
         return ips;
+    }
+
+    /**
+     * Busca un cliente por nombre. Si no existe, lo crea.
+     * @param clientName Nombre del cliente
+     * @return ID del cliente (existente o recién creado)
+     */
+    public int findOrCreateClient(String clientName) {
+        // Primero buscar si el cliente ya existe
+        String selectSql = "SELECT client_id FROM client WHERE client_name = ?";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(selectSql)) {
+            stmt.setString(1, clientName);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("client_id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error buscando cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        // Si no existe, crear el cliente
+        String insertSql = "INSERT INTO client (client_name, client_number, client_email) VALUES (?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(insertSql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, clientName);
+            stmt.setString(2, "Sin especificar"); // Número por defecto
+            stmt.setString(3, "sin_email@cliente.com"); // Email por defecto
+            
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error creando cliente: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return -1; // Error
+    }
+
+    /**
+     * Crea una nueva auditoría
+     * @param auditoryName Nombre de la auditoría
+     * @param clientId ID del cliente
+     * @param dateLimit Fecha límite
+     * @return ID de la auditoría creada, o -1 si hubo error
+     */
+    public int createAuditory(String auditoryName, int clientId, java.sql.Timestamp dateLimit) {
+        String sql = "INSERT INTO auditory (auditory_name, auditory_client_id, auditory_state, auditory_date_init, auditory_date_limit) VALUES (?, ?, 'PENDIENTE', NOW(), ?)";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setString(1, auditoryName);
+            stmt.setInt(2, clientId);
+            stmt.setTimestamp(3, dateLimit);
+            
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error creando auditoría: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return -1; // Error
+    }
+
+    /**
+     * Asigna acceso a una auditoría para un usuario (crear relación auditory_access)
+     * @param auditoryId ID de la auditoría
+     * @param userId ID del usuario
+     * @return true si se asignó correctamente
+     */
+    public boolean assignAuditoryAccess(int auditoryId, int userId) {
+        String sql = "INSERT INTO auditory_access (aud_access_auditory_id, aud_access_user_id) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, auditoryId);
+            stmt.setInt(2, userId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error asignando acceso a auditoría: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

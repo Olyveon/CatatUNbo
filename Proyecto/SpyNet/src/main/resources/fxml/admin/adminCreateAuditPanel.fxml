@@ -79,7 +79,7 @@
                   </VBox>
                   <VBox prefHeight="80.0" spacing="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TextField fx:id="txtFechaLimite" prefHeight="50.0" promptText="Fecha Límite" style="-fx-background-color: #132739;" styleClass="create-audit-field" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="txtFechaLimite" prefHeight="50.0" promptText="Fecha Límite (yyyy-MM-dd)" style="-fx-background-color: #132739;" styleClass="create-audit-field" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
@@ -92,7 +92,7 @@
             <!-- Segunda fila: Descripción grande -->
             <VBox spacing="15.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0">
                <children>
-                  <TextArea fx:id="txtDescripcion" promptText="Descripción, que es lo que necesita" style="-fx-background-color: #132739;" styleClass="create-audit-textarea" wrapText="true" VBox.vgrow="ALWAYS">
+                  <TextArea fx:id="txtDescripcion" promptText="Descripción de la auditoría - Detalles específicos de lo que se necesita auditar" style="-fx-background-color: #132739;" styleClass="create-audit-textarea" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="16.0" />
                      </font>

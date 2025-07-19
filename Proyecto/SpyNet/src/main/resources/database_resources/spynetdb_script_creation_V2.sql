@@ -203,9 +203,9 @@ INSERT INTO open_ai_api (apikey, model) VALUES
 
 -- VISTAS
 create view vista_auditorias_inspector_admin as 
-select auditory_id, auditory_name, client_name, client_id,  username, auditory_date_init, auditory_date_limit, auditory_state from auditory 
-join auditory_access on auditory_id=aud_access_auditory_id
-join user on user_id=aud_access_user_id
+select auditory_id, auditory_name, client_name, client_id, username, auditory_date_init, auditory_date_limit, auditory_state from auditory 
+left join auditory_access on auditory_id=aud_access_auditory_id
+left join user on user_id=aud_access_user_id
 join client on client_id=auditory_client_id;
 
 create view all_users as 
