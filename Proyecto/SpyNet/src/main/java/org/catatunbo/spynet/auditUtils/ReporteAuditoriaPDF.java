@@ -42,7 +42,7 @@ public class ReporteAuditoriaPDF {
             // —– Fuentes —–
             Font normal     = new Font(Font.HELVETICA, 12);
             Font bold       = new Font(Font.HELVETICA, 12, Font.BOLD);
-            Font clientTitle= new Font(Font.HELVETICA, 12, Font.BOLD | Font.UNDERLINE, new Color(192,0,0));
+            Font clientTitle= new Font(Font.HELVETICA, 12, Font.BOLD | Font.UNDERLINE, new Color(0,0,0));
             Font policiesFont = new Font(Font.TIMES_ROMAN, 11, Font.ITALIC);
 
             // —– HEADER (info cliente + logo) —–
@@ -54,7 +54,7 @@ public class ReporteAuditoriaPDF {
             cellInfo.setBorder(Rectangle.BOX);
             cellInfo.setPadding(10);
             cellInfo.addElement(new Paragraph("Información del cliente", clientTitle));
-            cellInfo.addElement(new Paragraph(clientInfo, normal));
+            cellInfo.addElement(new Paragraph(clientInfo, bold));
             header.addCell(cellInfo);
 
             Image logo = Image.getInstance(
