@@ -116,5 +116,15 @@ public class AdminController {
         stage.show();
     }
 
+    @FXML
+    private void handleUser(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminUserPanel.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1280, 800);
+        stage.setScene(scene);
+        stage.show();
+    }
+
    
 }

@@ -24,6 +24,15 @@ public class User {
         this.dateRegister = dateRegister;
         this.lastSession = lastSession;
     }
+
+    // Constructor without password fields for asigning roles
+    public User(int userId, String username, String userRole, String lastSession, String userState) {
+        this.userId = userId;
+        this.username = username;
+        this.userRole = userRole;
+        this.lastSession = lastSession;
+        this.userState = userState;
+    }
     
     public int getUserId() {
         return userId;

@@ -1,5 +1,6 @@
 package org.catatunbo.spynet.dao;
 
+import org.catatunbo.spynet.Auditory;
 import org.catatunbo.spynet.database.DatabaseConnection;
 import org.catatunbo.spynet.User;
 
@@ -7,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     
@@ -85,6 +88,30 @@ public class UserDAO {
         return statement.executeUpdate();
     }
 
+    public List<User> getLimitedUsers() {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM all_users";
+        try {
+            Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                users.add(new User(
+                        rs.getInt("user_id"),
+                        rs.getString("username"),
+                        rs.getString("user_rol"),
+                        rs.getString("user_last_session"),
+                        rs.getString("user_state")
+                ));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en imported auditories: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+
     private void updateLastSession(int userId) {
         String sql = "UPDATE user SET user_last_session = CURRENT_TIMESTAMP WHERE user_id = ?";
         
@@ -99,6 +126,21 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    public boolean assignRoleToUser(int userId, String role) {
+        String sql = "UPDATE user SET user_rol = ? WHERE user_id = ?";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, role);
+            stmt.setInt(2, userId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 
 
     
