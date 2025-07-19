@@ -5,6 +5,7 @@ import org.catatunbo.spynet.dao.AuditoryDAO;
 import org.catatunbo.spynet.Auditory;
 import java.util.List;
 
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -47,7 +48,9 @@ public class AdminAuditController {
     @FXML private ComboBox<String> comboBoxArgNMAP;
     @FXML private ComboBox<String> comboBoxEstadoAuditoria;
 
-    public String nmapOutput="";
+    public String nmapOutput=null;
+    public StringBuilder openaiOutput;
+
     private Task<String> nmapTask;
     private nmapCommand nmapComando;
     
@@ -96,7 +99,21 @@ public class AdminAuditController {
                 }
             }
         });
+        // Deshabilita el botón al inicio
+        btnGuardarObservacion.setDisable(true);
     }
+
+    private void updateGuardarObservacionButtonState() {
+        btnGuardarObservacion.setDisable(nmapOutput == null || openaiOutput == null);
+    }
+
+
+    public void clearOutputsAtributtes(){
+        nmapOutput=null;
+        openaiOutput=null;
+        updateGuardarObservacionButtonState();
+    }
+
 
     @FXML
     private void handleExecuteNMAP(){
@@ -106,6 +123,10 @@ public class AdminAuditController {
          * Se crea un hilo muevo independiente de handleExecuteNMAP para manejar individualmente nmapCommand().executeNmap(arg, ip);
          * pues, si no fuera por el hilo independiente, el prompt y el "Running" aparecerían después de haberse ejecutado el comando y no antes.
          */
+        btnAnalizarIA.setDisable(true);
+
+        clearOutputsAtributtes();
+
         String arg = comboBoxArgNMAP.getValue().trim();
         String ip = comboBoxIP.getValue().trim();
 
@@ -124,17 +145,21 @@ public class AdminAuditController {
                 String result = getValue();
                 txtAreaTerminal.setText(comando + result);
                 nmapOutput = txtAreaTerminal.getText();
+                updateGuardarObservacionButtonState(); // <-- Actualiza el estado del botón
+                btnAnalizarIA.setDisable(false);
             }
 
             @Override
             protected void failed() {
                 txtAreaTerminal.setText(comando + "Error al ejecutar Nmap.");
                 nmapOutput = txtAreaTerminal.getText();
+                updateGuardarObservacionButtonState();
             }
         };
 
         // Ejecutar la tarea en un nuevo hilo
         new Thread(nmapTask).start();
+        
     }
 
 
@@ -143,13 +168,17 @@ public class AdminAuditController {
         // String apikey= OpenAIConfig.getApiKey();
         txtAreaTerminal.appendText("\n\nspynet@ia:~$ ");
 
+        openaiOutput = new StringBuilder();
+        updateGuardarObservacionButtonState(); // <-- Actualiza el estado del botón
+
         Task<Void> iaTask = new Task<>() {
             @Override
             protected Void call() {
                 try {
-                    CompletionsStreamingAsyncExample completions = new CompletionsStreamingAsyncExample(nmapOutput);
-
+                    OpenAI completions = new OpenAI(nmapOutput);
+                    
                     completions.start(fragment -> {
+                        openaiOutput.append(fragment);
                         // Actualiza el TextArea en el hilo de la UI
                         Platform.runLater(() -> txtAreaTerminal.appendText(fragment));
                     });
@@ -171,8 +200,9 @@ public class AdminAuditController {
             return;
         }
 
+        clearOutputsAtributtes();
         txtAreaTerminal.setText("spynet@auditor:~$ ");
-        nmapOutput = "";
+        
     }
 
 
@@ -206,7 +236,6 @@ public class AdminAuditController {
     private void loadAuditoryInfo() {
         if (currentAuditory != null) {
             currentAuditory.getId(); // id para identificar las observaciones y hallazgos correspondientes
-
 
             lblNombre.setText("Nombre: " + currentAuditory.getNombre());
             lblDatos.setText("Datos: " + currentAuditory.getCliente());
@@ -254,6 +283,7 @@ public class AdminAuditController {
             System.out.println("WARNING: currentAuditory es null en loadAuditoryInfo");
         }
     }
+
 
     @FXML
     private void handleAddObservacion() {
@@ -312,6 +342,82 @@ public class AdminAuditController {
         }
     }
 
+
+    @FXML 
+    private void handleSaveObservation(){
+        if (nmapOutput==null || openaiOutput==null){
+            return;
+        }
+
+        int userId = getCurrentUserId(); 
+        String title= "OPENAI OBSERVATION";
+        String bitacoraGenerada = openaiOutput.toString();
+
+        AuditoryDAO dao = new AuditoryDAO();
+        boolean success = dao.insertObservation(currentAuditory.getAuditoryId(), userId, title, bitacoraGenerada);
+        
+        clearOutputsAtributtes();
+        if (success) {
+            txtAreaAddObservation.clear();
+            // Recargar observaciones
+            txtAreaObservaciones.clear();
+            List<String> observations = dao.getObservationsByAuditoryId(currentAuditory.getAuditoryId());
+            for (int i = 0; i < observations.size(); i++) {
+                txtAreaObservaciones.appendText(observations.get(i));
+                if (i < observations.size() - 1) {
+                    txtAreaObservaciones.appendText("\n\n");
+                }
+            }
+        } 
+    }
+
+
+    @FXML
+    private void handleExportarPDF() {
+        btnExportarPDF.setDisable(true); // Deshabilita el botón al iniciar
+
+        String nombreAuditoria = lblAuditoria.getText();
+        String auditorEncargado = lblAuditorEncargado.getText();
+        String datosAuditoria = lblDatos.getText();
+        String estadoAuditoria = comboBoxEstadoAuditoria.getValue();
+
+        String clientInfo = "Auditoria: " + nombreAuditoria
+                + "\nEncargado: " + auditorEncargado
+                + "\nDatos: " + datosAuditoria
+                + "\nEstado de la auditoria: " + estadoAuditoria;
+
+        String findings = txtAreaHallazgos.getText();
+        String observations = txtAreaObservaciones.getText();
+        String totalContent = clientInfo + findings + observations;
+
+
+        
+        txtAreaTerminal.appendText(" \n\nGenerando PDF... \n(Esto puede tardar unos segundos por el análisis de OpenIA)\n");
+        Task<String> iaTask = new Task<>() {
+            @Override
+            protected String call() {
+                // Llama a la IA de forma bloqueante
+                return new OpenAI(totalContent).generateBitacora();
+            }
+
+            @Override
+            protected void succeeded() {
+                String openaiBitacore = getValue();
+                ReporteAuditoriaPDF pdf = new ReporteAuditoriaPDF();
+                pdf.generarReporte(clientInfo, observations, findings, openaiBitacore);
+                btnExportarPDF.setDisable(false); // Habilita el botón al terminar
+                txtAreaTerminal.appendText(pdf.getUbicacion()+pdf.getFilename()+"\n");
+            }
+
+            @Override
+            protected void failed() {
+                btnExportarPDF.setDisable(false); // Habilita el botón si falla
+                txtAreaTerminal.appendText("\nAlgo ha salido mal :( no se pudo exportar\n");
+            }
+        };
+
+        new Thread(iaTask).start();
+    }
 
 
 }

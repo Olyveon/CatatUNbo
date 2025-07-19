@@ -12,6 +12,13 @@ module org.catatunbo.spynet {
     requires openai.java.client.okhttp;
     requires openai.java.core;
 
+    // requires pdfbox;
+    // requires fontbox;
+    // requires commons.logging;
+    
+    requires com.github.librepdf.openpdf;
+    requires java.desktop;
+
     // Allow reflection for FXML controllers
     opens org.catatunbo.spynet to javafx.fxml;
     exports org.catatunbo.spynet;
