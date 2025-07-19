@@ -204,7 +204,6 @@ public class AdminAuditController {
     
     // Métod que se encarga de cargar la información de la auditoría seleccionada
     private void loadAuditoryInfo() {
-        
         if (currentAuditory != null) {
             currentAuditory.getId(); // id para identificar las observaciones y hallazgos correspondientes
 
@@ -241,6 +240,15 @@ public class AdminAuditController {
                 if (i < findings.size() - 1) {
                     txtAreaHallazgos.appendText("\n\n");
                 }
+            }
+
+            // Cargar IPs asociadas al cliente de la auditoría
+            int clientId = currentAuditory.getAuditoryClientId(); // Asegúrate de tener este getter en Auditory
+            List<String> ips = auditoryData.getIPsByClientId(clientId);
+            comboBoxIP.getItems().clear();
+            comboBoxIP.getItems().addAll(ips);
+            if (!ips.isEmpty()) {
+                comboBoxIP.setValue(ips.get(0));
             }
         } else {
             System.out.println("WARNING: currentAuditory es null en loadAuditoryInfo");

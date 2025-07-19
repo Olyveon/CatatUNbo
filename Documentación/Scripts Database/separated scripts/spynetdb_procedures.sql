@@ -56,18 +56,10 @@ end $$
 
 delimiter ;
 
-'''
-select * from user;
 
-select * from all_users;
-call get_auditorias_by_user("admin_1");
-
-call get_auditorias_by_user("auditor_ana");
-
-call get_users_by_role("inspector_diego");
-
-call get_users_by_role("auditor_ana")
-
-call get_observations_by_auditory_id("3")
-
-call get_findings_by_auditory_id("1");'''
+delimiter $$
+create procedure get_ip_by_client_id(in client_id int)
+begin
+	select * from ip_by_client where ip_by_client=client_id;
+end $$
+delimiter ;

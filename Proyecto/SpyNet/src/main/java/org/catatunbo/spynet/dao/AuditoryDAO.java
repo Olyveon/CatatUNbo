@@ -21,15 +21,18 @@ public class AuditoryDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                list.add(new Auditory(
-                        rs.getInt("auditory_id"),
-                        rs.getString("auditory_name"),
-                        rs.getString("client_name"),
-                        rs.getString("username"),
-                        (rs.getDate("auditory_date_init") != null ? rs.getDate("auditory_date_init").toLocalDate() : null),
-                        (rs.getDate("auditory_date_limit") != null ? rs.getDate("auditory_date_limit").toLocalDate() : null),
-                        rs.getString("auditory_state")
-                ));
+                Auditory auditory = new Auditory(
+                    rs.getInt("auditory_id"),
+                    rs.getString("auditory_name"),
+                    rs.getString("client_name"),
+                    rs.getString("username"),
+                    (rs.getDate("auditory_date_init") != null ? rs.getDate("auditory_date_init").toLocalDate() : null),
+                    (rs.getDate("auditory_date_limit") != null ? rs.getDate("auditory_date_limit").toLocalDate() : null),
+                    rs.getString("auditory_state")
+                );
+                // Añade el id del cliente
+                auditory.setAuditoryClientId(rs.getInt("client_id"));
+                list.add(auditory);
             }
         } catch (SQLException e) {
             System.err.println("Error en imported auditories: " + e.getMessage());
@@ -141,6 +144,23 @@ public class AuditoryDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public List<String> getIPsByClientId(int clientId) {
+        List<String> ips = new ArrayList<>();
+        String sql = "CALL get_ip_by_client_id(?)";
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, clientId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ips.add(rs.getString("ip_direction"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ips;
     }
 
 }
