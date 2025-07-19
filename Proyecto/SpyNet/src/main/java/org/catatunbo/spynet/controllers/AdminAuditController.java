@@ -381,10 +381,10 @@ public class AdminAuditController {
         String datosAuditoria = lblDatos.getText();
         String estadoAuditoria = comboBoxEstadoAuditoria.getValue();
 
-        String clientInfo = "Auditoria: " + nombreAuditoria
-                + "\nEncargado: " + auditorEncargado
-                + "\nDatos: " + datosAuditoria
-                + "\nEstado de la auditoria: " + estadoAuditoria;
+        String clientInfo = nombreAuditoria
+                + "\n" + auditorEncargado
+                + "\n" + datosAuditoria
+                + "\n" + estadoAuditoria;
 
         String findings = txtAreaHallazgos.getText();
         String observations = txtAreaObservaciones.getText();
