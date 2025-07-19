@@ -52,6 +52,20 @@
     -fx-alignment: CENTER;
 }
 
+.table-view.secondary-terminal .scroll-bar:vertical,
+.table-view.secondary-terminal .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar {
+    -fx-background-color: #1e1e1e;
+}
+
+.table-view .thumb {
+    -fx-background-color: #969696;
+    -fx-background-radius: 10;
+}
+
 .hover-button:hover {
     -fx-background-color: linear-gradient(
             from 0% 0% to 100% 0%,  /* center to the sides */
@@ -97,6 +111,15 @@
 
 .background {
     -fx-background-color: #212934;
+}
+
+.main-textfield {
+    -fx-background-color:  #060d17;
+    -fx-border-color: #113153;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
 }
 
 .text-field, .password-field {
