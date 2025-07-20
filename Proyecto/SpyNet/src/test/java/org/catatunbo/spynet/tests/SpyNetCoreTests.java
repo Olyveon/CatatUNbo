@@ -1,14 +1,11 @@
 package org.catatunbo.spynet.tests;
 
-import org.catatunbo.spynet.dao.AuditoryDAO;
-import org.catatunbo.spynet.auditUtils.OpenAIConfig;
 import org.catatunbo.spynet.auditUtils.ReporteAuditoriaPDF;
 import org.catatunbo.spynet.auditUtils.nmapCommand;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 
 import static org.junit.jupiter.api.Assertions.*;

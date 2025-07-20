@@ -60,6 +60,10 @@ delimiter ;
 delimiter $$
 create procedure get_ip_by_client_id(in client_id int)
 begin
-	select * from ip_by_client where ip_by_client=client_id;
+	select * from ip_by_client where ip_client_id=client_id;
 end $$
 delimiter ;
+
+drop procedure get_ip_by_client_id;
+
+call get_ip_by_client_id(1);
