@@ -87,7 +87,7 @@ public class CreateUserController {
         stage.show();        
     }
 
-    private User createNewClient(String username, String password) {
+    public User createNewClient(String username, String password) {
         PasswordObject passwordObject = new PasswordObject(password);
         String hashedPassword = null;
         
