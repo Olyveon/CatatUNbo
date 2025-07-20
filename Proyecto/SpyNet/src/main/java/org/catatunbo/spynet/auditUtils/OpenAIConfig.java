@@ -21,6 +21,7 @@ public class OpenAIConfig {
 
     public static String getApiKey() {
         String key = props.getProperty("api_key");
+        // System.out.println(key);
         if (key == null || key.isBlank()) {
             throw new RuntimeException("API key no configurada");
         }
