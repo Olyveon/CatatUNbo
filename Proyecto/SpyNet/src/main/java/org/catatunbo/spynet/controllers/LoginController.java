@@ -17,6 +17,8 @@ import org.catatunbo.spynet.PasswordObject;
 import org.catatunbo.spynet.Session;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 public class LoginController {
 
@@ -52,23 +54,23 @@ public class LoginController {
         }
 
         try {
-            
             User user = userDAO.authenticate(username);
             PasswordObject enteredPassword = new PasswordObject(password, user.getPasswordSalt());
             String enteredPasswordHashed = this.passwordHasher.hashPassword(enteredPassword);
 
             if (user != null && enteredPasswordHashed.equals(user.getPasswordHash())) {                
-                Session.getInstance().setCurrentUser(user);    
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminCreateAuditPanel.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root, 1280, 800));
-                stage.show();
-                
+                switchToUserPanel(user, (Node) event.getSource());
             } else {
                 showAlert("Login Fallido", "Usuario o contraseña incorrectos, o cuenta bloqueada.", Alert.AlertType.ERROR);
             }
-            
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            showAlert("No se pudo verificar la contarseña", 
+            "Los métodos para verificar la contarseña han fallado", 
+            Alert.AlertType.ERROR);
+        } catch (IOException e) {
+            showAlert("No se pudo cambiar de escena", 
+            "La escena para el usuario dado no esta lista", 
+            Alert.AlertType.ERROR);
         } catch (Exception e) {
             showAlert("Error de Conexión", "No se pudo conectar a la base de datos: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
@@ -81,6 +83,26 @@ public class LoginController {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root, 1280, 800));
         stage.show();
+    }
+
+    private void switchToUserPanel(User user, Node source) throws IOException {
+        Session.getInstance().setCurrentUser(user);    
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(chooseStage(user)));
+        Parent root = loader.load();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.setScene(new Scene(root, 1280, 800));
+        stage.show();
+    }
+
+    private String chooseStage(User user) {
+        switch (user.getUserRole()) {
+            case "admin":
+                return "/fxml/admin/adminCreateAuditPanel.fxml";
+            case "inspector":
+                return "/fxml/inspector/inspectorMainPanel.fxml";
+            default:
+                return null;
+        }
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {
