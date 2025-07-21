@@ -36,6 +36,15 @@ public class AdminController {
 
     @FXML
     private void initialize() {
+        configureTableLayout();
+
+        AuditoryDAO dao = new AuditoryDAO();
+        tableAuditories.setItems(FXCollections.observableArrayList(dao.getAllAuditories()));
+        
+       configureRowSelectionBehaviour();
+    }
+
+    public void configureTableLayout() {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colEncargado.setCellValueFactory(new PropertyValueFactory<>("encargado"));
@@ -60,10 +69,9 @@ public class AdminController {
         });
 
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+    }
 
-        AuditoryDAO dao = new AuditoryDAO();
-        tableAuditories.setItems(FXCollections.observableArrayList(dao.getAllAuditories()));
-        
+    public void configureRowSelectionBehaviour() {
         tableAuditories.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { 
                 Auditory selectedAuditory = tableAuditories.getSelectionModel().getSelectedItem();
@@ -73,8 +81,6 @@ public class AdminController {
             }
         });
     }
-
-    
     // Abre el panel de auditoría con los datos de la auditoría seleccionada
     private void openAuditPanel(Auditory selectedAuditory) {
         try {
