@@ -1,16 +1,16 @@
 package org.catatunbo.spynet.tests;
 
+import org.catatunbo.spynet.*;
 import org.catatunbo.spynet.auditUtils.ReporteAuditoriaPDF;
 import org.catatunbo.spynet.auditUtils.nmapCommand;
-import org.catatunbo.spynet.User;
-import org.catatunbo.spynet.AuditorCount;
-import org.catatunbo.spynet.PasswordObject;
-import org.catatunbo.spynet.Session;
 import org.catatunbo.spynet.controllers.PasswordHasher;
+import org.catatunbo.spynet.dao.AuditoryDAO;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
-
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,7 +49,7 @@ class SpyNetCoreTests {
             // Ajusta la URL, usuario y contraseña según tu configuración real
             String url = "jdbc:mysql://localhost:3306/spynetdb";
             String user = "root";
-            String password = "sphynx4"; //  tu contraseña real
+            String password = "Pokemonxyy"; //  tu contraseña real
 
             // Intenta abrir la conexión
             try (java.sql.Connection conn = java.sql.DriverManager.getConnection(url, user, password)) {
@@ -123,6 +123,46 @@ class SpyNetCoreTests {
         // Verifica que la fecha de último acceso es diferente
         assertNotEquals(activeUser.getLastSession(), inactiveUser.getLastSession(),
                        "Fechas de última sesión deben ser diferentes");
+    }
+
+    @Test
+    void getAllAuditories() {
+        AuditoryDAO dao = new AuditoryDAO();
+        List<Auditory> auditories = dao.getAllAuditories();
+        assertNotNull(auditories, "La lista no debe ser null");
+        assertFalse(auditories.isEmpty(), "La lista no debe estar vacía");
+    }
+
+    @Test
+    void insertFinding() {
+        AuditoryDAO dao = new AuditoryDAO();
+        // Usa IDs válidos según tu base de datos de pruebas
+        int auditoryId = 1;
+        int userId = 1;
+        String title = "Test Finding";
+        String description = "Descripción de prueba";
+        String risk = "ALTO";
+        boolean result = dao.insertFinding(auditoryId, userId, title, description, risk);
+        assertTrue(result, "La inserción del hallazgo debe ser exitosa");
+    }
+
+    @Test
+    void updateAuditoryAssignedUser() {
+        AuditoryDAO dao = new AuditoryDAO();
+        int auditoryId = 1; // ID válido
+        int newUserId = 2;  // ID válido
+        boolean result = dao.updateAuditoryAssignedUser(auditoryId, newUserId);
+        assertTrue(result, "La actualización del usuario asignado debe ser exitosa");
+    }
+
+    @Test
+    void createAuditory() {
+        AuditoryDAO dao = new AuditoryDAO();
+        String name = "Auditoría de prueba";
+        int clientId = 1; // ID válido
+        Timestamp dateLimit = Timestamp.valueOf(LocalDateTime.now().plusDays(7));
+        int newAuditoryId = dao.createAuditory(name, clientId, dateLimit);
+        assertTrue(newAuditoryId > 0, "El ID de la nueva auditoría debe ser mayor a 0");
     }
 
 }

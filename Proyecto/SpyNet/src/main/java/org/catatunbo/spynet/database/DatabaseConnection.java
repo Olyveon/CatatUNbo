@@ -24,7 +24,7 @@ public class DatabaseConnection {
         // Para correr al aplicación con RUN, primero compilar (mvn clen complie)
         System.out.println("HOLAAAAAAAAAAAAA "+DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties"));
 
-        try (InputStream is = DatabaseConnection.class.getClassLoader().getResourceAsStream("database_resources/database.properties")) {
+        try (InputStream is = DatabaseConnection.class.getResourceAsStream("/database_resources/database.properties")) {
             if (is != null) {
                 props.load(is);
                 URL = props.getProperty("database.url");
