@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class App extends Application {
+    public static final String mysqlPassword = "...";
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/fxml/login.fxml"));
@@ -37,7 +39,7 @@ public class App extends Application {
     
         final String mysqlPath = "mysql"; 
         final String user = "root";
-        final String password = "\"" + "sphynx4" + "\"";
+        final String password = "\"" + App.mysqlPassword + "\"";
         final String scriptPath = "src\\main\\resources\\database_resources\\spynetdb_script_creation_V2.sql";
 
         String fullScriptPath = "\"source " + new File(scriptPath).getAbsolutePath() + "\"";
