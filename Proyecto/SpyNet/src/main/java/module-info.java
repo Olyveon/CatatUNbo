@@ -26,4 +26,5 @@ module org.catatunbo.spynet {
     exports org.catatunbo.spynet.controllers;
     opens org.catatunbo.spynet.database to java.sql;
     exports org.catatunbo.spynet.database;
+    exports org.catatunbo.spynet.dao;
 }

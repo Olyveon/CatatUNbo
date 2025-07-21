@@ -20,7 +20,7 @@
                <children>
                   <Button fx:id="btnVolver" layoutX="15.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleVolver" prefHeight="32.0" prefWidth="90.0" styleClass="back-button" text="← Volver" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="7.0">
                      <font>
-                        <Font name="System" size="13.0" />
+                        <Font name="Segoe UI Bold" size="15.0" />
                      </font>
                   </Button>
                </children>
