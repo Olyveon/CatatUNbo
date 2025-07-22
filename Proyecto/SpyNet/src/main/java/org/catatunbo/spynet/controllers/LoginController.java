@@ -98,7 +98,6 @@ public class LoginController {
     }
 
     private String chooseStage(User user) {
-        System.out.println("\n\n\n ROl " + user.getUserRole());
         switch (user.getUserRole()) {
             case "admin":
                 return "/fxml/admin/adminCreateAuditPanel.fxml";
@@ -106,6 +105,7 @@ public class LoginController {
                 return "/fxml/inspector/inspectorMainPanel.fxml";
             case "auditor":
             // Proyecto\SpyNet\src\main\resources\fxml\auditor\auditorMainPanel.fxml
+                AuditorController.auditor = user;
                 return "/fxml/auditor/auditorMainPanel.fxml";
             default:
                 return null;

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 import org.catatunbo.spynet.Auditory;
+import org.catatunbo.spynet.User;
 import org.catatunbo.spynet.dao.AuditoryDAO;
 
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class AuditorController {
+    public static User auditor;
 
     @FXML
     private TableView<Auditory> tableAuditories;
@@ -40,7 +42,7 @@ public class AuditorController {
         configureTableLayout();
 
         AuditoryDAO dao = new AuditoryDAO();
-        tableAuditories.setItems(FXCollections.observableArrayList(dao.getAllAuditories()));
+        tableAuditories.setItems(FXCollections.observableArrayList(dao.getSpecificAuditories(auditor)));
         
        configureRowSelectionBehaviour();
     }
@@ -82,7 +84,7 @@ public class AuditorController {
             }
         });
     }
-    
+
     private void openAuditPanel(Auditory selectedAuditory) {
         try {
             
