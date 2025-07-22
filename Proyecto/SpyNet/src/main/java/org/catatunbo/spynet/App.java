@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class App extends Application {
-    public static final String mysqlPassword = "...";
+    public static final String mysqlPassword = "Password123#";
 
     @Override
     public void start(Stage stage) throws IOException {
