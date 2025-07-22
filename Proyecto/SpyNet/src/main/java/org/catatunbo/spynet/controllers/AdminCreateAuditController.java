@@ -39,7 +39,6 @@ public class AdminCreateAuditController {
     @FXML
     private void initialize() {
         // Inicialización del controlador si es necesario
-        System.out.println("AdminCreateAuditController inicializado");
     }
 
     @FXML
@@ -118,6 +117,21 @@ public class AdminCreateAuditController {
         Scene scene = new Scene(root, 1280, 800);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void handleListaAuditorias(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/inspector/inspectorListPanel.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "No se pudo cargar el panel de lista de auditorías", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML

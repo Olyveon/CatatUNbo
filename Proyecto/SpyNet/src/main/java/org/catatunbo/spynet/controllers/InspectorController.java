@@ -77,13 +77,11 @@ public class InspectorController {
     // Abre el panel de auditoría con los datos de la auditoría seleccionada
     private void openAuditPanel(Auditory selectedAuditory) {
         try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/inspector/inspectorAuditPanel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/inspector/inspectorEditPanel.fxml"));
             Parent root = loader.load();
 
-
-            // Obtener el controlador y pasarle los datos
-            InspectorAuditController auditController = loader.getController();
+            // Obtener el controlador específico del inspector y pasarle los datos
+            InspectorEditController auditController = loader.getController();
 
             if (auditController != null) {
                 auditController.setAuditoryData(selectedAuditory);
@@ -94,7 +92,6 @@ public class InspectorController {
             Scene scene = new Scene(root, 1280, 800);
             stage.setScene(scene);
             stage.show();
-
 
         } catch (IOException e) {
             System.err.println("ERROR: Error al abrir panel de auditoría: " + e.getMessage());
@@ -113,6 +110,21 @@ public class InspectorController {
         Scene scene = new Scene(root, 1280, 800);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void handleRealizarAuditoria(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/inspector/adminCreatePanel.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("ERROR: No se pudo cargar el panel de crear auditoría");
+        }
     }
 
 }

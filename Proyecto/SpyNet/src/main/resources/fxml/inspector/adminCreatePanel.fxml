@@ -28,7 +28,7 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Lista de auditorias">
+            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleListaAuditorias" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Lista de auditorias">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>

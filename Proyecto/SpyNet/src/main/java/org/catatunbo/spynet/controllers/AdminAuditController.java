@@ -217,10 +217,12 @@ public class AdminAuditController {
                 case "auditor":
                     returnPath = "/fxml/auditor/auditListPanel.fxml";
                     break;
-                case "admin":
                 case "inspector":
+                    returnPath = "/fxml/inspector/inspectorListPanel.fxml";
+                    break;
+                case "admin":
                 default:
-                    returnPath = "/fxml/auditor/auditListPanel.fxml"; // Para compatibilidad, los admins también usan auditListPanel
+                    returnPath = "/fxml/auditor/auditListPanel.fxml";
                     break;
             }
             
@@ -239,8 +241,23 @@ public class AdminAuditController {
     @FXML
     private void handleRealizarAuditoria() {
         try {
-            // Navegar al panel de crear auditoría
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/auditor/auditCreatePanel.fxml"));
+            // Navegar al panel de crear auditoría del inspector por defecto
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/inspector/adminCreatePanel.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleListaAuditorias() {
+        try {
+            // Navegar al panel de lista de auditorías del inspector
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/inspector/inspectorListPanel.fxml"));
             javafx.scene.Parent root = loader.load();
             javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
             javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
