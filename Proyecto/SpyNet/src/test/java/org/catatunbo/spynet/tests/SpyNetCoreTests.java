@@ -7,9 +7,14 @@ import org.catatunbo.spynet.controllers.PasswordHasher;
 import org.catatunbo.spynet.dao.AuditoryDAO;
 import org.junit.jupiter.api.*;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -61,6 +66,55 @@ class SpyNetCoreTests {
         }
     }
 
+    @Test
+    void testIfDataBaseExists() {
+        final String dbName = "spynetdb";
+        final String mysqlPath = "mysql"; 
+        final String user = "root";
+        final String password = "\"" + App.mysqlPassword + "\"";
+
+        String sql = String.format("""
+                SELECT SCHEMA_NAME
+                FROM INFORMATION_SCHEMA.SCHEMATA
+                WHERE SCHEMA_NAME = '{0}'
+                """, dbName);
+
+        List<String> command = Arrays.asList(
+                mysqlPath,
+                "-u", user,
+                "-p" + password,
+                "-h", "localhost",
+                "-P", "3306",
+                "-e", sql
+        );
+
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.redirectErrorStream(true);
+
+        ArrayList<String> lines = new ArrayList<>();
+        try {
+            Process process = processBuilder.start();
+            String line;
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                    lines.add(line);
+                }
+            }
+
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                System.out.println("Script executed successfully.");
+            } else {
+                System.err.println("MySQL script failed. Exit code: " + exitCode);
+            }
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            assertFalse(lines.isEmpty());
+        }
+    }
     @Test
     void testSessionSingletonAndRoleValidation() {
         Session session1 = Session.getInstance();

@@ -1,6 +1,6 @@
 package org.catatunbo.spynet.dao;
 
-import org.catatunbo.spynet.Auditory;
+
 import org.catatunbo.spynet.database.DatabaseConnection;
 import org.catatunbo.spynet.User;
 
@@ -88,6 +88,20 @@ public class UserDAO {
         return statement.executeUpdate();
     }
 
+    public int removeUser(User user) throws SQLException{
+        String query = """
+                DELETE FROM	user 
+                WHERE username = ?
+                """;
+        
+        Connection connection = DatabaseConnection.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement(query); 
+        
+        statement.setString(1, user.getUsername());
+
+        return statement.executeUpdate();
+    }
+    
     public List<User> getLimitedUsers() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM all_users";

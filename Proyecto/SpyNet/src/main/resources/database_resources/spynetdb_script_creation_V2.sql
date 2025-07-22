@@ -43,7 +43,8 @@ CREATE TABLE auditory(
 CREATE TABLE auditory_access(
 	aud_access_auditory_id INT PRIMARY KEY,
 	aud_access_user_id INT,
-    FOREIGN KEY (aud_access_user_id) REFERENCES user(user_id),
+    FOREIGN KEY (aud_access_user_id) REFERENCES user(user_id)
+    ON DELETE CASCADE,
     FOREIGN KEY (aud_access_auditory_id) REFERENCES auditory(auditory_id)
 );
 
@@ -56,7 +57,8 @@ CREATE TABLE finding(
     finding_title TEXT NOT NULL,
     finding_description TEXT NOT NULL,
     finding_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (finding_user_id) REFERENCES user(user_id),
+    FOREIGN KEY (finding_user_id) REFERENCES user(user_id)
+    ON DELETE CASCADE,
     FOREIGN KEY (finding_auditory_id) REFERENCES auditory(auditory_id)
 );
 
@@ -67,7 +69,8 @@ CREATE TABLE observation(
     observation_title TEXT NOT NULL,
     observation_description TEXT NOT NULL,
     observation_datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (observation_user_id) REFERENCES user(user_id),
+    FOREIGN KEY (observation_user_id) REFERENCES user(user_id)
+    ON DELETE CASCADE,
     FOREIGN KEY (observation_auditory_id) REFERENCES auditory(auditory_id)
 );
 
