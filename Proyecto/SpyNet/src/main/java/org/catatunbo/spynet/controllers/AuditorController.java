@@ -20,7 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class AuditorController {
-    public static User auditor;
+    private static User auditor;
 
     @FXML
     private TableView<Auditory> tableAuditories;
@@ -72,6 +72,10 @@ public class AuditorController {
         });
 
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+    }
+
+    public static void setAuditorUser(User auditor) {
+        AuditorController.auditor = auditor;
     }
 
     private void configureRowSelectionBehaviour() {

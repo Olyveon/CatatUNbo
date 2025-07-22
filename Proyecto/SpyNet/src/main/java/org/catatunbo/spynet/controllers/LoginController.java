@@ -105,7 +105,7 @@ public class LoginController {
                 return "/fxml/inspector/inspectorMainPanel.fxml";
             case "auditor":
             // Proyecto\SpyNet\src\main\resources\fxml\auditor\auditorMainPanel.fxml
-                AuditorController.auditor = user;
+                AuditorController.setAuditorUser(user);
                 return "/fxml/auditor/auditorMainPanel.fxml";
             default:
                 return null;
