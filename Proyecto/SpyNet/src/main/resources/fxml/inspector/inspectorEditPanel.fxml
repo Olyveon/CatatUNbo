@@ -33,7 +33,7 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="comboBoxAuditor" layoutX="152.0" layoutY="14.0" prefHeight="27.0" prefWidth="206.0" promptText="Escoge un encargado" styleClass="main-combobox" />
-                  <Button fx:id="btnGuardarAuditor" layoutX="365.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGuardarAuditor" prefHeight="27.0" prefWidth="50.0" style="-fx-background-color: #00ff9f; -fx-background-radius: 5; -fx-border-radius: 5;" text="💾" textFill="WHITE">
+                  <Button fx:id="btnGuardarAuditor" layoutX="365.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleGuardarAuditor" prefHeight="27.0" prefWidth="50.0" styleClass="save-button" text="..." textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -63,7 +63,7 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="comboBoxEstadoAuditoria" layoutX="204.0" layoutY="144.0" prefHeight="30.0" prefWidth="141.0" styleClass="terminal-combobox" AnchorPane.leftAnchor="204.0" />
-                  <Button fx:id="btnGuardarEstado" layoutX="350.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleGuardarEstado" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: #00ff9f; -fx-background-radius: 5; -fx-border-radius: 5;" text="💾" textFill="WHITE">
+                  <Button fx:id="btnGuardarEstado" layoutX="400.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleGuardarEstado" prefHeight="30.0" prefWidth="50.0" styleClass="save-button" text="..." textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

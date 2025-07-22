@@ -462,3 +462,26 @@
     -fx-background-color: #013d7a;
     -fx-effect: dropshadow(three-pass-box, rgba(1,87,164,0.2), 3, 0, 0, 1);
 }
+
+/* Estilo para botones de guardar con tres puntos */
+.save-button {
+    -fx-background-color: #17579f;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 5 8;
+    -fx-effect: dropshadow(one-pass-box, rgba(23,87,159,0.3), 2, 0, 0, 1);
+}
+
+.save-button:hover {
+    -fx-background-color: #1e6bb8;
+    -fx-effect: dropshadow(one-pass-box, rgba(23,87,159,0.5), 4, 0, 0, 2);
+}
+
+.save-button:pressed {
+    -fx-background-color: #0f4080;
+    -fx-effect: dropshadow(one-pass-box, rgba(23,87,159,0.2), 1, 0, 0, 1);
+}
