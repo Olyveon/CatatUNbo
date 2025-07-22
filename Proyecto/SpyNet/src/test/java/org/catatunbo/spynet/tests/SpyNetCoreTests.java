@@ -49,7 +49,7 @@ class SpyNetCoreTests {
             // Ajusta la URL, usuario y contraseña según tu configuración real
             String url = "jdbc:mysql://localhost:3306/spynetdb";
             String user = "root";
-            String password = "Pokemonxyy"; //  tu contraseña real
+            String password = App.mysqlPassword; //  tu contraseña real
 
             // Intenta abrir la conexión
             try (java.sql.Connection conn = java.sql.DriverManager.getConnection(url, user, password)) {

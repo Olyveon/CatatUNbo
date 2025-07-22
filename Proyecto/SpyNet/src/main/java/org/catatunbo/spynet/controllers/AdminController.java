@@ -44,7 +44,7 @@ public class AdminController {
        configureRowSelectionBehaviour();
     }
 
-    public void configureTableLayout() {
+    private void configureTableLayout() {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colEncargado.setCellValueFactory(new PropertyValueFactory<>("encargado"));
@@ -71,7 +71,7 @@ public class AdminController {
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
     }
 
-    public void configureRowSelectionBehaviour() {
+    private void configureRowSelectionBehaviour() {
         tableAuditories.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { 
                 Auditory selectedAuditory = tableAuditories.getSelectionModel().getSelectedItem();
@@ -81,6 +81,7 @@ public class AdminController {
             }
         });
     }
+
     // Abre el panel de auditoría con los datos de la auditoría seleccionada
     private void openAuditPanel(Auditory selectedAuditory) {
         try {
