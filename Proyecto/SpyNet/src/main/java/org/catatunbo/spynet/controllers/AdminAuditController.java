@@ -209,13 +209,73 @@ public class AdminAuditController {
     @FXML
     private void handleVolver() { // Botón para volver al panel anterior
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/admin/adminCreatePanel.fxml"));
+            // Determinar a qué panel volver basado en el rol del usuario
+            String role = org.catatunbo.spynet.Session.getInstance().getCurrentUser().getUserRole().toLowerCase();
+            String returnPath;
+            
+            switch (role) {
+                case "auditor":
+                    returnPath = "/fxml/auditor/auditListPanel.fxml";
+                    break;
+                case "admin":
+                case "inspector":
+                default:
+                    returnPath = "/fxml/auditor/auditListPanel.fxml"; // Para compatibilidad, los admins también usan auditListPanel
+                    break;
+            }
+            
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource(returnPath));
             javafx.scene.Parent root = loader.load();       
             javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
             javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
             stage.setScene(scene);
             stage.show();
                         
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleRealizarAuditoria() {
+        try {
+            // Navegar al panel de crear auditoría
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/auditor/auditCreatePanel.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleAuditoriasARealizar() {
+        try {
+            // Navegar al panel de lista de auditorías
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/auditor/auditListPanel.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleExit() {
+        try {
+            // Navegar al login
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            javafx.scene.Parent root = loader.load();
+            javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
+            javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
+            stage.setScene(scene);
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

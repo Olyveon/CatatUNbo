@@ -15,7 +15,23 @@ public class AuditoryDAO {
      */
     public List<Auditory> getAllAuditories() {
         List<Auditory> list = new ArrayList<>();
-        String sql = "SELECT * FROM vista_auditorias_inspector_admin";
+        String sql = """
+            SELECT 
+                a.auditory_id, 
+                a.auditory_name, 
+                c.client_name, 
+                u.username, 
+                u.user_id,
+                a.auditory_date_init, 
+                a.auditory_date_limit, 
+                a.auditory_state,
+                c.client_id
+            FROM auditory a
+            JOIN client c ON c.client_id = a.auditory_client_id
+            LEFT JOIN auditory_access aa ON a.auditory_id = aa.aud_access_auditory_id
+            LEFT JOIN user u ON u.user_id = aa.aud_access_user_id
+            ORDER BY a.auditory_id
+        """;
         try {
             Connection conn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -23,7 +39,7 @@ public class AuditoryDAO {
             while (rs.next()) {
                 String username = rs.getString("username");
                 // Si no hay auditor asignado, mostrar "Sin asignar"
-                if (username == null) {
+                if (username == null || username.trim().isEmpty()) {
                     username = "Sin asignar";
                 }
                 
@@ -262,4 +278,50 @@ public class AuditoryDAO {
         }
     }
 
+    /**
+     * Retrieves auditory records assigned to a specific auditor.
+     *
+     * @param auditorUsername The username of the auditor whose auditorías we want to retrieve
+     * @return A list of `Auditory` objects representing the auditorías assigned to the auditor.
+     *         Returns an empty list if no records are found or an error occurs.
+     */
+    public List<Auditory> getAuditoriesByAuditorUsername(String auditorUsername) {
+        List<Auditory> list = new ArrayList<>();
+        String sql = "SELECT auditory_id, auditory_name, client_name, username, auditory_date_init, auditory_date_limit, auditory_state, client_id " +
+                     "FROM auditory " +
+                     "JOIN auditory_access ON auditory_id = aud_access_auditory_id " +
+                     "JOIN user ON user_id = aud_access_user_id " +
+                     "JOIN client ON client_id = auditory_client_id " +
+                     "WHERE username = ?";
+        try {
+            Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, auditorUsername);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String username = rs.getString("username");
+                // Si no hay auditor asignado, mostrar "Sin asignar"
+                if (username == null) {
+                    username = "Sin asignar";
+                }
+                
+                Auditory auditory = new Auditory(
+                    rs.getInt("auditory_id"),
+                    rs.getString("auditory_name"),
+                    rs.getString("client_name"),
+                    username,
+                    (rs.getDate("auditory_date_init") != null ? rs.getDate("auditory_date_init").toLocalDate() : null),
+                    (rs.getDate("auditory_date_limit") != null ? rs.getDate("auditory_date_limit").toLocalDate() : null),
+                    rs.getString("auditory_state")
+                );
+                // Añade el id del cliente
+                auditory.setAuditoryClientId(rs.getInt("client_id"));
+                list.add(auditory);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error obteniendo auditorías del auditor " + auditorUsername + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

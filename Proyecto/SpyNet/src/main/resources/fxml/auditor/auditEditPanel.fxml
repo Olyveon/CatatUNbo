@@ -160,19 +160,19 @@
                   <Image url="@../../images/Spynet.jpg" />
                </image>
             </ImageView>
-            <Button alignment="TOP_LEFT" layoutX="21.0" layoutY="704.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir" AnchorPane.bottomAnchor="16.0">
+            <Button alignment="TOP_LEFT" layoutX="21.0" layoutY="704.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleExit" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir" AnchorPane.bottomAnchor="16.0">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
             <VBox alignment="TOP_CENTER" layoutY="289.0" prefHeight="253.0" prefWidth="271.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
                <children>
-                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Realizar Auditoria" textFill="WHITE">
+                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleRealizarAuditoria" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Realizar Auditoria" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="22.0" />
                      </font>
                   </Button>
-                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Auditorias a Realizar">
+                  <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAuditoriasARealizar" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Auditorias a Realizar">
                      <font>
                         <Font name="Segoe UI" size="22.0" />
                      </font>

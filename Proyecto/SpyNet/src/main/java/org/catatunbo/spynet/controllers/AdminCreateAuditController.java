@@ -146,6 +146,17 @@ public class AdminCreateAuditController {
         stage.show();
     }
 
+    @FXML
+    private void handleAuditoriasARealizar(ActionEvent event) throws IOException {
+        // Navegar al panel de lista de auditorías
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/auditor/auditListPanel.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1280, 800);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     /**
      * Muestra una alerta con el título, mensaje y tipo especificados
      */

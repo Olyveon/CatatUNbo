@@ -38,7 +38,14 @@ public class AdminController {
     private void initialize() {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
-        colEncargado.setCellValueFactory(new PropertyValueFactory<>("encargado"));
+        
+        // Configurar la columna de encargado con manejo mejorado de valores nulos
+        colEncargado.setCellValueFactory(cellData -> {
+            String encargado = cellData.getValue().getEncargado();
+            return new javafx.beans.property.SimpleStringProperty(
+                encargado != null && !encargado.trim().isEmpty() ? encargado : "Sin asignar"
+            );
+        });
 
         // Formatear fechas como String para la tabla
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -61,8 +68,7 @@ public class AdminController {
 
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
-        AuditoryDAO dao = new AuditoryDAO();
-        tableAuditories.setItems(FXCollections.observableArrayList(dao.getAllAuditories()));
+        loadAuditories();
         
         tableAuditories.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) { 
@@ -126,5 +132,44 @@ public class AdminController {
         stage.show();
     }
 
-   
+    @FXML
+    private void handleRealizarAuditoria(ActionEvent event) throws IOException {
+        // Navegar al panel de crear auditoría para auditores
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/auditor/auditCreatePanel.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 1280, 800);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void handleAuditoriasARealizar(ActionEvent event) throws IOException {
+        // Ya estamos en el panel de lista de auditorías
+        // Solo mostramos un mensaje informativo o refrescamos la tabla
+        loadAuditories(); // Recargar auditorías con filtros apropiados
+        System.out.println("Lista de auditorías actualizada");
+    }
+
+    /**
+     * Carga las auditorías basándose en el rol del usuario actual.
+     * Los auditores solo ven sus auditorías asignadas, los admins ven todas.
+     */
+    private void loadAuditories() {
+        AuditoryDAO dao = new AuditoryDAO();
+        
+        // Obtener el usuario actual de la sesión
+        org.catatunbo.spynet.User currentUser = org.catatunbo.spynet.Session.getInstance().getCurrentUser();
+        
+        if (currentUser != null && "auditor".equalsIgnoreCase(currentUser.getUserRole())) {
+            // Si es auditor, solo mostrar sus auditorías asignadas
+            String auditorUsername = currentUser.getUsername();
+            tableAuditories.setItems(FXCollections.observableArrayList(dao.getAuditoriesByAuditorUsername(auditorUsername)));
+            System.out.println("Cargando auditorías para auditor: " + auditorUsername);
+        } else {
+            // Si es admin o inspector, mostrar todas las auditorías
+            tableAuditories.setItems(FXCollections.observableArrayList(dao.getAllAuditories()));
+            System.out.println("Cargando todas las auditorías (usuario admin/inspector)");
+        }
+    }
 }
