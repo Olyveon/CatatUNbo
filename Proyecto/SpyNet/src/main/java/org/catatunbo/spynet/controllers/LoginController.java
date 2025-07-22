@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+import javax.print.DocFlavor.STRING;
+
 public class LoginController {
 
     @FXML
@@ -69,8 +71,9 @@ public class LoginController {
             Alert.AlertType.ERROR);
         } catch (IOException e) {
             showAlert("No se pudo cambiar de escena", 
-            "La escena para el usuario dado no esta lista", 
+            "La escena para el usuario dado no esta lista" + e.toString(), 
             Alert.AlertType.ERROR);
+            // e.printStackTrace(); 
         } catch (Exception e) {
             showAlert("Error de Conexión", "No se pudo conectar a la base de datos: " + e.getMessage(), Alert.AlertType.ERROR);
             e.printStackTrace();
@@ -96,6 +99,21 @@ public class LoginController {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(new Scene(root, 1280, 800));
         stage.show();
+    }
+
+    private String chooseStage(User user) {
+        switch (user.getUserRole()) {
+            case "admin":
+                return "/fxml/admin/adminCreateAuditPanel.fxml";
+            case "inspector":
+                return "/fxml/inspector/inspectorMainPanel.fxml";
+            case "auditor":
+            // Proyecto\SpyNet\src\main\resources\fxml\auditor\auditorMainPanel.fxml
+                AuditorController.setAuditorUser(user);
+                return "/fxml/auditor/auditorMainPanel.fxml";
+            default:
+                return null;
+        }
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {

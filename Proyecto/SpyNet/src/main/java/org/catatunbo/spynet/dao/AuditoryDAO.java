@@ -1,7 +1,12 @@
 package org.catatunbo.spynet.dao;
 
 import org.catatunbo.spynet.database.DatabaseConnection;
+
+import com.openai.models.FileSearchToolCall.FileSearch.Result;
+
 import org.catatunbo.spynet.Auditory;
+import org.catatunbo.spynet.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +47,48 @@ public class AuditoryDAO {
                 if (username == null || username.trim().isEmpty()) {
                     username = "Sin asignar";
                 }
+                Auditory auditory = buildAuditory(rs, username);
                 
-                Auditory auditory = new Auditory(
-                    rs.getInt("auditory_id"),
-                    rs.getString("auditory_name"),
-                    rs.getString("client_name"),
-                    username,
-                    (rs.getDate("auditory_date_init") != null ? rs.getDate("auditory_date_init").toLocalDate() : null),
-                    (rs.getDate("auditory_date_limit") != null ? rs.getDate("auditory_date_limit").toLocalDate() : null),
-                    rs.getString("auditory_state")
-                );
-                // Añade el id del cliente
-                auditory.setAuditoryClientId(rs.getInt("client_id"));
+                list.add(auditory);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en imported auditories: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    public List<Auditory> getSpecificAuditories(User auditor) {
+        List<Auditory> list = new ArrayList<>();
+        String sql = """
+                    select 
+                        auditory_id, 
+                        auditory_name, 
+                        client_name, 
+                        client_id, 
+                        username, 
+                        auditory_date_init, 
+                        auditory_date_limit, 
+                        auditory_state 
+                    from auditory
+                    left join auditory_access on auditory_id=aud_access_auditory_id
+                    left join user on user_id=aud_access_user_id
+                    join client on client_id=auditory_client_id
+                    where username = ?
+                    """;
+        try {
+            Connection conn = DatabaseConnection.getInstance().getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, auditor.getUsername());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String username = rs.getString("username");
+                // Si no hay auditor asignado, mostrar "Sin asignar"
+                if (username == null) {
+                    username = "Sin asignar";
+                }
+                Auditory auditory = buildAuditory(rs, username);
+                
                 list.add(auditory);
             }
         } catch (SQLException e) {
@@ -63,6 +98,21 @@ public class AuditoryDAO {
         return list;
     }
 
+    public Auditory buildAuditory(ResultSet rs, String username) throws SQLException{
+        Auditory auditory = new Auditory(
+            rs.getInt("auditory_id"),
+            rs.getString("auditory_name"),
+            rs.getString("client_name"),
+            username,
+            (rs.getDate("auditory_date_init") != null ? rs.getDate("auditory_date_init").toLocalDate() : null),
+            (rs.getDate("auditory_date_limit") != null ? rs.getDate("auditory_date_limit").toLocalDate() : null),
+            rs.getString("auditory_state")
+        );
+        // Añade el id del cliente
+        auditory.setAuditoryClientId(rs.getInt("client_id"));
+
+        return auditory;
+    }
     public List<String> getObservationsByAuditoryId(int auditoryid){
 
         List<String> observations = new ArrayList<>();
