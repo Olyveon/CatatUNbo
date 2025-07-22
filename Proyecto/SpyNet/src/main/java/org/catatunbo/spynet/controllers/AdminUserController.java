@@ -74,7 +74,7 @@ public class AdminUserController {
     }
     @FXML
     private void handleReturn(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminMainPanel.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/AdminMainPanel.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1280, 800);

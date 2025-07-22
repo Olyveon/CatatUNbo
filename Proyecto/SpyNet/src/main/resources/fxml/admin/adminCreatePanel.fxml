@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminCreateAuditController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="background" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.catatunbo.spynet.controllers.AdminCreateAuditController">
    <children>
       <!-- Barra lateral izquierda - igual que adminMainPanel -->
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="772.0" prefWidth="288.0" spacing="5.0" styleClass="panel-main" stylesheets="@../../styles/styles.css">
@@ -23,22 +23,12 @@
                   <Image url="@../../images/Spynet.jpg" />
                </image>
             </ImageView>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="User" textFill="WHITE">
+            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Realizar Auditoria">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleConsultarAuditorias" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Consultar auditorias">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font>
-            </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Usuarios">
-               <font>
-                  <Font name="Segoe UI" size="25.0" />
-               </font>
-            </Button>
-            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Notificaciones">
+            <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Asignar Roles">
                <font>
                   <Font name="Segoe UI" size="25.0" />
                </font>

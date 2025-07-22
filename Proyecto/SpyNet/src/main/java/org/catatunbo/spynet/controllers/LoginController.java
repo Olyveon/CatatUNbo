@@ -97,9 +97,9 @@ public class LoginController {
     private String chooseStage(User user) {
         switch (user.getUserRole()) {
             case "admin":
-                return "/fxml/admin/adminCreateAuditPanel.fxml";
+                return "/fxml/admin/adminCreatePanel.fxml";
             case "inspector":
-                return "/fxml/inspector/inspectorMainPanel.fxml";
+                return "/fxml/inspector/inspectorListPanel.fxml";
             default:
                 return null;
         }

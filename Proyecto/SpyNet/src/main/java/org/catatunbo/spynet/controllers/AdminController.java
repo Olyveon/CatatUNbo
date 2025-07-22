@@ -79,7 +79,7 @@ public class AdminController {
     private void openAuditPanel(Auditory selectedAuditory) {
         try {
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminAuditPanel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/AdminAuditPanel.fxml"));
             Parent root = loader.load();
             
             

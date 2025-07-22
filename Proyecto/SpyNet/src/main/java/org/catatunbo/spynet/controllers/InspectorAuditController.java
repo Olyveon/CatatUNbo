@@ -54,7 +54,7 @@ public class InspectorAuditController {
     @FXML
     private void handleVolver() { // Botón para volver al panel anterior
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/inspector/inspectorMainPanel.fxml"));
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/inspector/inspectorListPanel.fxml"));
             javafx.scene.Parent root = loader.load();
             javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
             javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);
