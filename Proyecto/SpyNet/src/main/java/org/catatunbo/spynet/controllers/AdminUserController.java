@@ -73,8 +73,16 @@ public class AdminUserController {
         }
     }
     @FXML
-    private void handleReturn(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/AdminMainPanel.fxml"));
+    private void handleReturn(ActionEvent event) {
+        // Ya estamos en el panel de Asignar Roles, no necesitamos navegar a otra pantalla
+        System.out.println("Ya estás en el panel de Asignar Roles");
+        showAlert("Información", "Ya estás en el panel de asignación de roles", Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    private void handleRealizarAuditoria(ActionEvent event) throws IOException {
+        // Navegar al panel de realizar auditoría (adminCreatePanel)
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminCreatePanel.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1280, 800);

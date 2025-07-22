@@ -86,23 +86,16 @@ public class LoginController {
     }
 
     private void switchToUserPanel(User user, Node source) throws IOException {
-        Session.getInstance().setCurrentUser(user);    
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(chooseStage(user)));
+        Session.getInstance().setCurrentUser(user);
+        
+        // Usar RoleNavigationManager para obtener la ruta inicial basada en el rol
+        String initialPath = RoleNavigationManager.getInitialPathForUser(user);
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(initialPath));
         Parent root = loader.load();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(new Scene(root, 1280, 800));
         stage.show();
-    }
-
-    private String chooseStage(User user) {
-        switch (user.getUserRole()) {
-            case "admin":
-                return "/fxml/admin/adminCreatePanel.fxml";
-            case "inspector":
-                return "/fxml/inspector/inspectorListPanel.fxml";
-            default:
-                return null;
-        }
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {

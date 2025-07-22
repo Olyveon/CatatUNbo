@@ -209,7 +209,7 @@ public class AdminAuditController {
     @FXML
     private void handleVolver() { // Botón para volver al panel anterior
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/admin/AdminMainPanel.fxml"));
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/fxml/admin/adminCreatePanel.fxml"));
             javafx.scene.Parent root = loader.load();       
             javafx.stage.Stage stage = (javafx.stage.Stage) btnVolver.getScene().getWindow();
             javafx.scene.Scene scene = new javafx.scene.Scene(root, 1280, 800);

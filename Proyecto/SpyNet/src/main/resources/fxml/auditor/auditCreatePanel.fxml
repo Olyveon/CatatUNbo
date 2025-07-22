@@ -33,7 +33,7 @@
                   <Font name="Segoe UI" size="25.0" />
                </font>
             </Button>
-            <Region prefHeight="230.0" prefWidth="289.0" />
+            <Region prefHeight="467.0" prefWidth="257.0" />
             <Button alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleExit" styleClass="hover-button" stylesheets="@../../styles/styles.css" text="Salir">
                <font>
                   <Font name="Segoe UI" size="25.0" />

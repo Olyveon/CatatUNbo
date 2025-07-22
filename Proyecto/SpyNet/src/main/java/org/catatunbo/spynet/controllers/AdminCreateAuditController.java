@@ -121,8 +121,24 @@ public class AdminCreateAuditController {
     }
 
     @FXML
-    private void handleConsultarAuditorias(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/AdminMainPanel.fxml"));
+    private void handleConsultarAuditorias(ActionEvent event) {
+        // Ya estamos en el panel principal de administrador (adminCreatePanel)
+        System.out.println("Ya estás en el panel principal de administrador");
+        showAlert("Información", "Ya estás en el panel principal para realizar auditorías", Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    private void handleRealizarAuditoria(ActionEvent event) {
+        // Este botón ya está en la pantalla correcta (adminCreatePanel)
+        // No necesita hacer nada especial, ya estamos en el panel de crear auditoría
+        System.out.println("Ya estás en el panel de Realizar Auditoría");
+        showAlert("Información", "Ya estás en el panel para realizar auditorías", Alert.AlertType.INFORMATION);
+    }
+
+    @FXML
+    private void handleAsignarRoles(ActionEvent event) throws IOException {
+        // Navegar al panel de asignar roles (adminUserPanel)
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin/adminUserPanel.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 1280, 800);
