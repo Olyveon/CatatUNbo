@@ -144,13 +144,16 @@ public class AuditoryDAO {
 
     public boolean updateAuditoryState(int auditoryId, String newState) {
         String sql = "UPDATE auditory SET auditory_state = ? WHERE auditory_id = ?";
+        
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newState);
             stmt.setInt(2, auditoryId);
-            return stmt.executeUpdate() > 0;
+            
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("ERROR: Error al actualizar estado de auditoría: " + e.getMessage());
             return false;
         }
     }
@@ -247,7 +250,17 @@ public class AuditoryDAO {
             if (rowsAffected > 0) {
                 ResultSet generatedKeys = stmt.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    return generatedKeys.getInt(1);
+                    int auditoryId = generatedKeys.getInt(1);
+                    
+                    // Asignar automáticamente la auditoría al usuario "SinAsignar" (ID 14)
+                    boolean accessAssigned = assignAuditoryAccess(auditoryId, 14);
+                    if (accessAssigned) {
+                        System.out.println("Auditoría " + auditoryId + " asignada automáticamente a SinAsignar");
+                    } else {
+                        System.err.println("ERROR: No se pudo asignar la auditoría " + auditoryId + " a SinAsignar");
+                    }
+                    
+                    return auditoryId;
                 }
             }
         } catch (SQLException e) {
