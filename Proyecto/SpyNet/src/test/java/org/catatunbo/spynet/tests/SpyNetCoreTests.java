@@ -1,6 +1,7 @@
 package org.catatunbo.spynet.tests;
 
 import org.catatunbo.spynet.*;
+import org.catatunbo.spynet.auditUtils.OpenAIConfig;
 import org.catatunbo.spynet.auditUtils.ReporteAuditoriaPDF;
 import org.catatunbo.spynet.auditUtils.nmapCommand;
 import org.catatunbo.spynet.controllers.PasswordHasher;
@@ -25,6 +26,15 @@ class SpyNetCoreTests {
     
     @Test
     void testPDFGenerationCreatesFile() {
+        /**
+         * Verifica que se genere un archivo PDF correctamente.
+         * 
+         * Crea un PDF con datos ficticios de auditoría y verifica que:
+         * - El archivo exista
+         * - No esté vacío
+         * 
+         * Esto garantiza que la funcionalidad de generación de reportes está activa.
+         */
         ReporteAuditoriaPDF pdf = new ReporteAuditoriaPDF();
         pdf.generarReporte(
                 "Cliente de Prueba\nAuditor JUnit\nDatos\nPENDIENTE",
@@ -41,6 +51,11 @@ class SpyNetCoreTests {
 
     @Test
     void testNmapCommandReturnsOutput() {
+        /**
+         * Ejecuta un escaneo de Nmap contra 127.0.0.1 y verifica que la salida sea válida.
+         * 
+         * Esto comprueba que la herramienta Nmap esté correctamente integrada y operativa dentro del sistema.
+         */
         nmapCommand nmap = new nmapCommand();
         // Simula un comando seguro (puedes cambiar la IP por una de prueba)
         String output = nmap.executeNmap("-sn", "127.0.0.1");
@@ -50,6 +65,15 @@ class SpyNetCoreTests {
 
     @Test
     void testDatabaseConnection() {
+        /**
+        *  Valida la conexión con la base de datos MySQL.
+        * 
+        * Verifica que:
+        * - La conexión no sea nula
+        * - La conexión esté abierta
+        * 
+        * Esto garantiza que las credenciales y la URL de la base de datos estén bien configuradas.
+        */
         try {
             // Ajusta la URL, usuario y contraseña según tu configuración real
             String url = "jdbc:mysql://localhost:3306/spynetdb";
@@ -117,6 +141,12 @@ class SpyNetCoreTests {
     }
     @Test
     void testSessionSingletonAndRoleValidation() {
+        /**
+         *  Valida el patrón Singleton en la clase Session y la lógica de roles.
+         * 
+         * - Verifica que se retorne siempre la misma instancia
+         * - Comprueba si los roles son correctamente asignados y verificados
+         */
         Session session1 = Session.getInstance();
         Session session2 = Session.getInstance();
         
@@ -134,6 +164,15 @@ class SpyNetCoreTests {
 
     @Test
     void testPasswordHashingConsistencyAndSecurity() throws Exception {
+        /**
+         * Prueba la consistencia del algoritmo de hash de contraseñas.
+         * 
+         * - Mismo password + salt → mismo hash
+         * - Distinto salt → distinto hash
+         * - El hash nunca debe ser igual a la contraseña original
+         * 
+         * Esto garantiza una implementación segura de almacenamiento de contraseñas.
+         */
         PasswordHasher hasher = new PasswordHasher();
         String password = "securePassword123";
         String salt = "dGVzdFNhbHQ="; // Base64 encoded "testSalt"
@@ -158,6 +197,13 @@ class SpyNetCoreTests {
 
     @Test
     void testUserStateValidationAndBusinessLogic() {
+        /**
+         * Verifica los estados del usuario y la lógica de negocio relacionada.
+         * 
+         * - Compara estados "ACTIVE" e "INACTIVE"
+         * - Evalúa el método toString()
+         * - Valida fechas de sesión distintas
+         */
         User activeUser = new User(1, "activeUser", "Inspector", "2025-07-20", "ACTIVE");
         User inactiveUser = new User(2, "inactiveUser", "Admin", "2025-07-19", "INACTIVE");
         
@@ -181,6 +227,13 @@ class SpyNetCoreTests {
 
     @Test
     void getAllAuditories() {
+        /**
+         * Recupera todas las auditorías desde la base de datos.
+         * 
+         * Verifica que:
+         * - La lista de auditorías no sea nula
+         * - Contenga al menos un elemento
+         */
         AuditoryDAO dao = new AuditoryDAO();
         List<Auditory> auditories = dao.getAllAuditories();
         assertNotNull(auditories, "La lista no debe ser null");
@@ -189,6 +242,11 @@ class SpyNetCoreTests {
 
     @Test
     void insertFinding() {
+        /**
+         * Inserta un hallazgo de auditoría en la base de datos.
+         * 
+         * Comprueba que la operación devuelva true, validando la inserción correcta.
+         */
         AuditoryDAO dao = new AuditoryDAO();
         // Usa IDs válidos según tu base de datos de pruebas
         int auditoryId = 1;
@@ -202,6 +260,11 @@ class SpyNetCoreTests {
 
     @Test
     void updateAuditoryAssignedUser() {
+        /**
+         * Actualiza el auditor asignado a una auditoría existente.
+         * 
+         * Este test asegura que el cambio de asignación se registre exitosamente.
+         */
         AuditoryDAO dao = new AuditoryDAO();
         int auditoryId = 1; // ID válido
         int newUserId = 2;  // ID válido
@@ -211,12 +274,29 @@ class SpyNetCoreTests {
 
     @Test
     void createAuditory() {
+        /**
+         * Crea una nueva auditoría asociada a un cliente específico.
+         * 
+         * Verifica que se retorne un ID válido (mayor que cero).
+         */
         AuditoryDAO dao = new AuditoryDAO();
         String name = "Auditoría de prueba";
         int clientId = 1; // ID válido
         Timestamp dateLimit = Timestamp.valueOf(LocalDateTime.now().plusDays(7));
         int newAuditoryId = dao.createAuditory(name, clientId, dateLimit);
         assertTrue(newAuditoryId > 0, "El ID de la nueva auditoría debe ser mayor a 0");
+    }
+
+    @Test
+    void testOpenAIApiKeyIsPresent() {
+        /**
+         * Valida que la API Key de OpenAI esté configurada en los archivos de propiedades.
+         * 
+         * Este test previene errores de conexión futuros con la API.
+         */
+        String apiKey = OpenAIConfig.getApiKey();
+        assertNotNull(apiKey, "La API key de OpenAI no debe ser nula");
+        assertFalse(apiKey.isBlank(), "La API key de OpenAI no debe estar vacía");
     }
 
 }

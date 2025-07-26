@@ -1,9 +1,6 @@
 package org.catatunbo.spynet.tests;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.sql.SQLException;
 
 import org.catatunbo.spynet.User;
 import org.catatunbo.spynet.controllers.CreateUserController;
